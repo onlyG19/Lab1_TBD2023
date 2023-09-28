@@ -5,6 +5,9 @@ import cl.tbd.backend.models.Institucion;
 import java.util.List;
 
 public interface InstitucionRepository {
-    public List<Institucion> getAllInstituciones();
-    public Institucion getInstitucionById(Long id);
+    List<Institucion> getAllInstituciones();
+    Institucion getInstitucionById(Long id);
+    void createInstitucion(Institucion institucion);
+    void updateInstitucion(Institucion institucion);
+    void deleteInstitucion(Long id);
 }

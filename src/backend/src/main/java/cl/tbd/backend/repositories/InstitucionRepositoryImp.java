@@ -42,6 +42,53 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
         }
     }
 
+    @Override
+    public void createInstitucion(Institucion institucion) {
+        String sql = "INSERT INTO institucion (nombre_institucion) VALUES (:nombre_institucion)";
+
+        try (Connection conn = sql2o.open()) {
+            Integer idInteger = (Integer) conn.createQuery(sql, true)
+                    .addParameter("nombre_institucion", institucion.getName())
+                    .executeUpdate()
+                    .getKey();
+
+            Long id = idInteger.longValue(); // Convierte el Integer a Long
+            institucion.setIdInstitucion(id);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al crear la institución", e);
+        }
+    }
+
+    @Override
+    public void updateInstitucion(Institucion institucion) {
+        String sql = "UPDATE institucion SET nombre_institucion = :nombre_institucion WHERE id_institucion = :id_institucion";
+
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
+                    .addParameter("nombre_institucion", institucion.getName())
+                    .addParameter("id_institucion", institucion.getIdInstitucion())
+                    .executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al actualizar la institución", e);
+        }
+    }
+
+    @Override
+    public void deleteInstitucion(Long id) {
+        String sql = "DELETE FROM institucion WHERE id_institucion = :id";
+
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al eliminar la institución", e);
+        }
+    }
 
 
 }

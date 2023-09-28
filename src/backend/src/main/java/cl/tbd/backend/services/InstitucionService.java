@@ -2,9 +2,7 @@ package cl.tbd.backend.services;
 
 import cl.tbd.backend.models.Institucion;
 import cl.tbd.backend.repositories.InstitucionRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,12 +16,28 @@ public class InstitucionService {
 
     @GetMapping("/instituciones")
     public List<Institucion> getAllInstituciones(){
-        List<Institucion> listaInstituciones = institucionRepository.getAllInstituciones();
-        return  listaInstituciones;
+        return institucionRepository.getAllInstituciones();
     }
 
     @GetMapping("/institucion/{id}")
     public Institucion getInstitucionById(@PathVariable Long id) {
         return institucionRepository.getInstitucionById(id);
     }
+
+    @PostMapping("/institucion")
+    public void createInstitucion(@RequestBody Institucion institucion) {
+        institucionRepository.createInstitucion(institucion);
+    }
+
+    @PutMapping("/institucion/{id}")
+    public void updateInstitucion(@PathVariable Long id, @RequestBody Institucion institucion) {
+        institucion.setIdInstitucion(id);
+        institucionRepository.updateInstitucion(institucion);
+    }
+
+    @DeleteMapping("/institucion/{id}")
+    public void deleteInstitucion(@PathVariable Long id) {
+        institucionRepository.deleteInstitucion(id);
+    }
+
 }
