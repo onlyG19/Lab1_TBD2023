@@ -1,4 +1,4 @@
-CREATE EXTENSION IF NOT EXISTS postgis;
+--CREATE EXTENSION IF NOT EXISTS postgis;
 
 CREATE TABLE IF NOT EXISTS voluntario(
     id_voluntario SERIAL PRIMARY KEY,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS voluntario(
     fecha_de_nacimiento DATE,
     genero VARCHAR(10),
     ranking INT,
-    ubicacion_voluntario GEOMETRY(Point, 4326),
+    --ubicacion_voluntario GEOMETRY(Point, 4326),
     id_coordinador_asignado INT,
     CONSTRAINT fk_coordinador_asignado
         FOREIGN KEY (id_coordinador_asignado)
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS emergencia (
     nombre_emergencia VARCHAR(255),
     descripcion VARCHAR(255),
     fecha_hora_creacion TIMESTAMP,
-    ubicacion_emergencia GEOMETRY(Point, 4326),
+    --ubicacion_emergencia GEOMETRY(Point, 4326),
     id_coordinador INT NOT NULL, -- ID del coordinador que crea la emergencia
     id_institucion INT NOT NULL, -- ID de la institucion que proviene la creacion de la emergencia
     CONSTRAINT fk_emergencia_coordinador
