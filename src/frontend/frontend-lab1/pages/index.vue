@@ -1,35 +1,14 @@
 <template>
-  <v-tabs
-    fixed-tabs
-    >
-    <v-tab>Voluntarios</v-tab>
-    <v-tab>Coordinadores</v-tab>
-      <v-tab-item transition="fade-transition">
-      <div class="container">
-        <LogIn class="login-form" typeUser="voluntario"/>
-        <CarouselsV />
-        <a class="login-form">¿Deseas unirte?</a>
-      </div>
-      </v-tab-item>
-      <v-tab-item transition="fade-transition">
-      <div class="container">
-        <CarouselsC />
-        <LogIn class="login-form" typeUser="coordinador"/>
-      </div>
-      </v-tab-item>
-  </v-tabs>
-</template>
+    <!-- Contenido principal -->
+      <v-container class="py-6 text-center">
+        <h1 class="display-2 font-weight-bold mb-4">Únete a la Causa</h1>
+        <p class="subtitle-1">Haz la diferencia en tu comunidad como voluntario</p>
+        <v-btn color="primary" class="mt-4" to="/register">¡Regístrate Ahora!</v-btn>
+      </v-container>
+    </template>
 
-<style>
-
-  .container{
-  margin: 0 8em;
-  display: grid;
-  grid-template-columns: 5fr 6fr;
-  align-items: center;
-  }
-
-  .login-form{
-    padding: 0 2em;
-  }
-</style>
+<script>
+export default {
+  name: "Home",
+};
+</script>
