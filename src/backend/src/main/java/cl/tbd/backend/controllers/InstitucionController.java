@@ -35,7 +35,6 @@ public class InstitucionController {
 
     @PutMapping("/institucion/{id}")
     public void updateInstitucion(@PathVariable Long id, @RequestBody Institucion institucion) {
-        institucion.setIdInstitucion(id);
         institucionService.updateInstitucion(id,institucion);
     }
 

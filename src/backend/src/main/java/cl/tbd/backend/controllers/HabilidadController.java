@@ -40,7 +40,6 @@ public class HabilidadController {
 
     @PutMapping("/habilidad/{id}")
     public void updateHabilidad(@PathVariable Long id, @RequestBody Habilidad habilidad) {
-        habilidad.setIdHabilidad(id);
         habilidadService.updateHabilidad(id, habilidad);
     }
 
