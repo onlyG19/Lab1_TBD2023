@@ -88,7 +88,7 @@ public class Vol_HabilidadRepositoryImp implements Vol_HabilidadRepository {
                     .getKey();
 
             Long id = idInteger.longValue();
-            vol_habilidad.setIdVolHabilidad(id);;
+            vol_habilidad.setIdVolHabilidad(id);
 
         } catch (Exception e) {
             e.printStackTrace();
