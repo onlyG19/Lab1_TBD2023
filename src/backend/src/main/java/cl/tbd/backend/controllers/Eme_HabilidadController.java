@@ -34,7 +34,7 @@ public class Eme_HabilidadController {
     }
 
     @GetMapping("/eme_habilidad/emergencia/{id_emergencia}")
-    public List<Eme_Habilidad> getEmeHabilidadesByEmergenciaId(@PathVariable Long id_emergencia) {
+    public List<Eme_Habilidad> getAllEmeHabilidadesByEmergenciaId(@PathVariable Long id_emergencia) {
         return eme_habilidadService.getAllEmeHabilidadesByEmergenciaId(id_emergencia);
     }
 
