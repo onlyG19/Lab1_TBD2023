@@ -23,8 +23,8 @@ public class VoluntarioService {
         return voluntarioRepository.getVoluntarioById(id);
     }
 
-    public List<Voluntario> getAllVoluntariosByCoordinadorId(Long id) {
-        return voluntarioRepository.getAllVoluntariosByCoordinadorId(id);
+    public List<Voluntario> getAllVoluntariosByCoordinadorId(Long id_coordinador) {
+        return voluntarioRepository.getAllVoluntariosByCoordinadorId(id_coordinador);
     }
 
     public void createVoluntario(Voluntario voluntario) {

@@ -34,7 +34,7 @@ public class VoluntarioController {
     }
 
     @GetMapping("/voluntarios/{id_coordinador}")
-    public List<Voluntario> getVoluntariosByCoordinadorId(@PathVariable Long id_coordinador) {
+    public List<Voluntario> getAllVoluntariosByCoordinadorId(@PathVariable Long id_coordinador) {
         return voluntarioService.getAllVoluntariosByCoordinadorId(id_coordinador);
     }
 

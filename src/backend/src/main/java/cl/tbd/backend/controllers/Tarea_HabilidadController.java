@@ -29,7 +29,7 @@ public class Tarea_HabilidadController {
     }
 
     @GetMapping("/tarea_habilidad/{id}")
-    public Tarea_Habilidad getTareaHabilidadById(Long id) {
+    public Tarea_Habilidad getTareaHabilidadById(@PathVariable Long id) {
         return tarea_habilidadService.getTareaHabilidadById(id);
     }
 
