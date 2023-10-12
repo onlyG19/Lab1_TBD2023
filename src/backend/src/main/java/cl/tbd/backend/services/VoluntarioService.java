@@ -22,11 +22,11 @@ public class VoluntarioService {
     public Voluntario getVoluntarioById(long id) {
         return voluntarioRepository.getVoluntarioById(id);
     }
-
+    /* 
     public List<Voluntario> getAllVoluntariosByCoordinadorId(Long id_coordinador) {
         return voluntarioRepository.getAllVoluntariosByCoordinadorId(id_coordinador);
     }
-
+    */
     public void createVoluntario(Voluntario voluntario) {
         voluntarioRepository.createVoluntario(voluntario);
     }

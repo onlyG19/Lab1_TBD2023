@@ -23,14 +23,14 @@ public class Voluntario {
     private String genero;
     @JsonProperty("ranking")
     private Integer ranking;
-    @JsonProperty("id_coordinador_asignado")
-    private Long id_coordinador_asignado;
+    @JsonProperty("contrasena")
+    private String contrasena;
 
     public Voluntario() {
         
     }
 
-    public Voluntario(Long id_voluntario, String nombre, String apellido, String email, String telefono, String direccion, Date fecha_de_nacimiento, String genero, Integer ranking, Long id_coordinador_asginado) {
+    public Voluntario(Long id_voluntario, String nombre, String apellido, String email, String telefono, String direccion, Date fecha_de_nacimiento, String genero, Integer ranking, String contrasena) {
         this.id_voluntario = id_voluntario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -40,10 +40,10 @@ public class Voluntario {
         this.fecha_de_nacimiento = fecha_de_nacimiento;
         this.genero = genero;
         this.ranking = ranking;
-        this.id_coordinador_asignado = id_coordinador_asginado;
+        this.contrasena = contrasena;
     }
 
-    public Voluntario(String nombre, String apellido, String email, String telefono, String direccion, Date fecha_de_nacimiento, String genero, Integer ranking, Long id_coordinador_asginado) {
+    public Voluntario(String nombre, String apellido, String email, String telefono, String direccion, Date fecha_de_nacimiento, String genero, Integer ranking, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -52,7 +52,7 @@ public class Voluntario {
         this.fecha_de_nacimiento = fecha_de_nacimiento;
         this.genero = genero;
         this.ranking = ranking;
-        this.id_coordinador_asignado = id_coordinador_asginado;
+        this.contrasena = contrasena;
     }
 
     public Long getIdVoluntario() {
@@ -127,11 +127,11 @@ public class Voluntario {
         this.ranking = ranking;
     }
 
-    public Long getIdCoordinadorAsignado() {
-        return id_coordinador_asignado;
+    public String getContrasenaVoluntario() {
+        return contrasena;
     }
 
-    public void setIdCoordinadorAsignado(Long id_coordinador_asignado) {
-        this.id_coordinador_asignado = id_coordinador_asignado;
+    public void setContrasenaVoluntario(String contrasena) {
+        this.contrasena = contrasena;
     }
 }

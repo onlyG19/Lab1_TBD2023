@@ -11,20 +11,19 @@ CREATE TABLE IF NOT EXISTS voluntario(
     genero VARCHAR(10),
     ranking INT,
     --ubicacion_voluntario GEOMETRY(Point, 4326),
-    id_coordinador_asignado INT,
-    CONSTRAINT fk_coordinador_asignado
-        FOREIGN KEY (id_coordinador_asignado)
-        REFERENCES voluntario(id_voluntario)
+	contrasena VARCHAR(255)
+    --id_coordinador_asignado INT,
+    --CONSTRAINT fk_coordinador_asignado
+        --FOREIGN KEY (id_coordinador_asignado)
+        --REFERENCES voluntario(id_voluntario)
 );
 
 CREATE TABLE IF NOT EXISTS coordinador(
     id_coordinador SERIAL PRIMARY KEY,
     nombre VARCHAR(255),
     apellido VARCHAR(255),
-    estado_salud VARCHAR (32);
-    
-)
-
+    estado_salud VARCHAR (32)
+);
 
 CREATE TABLE IF NOT EXISTS habilidad(
     id_habilidad SERIAL PRIMARY KEY,

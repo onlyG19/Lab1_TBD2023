@@ -41,7 +41,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
             throw new RuntimeException("Error al obtener el voluntario por ID", e);
         }
     }
-
+    /* 
     @Override
     public List<Voluntario> getAllVoluntariosByCoordinadorId(Long id_coordinador_asginado) {
         String sql = "SELECT * FROM voluntario WHERE id_coordinador_asignado = :id_coordinador_asignado";
@@ -58,10 +58,10 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
             throw new RuntimeException("Error al obtener los voluntarios del coordinador", e);
         }
     }
-
+    */
     @Override
     public void createVoluntario(Voluntario voluntario) {
-        String sql = "INSERT INTO voluntario (nombre, apellido, email, telefono, direccion, fecha_de_nacimiento, genero, ranking, id_coordinador_asignado) VALUES (:nombre, :apellido, :email, :telefono, :direccion, :fecha_de_nacimiento, :genero, :ranking, :id_coordinador_asignado)";
+        String sql = "INSERT INTO voluntario (nombre, apellido, email, telefono, direccion, fecha_de_nacimiento, genero, ranking, contrasena) VALUES (:nombre, :apellido, :email, :telefono, :direccion, :fecha_de_nacimiento, :genero, :ranking, :contrasena)";
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
@@ -73,7 +73,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                     .addParameter("fecha_de_nacimiento", voluntario.getFechaDeNacimientoVoluntario())
                     .addParameter("genero", voluntario.getGeneroVoluntario())
                     .addParameter("ranking", voluntario.getRankingVoluntario())
-                    .addParameter("id_coordinador_asignado", voluntario.getIdCoordinadorAsignado())
+                    .addParameter("contrasena", voluntario.getContrasenaVoluntario())
                     .executeUpdate()
                     .getKey();
 
@@ -88,7 +88,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
 
     @Override
     public void updateVoluntario(Voluntario voluntario) {
-        String sql = "UPDATE voluntario SET nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono, direccion = :direccion, fecha_de_nacimiento = :fecha_de_nacimiento, genero = :genero, ranking = :ranking, id_coordinador_asignado = :id_coordinador_asignado WHERE id_voluntario = :id_voluntario";
+        String sql = "UPDATE voluntario SET nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono, direccion = :direccion, fecha_de_nacimiento = :fecha_de_nacimiento, genero = :genero, ranking = :ranking, contrasena = :contrasena WHERE id_voluntario = :id_voluntario";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
@@ -100,7 +100,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                     .addParameter("fecha_de_nacimiento", voluntario.getFechaDeNacimientoVoluntario())
                     .addParameter("genero", voluntario.getGeneroVoluntario())
                     .addParameter("ranking", voluntario.getRankingVoluntario())
-                    .addParameter("id_coordinador_asignado", voluntario.getIdCoordinadorAsignado())
+                    .addParameter("contrasena", voluntario.getContrasenaVoluntario())
                     .addParameter("id_voluntario", voluntario.getIdVoluntario())
                     .executeUpdate();
         } catch (Exception e) {

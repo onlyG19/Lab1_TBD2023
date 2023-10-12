@@ -32,12 +32,12 @@ public class VoluntarioController {
     public Voluntario getVoluntarioById(@PathVariable Long id) {
         return voluntarioService.getVoluntarioById(id);
     }
-
+    /* 
     @GetMapping("/voluntarios/{id_coordinador}")
     public List<Voluntario> getAllVoluntariosByCoordinadorId(@PathVariable Long id_coordinador) {
         return voluntarioService.getAllVoluntariosByCoordinadorId(id_coordinador);
     }
-
+    */
     @PostMapping("/voluntario")
     public void createVoluntario(@RequestBody Voluntario voluntario) {
         voluntarioService.createVoluntario(voluntario);
