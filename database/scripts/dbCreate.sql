@@ -17,6 +17,15 @@ CREATE TABLE IF NOT EXISTS voluntario(
         REFERENCES voluntario(id_voluntario)
 );
 
+CREATE TABLE IF NOT EXISTS coordinador(
+    id_coordinador SERIAL PRIMARY KEY,
+    nombre VARCHAR(255),
+    apellido VARCHAR(255),
+    estado_salud VARCHAR (32);
+    
+)
+
+
 CREATE TABLE IF NOT EXISTS habilidad(
     id_habilidad SERIAL PRIMARY KEY,
     nombre_habilidad VARCHAR(255)
