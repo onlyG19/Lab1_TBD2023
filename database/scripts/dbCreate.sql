@@ -1,28 +1,15 @@
---CREATE EXTENSION IF NOT EXISTS postgis;
+--------------------------- Creación de tablas ---------------------------------
 
 CREATE TABLE IF NOT EXISTS voluntario(
     id_voluntario SERIAL PRIMARY KEY,
-    nombre VARCHAR(255),
-    apellido VARCHAR(255),
-    email VARCHAR(255),
-    telefono VARCHAR(15),
-    direccion VARCHAR(255),
-    fecha_de_nacimiento DATE,
-    genero VARCHAR(10),
-    ranking INT,
-    --ubicacion_voluntario GEOMETRY(Point, 4326),
-	contrasena VARCHAR(255)
-    --id_coordinador_asignado INT,
-    --CONSTRAINT fk_coordinador_asignado
-        --FOREIGN KEY (id_coordinador_asignado)
-        --REFERENCES voluntario(id_voluntario)
-);
-
-CREATE TABLE IF NOT EXISTS coordinador(
-    id_coordinador SERIAL PRIMARY KEY,
-    nombre VARCHAR(255),
-    apellido VARCHAR(255),
-    estado_salud VARCHAR (32)
+    nombre_voluntario VARCHAR(255),
+    apellido_voluntario VARCHAR(255),
+    telefono_voluntario VARCHAR(15),
+    direccion_voluntario VARCHAR(255),
+    fecha_nacimiento_voluntario DATE,
+    disponibilidad_voluntario DATE, -- Referente a un día en particular por simplicidad
+	email_voluntario VARCHAR(255),
+	contrasena_voluntario VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS habilidad(
@@ -35,9 +22,16 @@ CREATE TABLE IF NOT EXISTS institucion(
     nombre_institucion VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS estado_tarea(
-    id_estado_tarea SERIAL PRIMARY KEY,
-    nombre_estado VARCHAR(32)
+CREATE TABLE IF NOT EXISTS coordinador(
+    id_coordinador SERIAL PRIMARY KEY,
+    nombre_coordinador VARCHAR(255),
+    apellido_coordinador VARCHAR(255),
+    id_institucion INT, -- Referencia a la instución del coordinador
+	email_coordinador VARCHAR(255),
+	contraseña_coordinador VARCHAR(255),
+	CONSTRAINT fk_coordinador_institucion
+        FOREIGN KEY (id_institucion)
+        REFERENCES institucion(id_institucion)
 );
 
 CREATE TABLE IF NOT EXISTS vol_habilidad (
@@ -55,18 +49,27 @@ CREATE TABLE IF NOT EXISTS vol_habilidad (
 CREATE TABLE IF NOT EXISTS emergencia (
     id_emergencia SERIAL PRIMARY KEY,
     nombre_emergencia VARCHAR(255),
-    descripcion VARCHAR(255),
-    fecha_hora_creacion TIMESTAMP,
-    --ubicacion_emergencia GEOMETRY(Point, 4326),
+    descripcion_emergencia VARCHAR(255),
+    fecha_creacion_emergencia TIMESTAMP,
     id_coordinador INT NOT NULL, -- ID del coordinador que crea la emergencia
     id_institucion INT NOT NULL, -- ID de la institucion que proviene la creacion de la emergencia
     CONSTRAINT fk_emergencia_coordinador
         FOREIGN KEY (id_coordinador)
-        REFERENCES voluntario(id_voluntario),
+        REFERENCES coordinador(id_coordinador),
     CONSTRAINT fk_emergencia_institucion
         FOREIGN KEY (id_institucion)
         REFERENCES institucion(id_institucion)
 );
+
+CREATE TABLE IF NOT EXISTS emergencia_log (
+	id_emergencia_log SERIAL PRIMARY KEY,
+	id_emergencia INT,
+	operacion_emergencia_log VARCHAR(255),
+	id_coordinador INT,
+	consulta_emergencia_log VARCHAR(255),
+	timestamp TIMESTAMPTZ DEFAULT NOW()
+);
+
 
 CREATE TABLE IF NOT EXISTS eme_habilidad (
     id_eme_habilidad SERIAL PRIMARY KEY,
@@ -85,33 +88,58 @@ CREATE TABLE IF NOT EXISTS tarea (
     descripcion VARCHAR(255),
     fecha_asignacion DATE,
     id_emergencia INT, -- Referencia a la emergencia (clave foránea)
-    id_estado_tarea INT, -- Referencia al estado de la tarea (clave foránea)
+    estado_tarea BOOL, -- Referencia al estado de la tarea (clave foránea)
     CONSTRAINT fk_tarea_emergencia
         FOREIGN KEY (id_emergencia)
-        REFERENCES emergencia(id_emergencia),
-    CONSTRAINT fk_tarea_estado_tarea
-        FOREIGN KEY (id_estado_tarea)
-        REFERENCES estado_tarea(id_estado_tarea)
+        REFERENCES emergencia(id_emergencia)
 );
 
 CREATE TABLE IF NOT EXISTS tarea_habilidad (
     id_tarea_habilidad SERIAL PRIMARY KEY,
     id_tarea INT, -- Referencia a la tarea (clave foránea)
     id_habilidad INT, -- Referencia a la habilidad (clave foránea)
+	puntaje_tarea_habilidad INT,
     CONSTRAINT fk_tarea_habilidad_tarea
         FOREIGN KEY (id_tarea)
-        REFERENCES tarea(id_tarea),
-    CONSTRAINT fk_tarea_habilidad_habilidad
-        FOREIGN KEY (id_habilidad)
-        REFERENCES habilidad(id_habilidad)
+        REFERENCES tarea(id_tarea)
 );
 
 CREATE TABLE IF NOT EXISTS ranking (
     id_ranking SERIAL PRIMARY KEY,
     id_voluntario INT, -- Referencia al voluntario (clave foránea)
-    puntuacion INT,
-    fecha TIMESTAMP,
+    posicion_ranking INT, -- Valor que indica el lugar en el ranking para esa tarea
+    id_tarea INT,
+	asignado_ranking BOOL, -- Bool que indica si la tarea fue asignada al voluntario
     CONSTRAINT fk_ranking_voluntario
         FOREIGN KEY (id_voluntario)
-        REFERENCES voluntario(id_voluntario)
+        REFERENCES voluntario(id_voluntario),
+	CONSTRAINT fk_ranking_tarea
+        FOREIGN KEY (id_tarea)
+        REFERENCES tarea(id_tarea)
 );
+
+--------------------------------- Triggers ---------------------------------------
+
+CREATE OR REPLACE FUNCTION funcion_log()
+RETURNS TRIGGER AS $$
+DECLARE
+	id_coordinador_editor INT;
+BEGIN 
+	IF (TG_OP = 'UPDATE') THEN
+		id_coordinador_editor := current_setting('app.id_coordinador_editor', true)::INT; -- Se extrae la id del coordinador editor
+		INSERT INTO emergencia_log (id_emergencia, operacion_emergencia_log, 
+								   id_coordinador, consulta_emergencia_log)
+		VALUES (OLD.id_emergencia, 'UPDATE', id_coordinador_editor, current_query()); 
+	END IF;
+	RETURN NEW;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER log_trigger
+AFTER UPDATE ON emergencia
+FOR EACH ROW
+EXECUTE FUNCTION funcion_log();
+
+SET pg_stat_statements.enabled = on;
+
+
