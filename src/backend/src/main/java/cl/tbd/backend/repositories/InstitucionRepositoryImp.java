@@ -30,11 +30,11 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public Institucion getInstitucionById(Long id) {
-        String sql = "SELECT * FROM institucion WHERE id_institucion = :id";
+    public Institucion getInstitucionById(Long id_institucion) {
+        String sql = "SELECT * FROM institucion WHERE id_institucion = :id_institucion";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_institucion", id_institucion)
                     .executeAndFetchFirst(Institucion.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,12 +77,12 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public void deleteInstitucion(Long id) {
-        String sql = "DELETE FROM institucion WHERE id_institucion = :id";
+    public void deleteInstitucion(Long id_institucion) {
+        String sql = "DELETE FROM institucion WHERE id_institucion = :id_institucion";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_institucion", id_institucion)
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

@@ -30,11 +30,11 @@ public class Vol_HabilidadRepositoryImp implements Vol_HabilidadRepository {
     }
 
     @Override
-    public Vol_Habilidad getVolHabilidadById(Long id) {
-        String sql = "SELECT * FROM vol_habilidad WHERE id_vol_habilidad = :id";
+    public Vol_Habilidad getVolHabilidadById(Long id_vol_habilidad) {
+        String sql = "SELECT * FROM vol_habilidad WHERE id_vol_habilidad = :id_vol_habilidad";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_vol_habilidad", id_vol_habilidad)
                     .executeAndFetchFirst(Vol_Habilidad.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,12 +113,12 @@ public class Vol_HabilidadRepositoryImp implements Vol_HabilidadRepository {
     }
     
     @Override
-    public void deleteVolHabilidad(Long id) {
-        String sql = "DELETE FROM vol_habilidad WHERE id_vol_habilidad = :id";
+    public void deleteVolHabilidad(Long id_vol_habilidad) {
+        String sql = "DELETE FROM vol_habilidad WHERE id_vol_habilidad = :id_vol_habilidad";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_vol_habilidad", id_vol_habilidad)
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

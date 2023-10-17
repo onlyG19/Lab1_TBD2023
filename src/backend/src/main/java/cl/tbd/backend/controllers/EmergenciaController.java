@@ -23,6 +23,7 @@ public class EmergenciaController {
         this.emergenciaService = emergenciaService;
     }
 
+    // GET
     @GetMapping("/emergencias")
     public List<Emergencia> getAllEmergencias() {
         return emergenciaService.getAllEmergencias();
@@ -30,6 +31,7 @@ public class EmergenciaController {
 
     @GetMapping("/emergencia/{id}")
     public Emergencia getEmergenciaById(@PathVariable Long id) {
+//        System.out.println(emergenciaService.getEmergenciaById(id).getFechaCreacionEmergencia());
         return emergenciaService.getEmergenciaById(id);
     }
 
@@ -43,16 +45,19 @@ public class EmergenciaController {
         return emergenciaService.getAllEmergenciasByInstitucionId(id_institucion);
     }
 
+    // CREATE
     @PostMapping("/emergencia")
     public void createEmergencia(@RequestBody Emergencia emergencia) {
         emergenciaService.createEmergencia(emergencia);
     }
 
+    // UPDATE
     @PutMapping("/emergencia/{id}")
     public void updateEmergencia(@PathVariable Long id, @RequestBody Emergencia emergencia) {
         emergenciaService.updateEmergencia(id, emergencia);
     }
 
+    // DELETE
     @DeleteMapping("/emergencia/{id}")
     public void deleteEmergencia(@PathVariable Long id) {
         emergenciaService.deleteEmergencia(id);

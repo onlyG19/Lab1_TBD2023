@@ -30,11 +30,11 @@ public class HabilidadRepositoryImp implements HabilidadRepository {
     }
 
     @Override
-    public Habilidad getHabilidadById(Long id) {
-        String sql = "SELECT * FROM habilidad WHERE id_habilidad = :id";
+    public Habilidad getHabilidadById(Long id_habilidad) {
+        String sql = "SELECT * FROM habilidad WHERE id_habilidad = :id_habilidad";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_habilidad", id_habilidad)
                     .executeAndFetchFirst(Habilidad.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +48,7 @@ public class HabilidadRepositoryImp implements HabilidadRepository {
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
-                    .addParameter("nombre_habilidad", habilidad.getName())
+                    .addParameter("nombre_habilidad", habilidad.getNombreHabilidad())
                     .executeUpdate()
                     .getKey();
 
@@ -68,7 +68,7 @@ public class HabilidadRepositoryImp implements HabilidadRepository {
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("nombre_habilidad", habilidad.getName())
+                    .addParameter("nombre_habilidad", habilidad.getNombreHabilidad())
                     .addParameter("id_habilidad", habilidad.getIdHabilidad())
                     .executeUpdate();
         } catch (Exception e) {
@@ -78,12 +78,12 @@ public class HabilidadRepositoryImp implements HabilidadRepository {
     }
 
     @Override
-    public void deleteHabilidad(Long id) {
-        String sql = "DELETE FROM habilidad WHERE id_habilidad = :id";
+    public void deleteHabilidad(Long id_habilidad) {
+        String sql = "DELETE FROM habilidad WHERE id_habilidad = :id_habilidad";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_habilidad", id_habilidad)
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

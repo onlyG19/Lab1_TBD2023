@@ -23,6 +23,7 @@ public class HabilidadController {
         this.habilidadService = habilidadService;
     }
 
+    // GET/READ
     @GetMapping("/habilidades")
     public List<Habilidad> getAllHabilidades() {
         return habilidadService.getAllHabilidades();
@@ -33,16 +34,19 @@ public class HabilidadController {
         return habilidadService.getHabilidadById(id);
     }
 
+    // CREATE
     @PostMapping("/habilidad")
     public void createHabilidad(@RequestBody Habilidad habilidad) {
         habilidadService.createHabilidad(habilidad);
     }
 
+    // UPDATE
     @PutMapping("/habilidad/{id}")
     public void updateHabilidad(@PathVariable Long id, @RequestBody Habilidad habilidad) {
         habilidadService.updateHabilidad(id, habilidad);
     }
 
+    // DELETE
     @DeleteMapping("/habilidad/{id}")
     public void deleteHabilidad(@PathVariable Long id) {
         habilidadService.deleteHabilidad(id);

@@ -29,7 +29,7 @@ public class CoordinadorService {
     }
 
     public Coordinador findOneByEmail(String email){
-        return coordinadorRepository.findOneByEmail(email);
+        return coordinadorRepository.getCoordinadorByEmail(email);
 
     }
 

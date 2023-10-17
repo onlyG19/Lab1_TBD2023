@@ -23,6 +23,7 @@ public class Eme_HabilidadController {
         this.eme_habilidadService = eme_habilidadService;
     }
 
+    // GET/READ
     @GetMapping("/eme_habilidades")
     public List<Eme_Habilidad> getAllEmeHabilidades() {
         return eme_habilidadService.getAllEmeHabilidades();
@@ -43,16 +44,19 @@ public class Eme_HabilidadController {
         return eme_habilidadService.getAllEmeHabilidadesByHabilidadesId(id_habilidad);
     }
 
+    // CREATE
     @PostMapping("/eme_habilidad")
     public void createEmeHabilidad(@RequestBody Eme_Habilidad eme_habilidad) {
         eme_habilidadService.createEmeHabilidad(eme_habilidad);
     }
 
+    // UPDATE
     @PutMapping("/eme_habilidad/{id}")
     public void updateEmeHabilidad(@PathVariable Long id, @RequestBody Eme_Habilidad eme_habilidad) {
         eme_habilidadService.updateEmeHabilidad(id, eme_habilidad);
     }
 
+    // DELETE
     @DeleteMapping("/eme_habilidad/{id}")
     public void deleteEmeHabilidad(@PathVariable Long id) {
         eme_habilidadService.deleteEmeHabilidad(id);

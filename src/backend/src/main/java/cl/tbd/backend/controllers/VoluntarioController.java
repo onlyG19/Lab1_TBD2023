@@ -23,6 +23,7 @@ public class VoluntarioController {
         this.voluntarioService = voluntarioService;
     }
 
+    // GET/READ
     @GetMapping("/voluntarios")
     public List<Voluntario> getAllVoluntarios() {
         return voluntarioService.getAllVoluntarios();
@@ -32,22 +33,20 @@ public class VoluntarioController {
     public Voluntario getVoluntarioById(@PathVariable Long id) {
         return voluntarioService.getVoluntarioById(id);
     }
-    /* 
-    @GetMapping("/voluntarios/{id_coordinador}")
-    public List<Voluntario> getAllVoluntariosByCoordinadorId(@PathVariable Long id_coordinador) {
-        return voluntarioService.getAllVoluntariosByCoordinadorId(id_coordinador);
-    }
-    */
+
+    // CREATE
     @PostMapping("/voluntario")
     public void createVoluntario(@RequestBody Voluntario voluntario) {
         voluntarioService.createVoluntario(voluntario);
     }
 
+    // UPDATE
     @PutMapping("/voluntario/{id}")
     public void updateVoluntario(@PathVariable Long id, @RequestBody Voluntario voluntario) {
         voluntarioService.updateVoluntario(id, voluntario);
     }
 
+    // DELETE
     @DeleteMapping("/voluntario/{id}")
     public void deleteVoluntario(@PathVariable Long id) {
         voluntarioService.deleteVoluntario(id);

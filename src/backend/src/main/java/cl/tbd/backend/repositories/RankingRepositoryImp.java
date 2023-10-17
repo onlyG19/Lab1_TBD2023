@@ -30,11 +30,11 @@ public class RankingRepositoryImp implements RankingRepository {
     }
 
     @Override
-    public Ranking getRankingById(Long id) {
-        String sql = "SELECT * FROM ranking WHERE id_ranking = :id";
+    public Ranking getRankingById(Long id_ranking) {
+        String sql = "SELECT * FROM ranking WHERE id_ranking = :id_ranking";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_ranking", id_ranking)
                     .executeAndFetchFirst(Ranking.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,13 +61,15 @@ public class RankingRepositoryImp implements RankingRepository {
 
     @Override
     public void createRanking(Ranking ranking) {
-        String sql = "INSERT INTO ranking (id_voluntario, puntuacion, fecha) VALUES (:id_voluntario, :puntuacion, :fecha)";
+        String sql = "INSERT INTO ranking (id_voluntario, posicion_ranking, id_tarea, asignado_ranking) " +
+                "VALUES (:id_voluntario, :posicion_ranking, :id_tarea, :asignado_ranking)";
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
                     .addParameter("id_voluntario", ranking.getIdVoluntario())
-                    .addParameter("puntuacion", ranking.getPuntuacion())
-                    .addParameter("fecha", ranking.getFecha())
+                    .addParameter("posicion_ranking", ranking.getPosicionRanking())
+                    .addParameter("id_tarea", ranking.getIdTarea())
+                    .addParameter("asignado_ranking", ranking.getAsignadoRanking())
                     .executeUpdate()
                     .getKey();
 
@@ -82,13 +84,15 @@ public class RankingRepositoryImp implements RankingRepository {
 
     @Override
     public void updateRanking(Ranking ranking) {
-        String sql = "UPDATE ranking SET id_voluntario = :id_voluntario, puntuacion = :puntuacion, fecha = :fecha WHERE id_ranking = :id_ranking";
+        String sql = "UPDATE ranking SET id_voluntario = :id_voluntario, posicion_ranking = :posicion_ranking, " +
+                "id_tarea = :id_tarea, asignado_ranking = :asignado_ranking WHERE id_ranking = :id_ranking";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql, true)
                     .addParameter("id_voluntario", ranking.getIdVoluntario())
-                    .addParameter("puntuacion", ranking.getPuntuacion())
-                    .addParameter("fecha", ranking.getFecha())
+                    .addParameter("posicion_ranking", ranking.getPosicionRanking())
+                    .addParameter("id_tarea", ranking.getIdTarea())
+                    .addParameter("asignado_ranking", ranking.getAsignadoRanking())
                     .addParameter("id_ranking", ranking.getIdRanking())
                     .executeUpdate();
         } catch (Exception e) {
@@ -98,12 +102,12 @@ public class RankingRepositoryImp implements RankingRepository {
     }
 
     @Override
-    public void deleteRanking(Long id) {
-        String sql = "DELETE FROM ranking WHERE id_ranking = :id";
+    public void deleteRanking(Long id_ranking) {
+        String sql = "DELETE FROM ranking WHERE id_ranking = :id_ranking";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_ranking", id_ranking)
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

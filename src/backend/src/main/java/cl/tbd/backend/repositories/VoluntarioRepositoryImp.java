@@ -41,39 +41,24 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
             throw new RuntimeException("Error al obtener el voluntario por ID", e);
         }
     }
-    /* 
-    @Override
-    public List<Voluntario> getAllVoluntariosByCoordinadorId(Long id_coordinador_asginado) {
-        String sql = "SELECT * FROM voluntario WHERE id_coordinador_asignado = :id_coordinador_asignado";
-        List<Voluntario> listaVoluntarios;
-
-        try (Connection conn = sql2o.open()) {
-            listaVoluntarios = conn.createQuery(sql)
-                    .addParameter("id_coordinador_asignado", id_coordinador_asginado)
-                    .executeAndFetch(Voluntario.class);
-
-            return listaVoluntarios;
-        } catch (Exception e){
-            e.printStackTrace();
-            throw new RuntimeException("Error al obtener los voluntarios del coordinador", e);
-        }
-    }
-    */
     @Override
     public void createVoluntario(Voluntario voluntario) {
-        String sql = "INSERT INTO voluntario (nombre, apellido, email, telefono, direccion, fecha_de_nacimiento, genero, ranking, contrasena) VALUES (:nombre, :apellido, :email, :telefono, :direccion, :fecha_de_nacimiento, :genero, :ranking, :contrasena)";
+        String sql = "INSERT INTO voluntario (nombre_voluntario, apellido_voluntario, telefono_voluntario, " +
+                "direccion_voluntario, fecha_nacimiento_voluntario, disponibilidad_voluntario," +
+                "password_voluntario, email_voluntario) " +
+                "VALUES (:nombre_voluntario, :apellido_voluntario, :telefono_voluntario, :direccion_voluntario, " +
+                ":fecha_nacimiento_voluntario, :disponibilidad_voluntario, :password_voluntario, :email_voluntario)";
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
-                    .addParameter("nombre", voluntario.getNombreVoluntario())
-                    .addParameter("apellido", voluntario.getApellidoVoluntario())
-                    .addParameter("email", voluntario.getEmailVoluntario())
-                    .addParameter("telefono", voluntario.getTelefonoVoluntario())
-                    .addParameter("direccion", voluntario.getDireccionVoluntario())
-                    .addParameter("fecha_de_nacimiento", voluntario.getFechaDeNacimientoVoluntario())
-                    .addParameter("genero", voluntario.getGeneroVoluntario())
-                    .addParameter("ranking", voluntario.getRankingVoluntario())
-                    .addParameter("contrasena", voluntario.getContrasenaVoluntario())
+                    .addParameter("nombre_voluntario", voluntario.getNombreVoluntario())
+                    .addParameter("apellido_voluntario", voluntario.getApellidoVoluntario())
+                    .addParameter("telefono_voluntario", voluntario.getTelefonoVoluntario())
+                    .addParameter("direccion_voluntario", voluntario.getDireccionVoluntario())
+                    .addParameter("fecha_nacimiento_voluntario", voluntario.getFechaNacimientoVoluntario())
+                    .addParameter("disponibilidad_voluntario", voluntario.getDisponibilidadVoluntario())
+                    .addParameter("password_voluntario", voluntario.getPasswordVoluntario())
+                    .addParameter("email_voluntario", voluntario.getEmailVoluntario())
                     .executeUpdate()
                     .getKey();
 
@@ -88,19 +73,22 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
 
     @Override
     public void updateVoluntario(Voluntario voluntario) {
-        String sql = "UPDATE voluntario SET nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono, direccion = :direccion, fecha_de_nacimiento = :fecha_de_nacimiento, genero = :genero, ranking = :ranking, contrasena = :contrasena WHERE id_voluntario = :id_voluntario";
+        String sql = "UPDATE voluntario SET nombre_voluntario = :nombre_voluntario, " +
+                "apellido_voluntario = :apellido_voluntario, telefono_voluntario = :telefono_voluntario, " +
+                "direccion_voluntario = :direccion_voluntario, fecha_nacimiento_voluntario = :fecha_nacimiento_voluntario, " +
+                "disponibilidad_voluntario = :disponibilidad_voluntario, password_voluntario = :password_voluntario, " +
+                "email_voluntario = :email_voluntario WHERE id_voluntario = :id_voluntario";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("nombre", voluntario.getNombreVoluntario())
-                    .addParameter("apellido", voluntario.getApellidoVoluntario())
-                    .addParameter("email", voluntario.getEmailVoluntario())
-                    .addParameter("telefono", voluntario.getTelefonoVoluntario())
-                    .addParameter("direccion", voluntario.getDireccionVoluntario())
-                    .addParameter("fecha_de_nacimiento", voluntario.getFechaDeNacimientoVoluntario())
-                    .addParameter("genero", voluntario.getGeneroVoluntario())
-                    .addParameter("ranking", voluntario.getRankingVoluntario())
-                    .addParameter("contrasena", voluntario.getContrasenaVoluntario())
+                    .addParameter("nombre_voluntario", voluntario.getNombreVoluntario())
+                    .addParameter("apellido_voluntario", voluntario.getApellidoVoluntario())
+                    .addParameter("telefono_voluntario", voluntario.getTelefonoVoluntario())
+                    .addParameter("direccion_voluntario", voluntario.getDireccionVoluntario())
+                    .addParameter("fecha_nacimiento_voluntario", voluntario.getFechaNacimientoVoluntario())
+                    .addParameter("disponibilidad_voluntario", voluntario.getDisponibilidadVoluntario())
+                    .addParameter("password_voluntario", voluntario.getPasswordVoluntario())
+                    .addParameter("email_voluntario", voluntario.getEmailVoluntario())
                     .addParameter("id_voluntario", voluntario.getIdVoluntario())
                     .executeUpdate();
         } catch (Exception e) {
@@ -110,12 +98,12 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     }
 
     @Override
-    public void deleteVoluntario(Long id) {
-        String sql = "DELETE FROM voluntario WHERE id_voluntario = :id";
+    public void deleteVoluntario(Long id_voluntario) {
+        String sql = "DELETE FROM voluntario WHERE id_voluntario = :id_voluntario";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_voluntario", id_voluntario)
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

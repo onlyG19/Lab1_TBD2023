@@ -30,11 +30,11 @@ public class TareaRepositoryImp implements TareaRepository {
     }
 
     @Override
-    public Tarea getTareaById(Long id) {
-        String sql = "SELECT * FROM tarea WHERE id_tarea = :id";
+    public Tarea getTareaById(Long id_tarea) {
+        String sql = "SELECT * FROM tarea WHERE id_tarea = :id_tarea";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_tarea", id_tarea)
                     .executeAndFetchFirst(Tarea.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class TareaRepositoryImp implements TareaRepository {
 
     @Override
     public List<Tarea> getAllTareasByEstadoTareaId(Long id_estado_tarea) {
-        String sql = "SELECT * FROM tarea WHERE id_estado_tarea = :id_estado_tarea";
+        String sql = "SELECT * FROM tarea WHERE estado_tarea = :id_estado_tarea";
         List<Tarea> listaTareas;
 
         try (Connection conn = sql2o.open()) {
@@ -78,14 +78,14 @@ public class TareaRepositoryImp implements TareaRepository {
 
     @Override
     public void createTarea(Tarea tarea) {
-        String sql = "INSERT INTO tarea (descripcion, fecha_asignacion, id_emergencia, id_estado_tarea) VALUES (:descripcion, :fecha_asignacion, :id_emergencia, :id_estado_tarea)";
+        String sql = "INSERT INTO tarea (descripcion_tarea, id_emergencia, estado_tarea) " +
+                "VALUES (:descripcion_tarea, :id_emergencia, :estado_tarea)";
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
-                    .addParameter("descripcion", tarea.getDescripcion())
-                    .addParameter("fecha_asignacion", tarea.getFechaAsignacion())
+                    .addParameter("descripcion_tarea", tarea.getDescripcionTarea())
                     .addParameter("id_emergencia", tarea.getIdEmergencia())
-                    .addParameter("id_estado_tarea", tarea.getIdEstadoTarea())
+                    .addParameter("estado_tarea", tarea.getEstadoTarea())
                     .executeUpdate()
                     .getKey();
 
@@ -100,14 +100,14 @@ public class TareaRepositoryImp implements TareaRepository {
 
     @Override
     public void updateTarea(Tarea tarea) {
-        String sql = "UPDATE tarea SET descripcion = :descripcion, fecha_asignacion = :fecha_asignacion, id_emergencia = :id_emergencia, id_estado_tarea = :id_estado_tarea WHERE id_tarea = :id_tarea";
+        String sql = "UPDATE tarea SET descripcion_tarea = :descripcion_tarea, id_emergencia = :id_emergencia, " +
+                "estado_tarea = :estado_tarea WHERE id_tarea = :id_tarea";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("descripcion", tarea.getDescripcion())
-                    .addParameter("fecha_asignacion", tarea.getFechaAsignacion())
+                    .addParameter("descripcion_tarea", tarea.getDescripcionTarea())
                     .addParameter("id_emergencia", tarea.getIdEmergencia())
-                    .addParameter("id_estado_tarea", tarea.getIdEstadoTarea())
+                    .addParameter("estado_tarea", tarea.getEstadoTarea())
                     .addParameter("id_tarea", tarea.getIdTarea())
                     .executeUpdate();
         } catch (Exception e) {
@@ -117,12 +117,12 @@ public class TareaRepositoryImp implements TareaRepository {
     }
 
     @Override
-    public void deleteTarea(Long id) {
-        String sql = "DELETE FROM tarea WHERE id_tarea = :id";
+    public void deleteTarea(Long id_tarea) {
+        String sql = "DELETE FROM tarea WHERE id_tarea = :id_tarea";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_tarea", id_tarea)
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,34 +1,29 @@
 package cl.tbd.backend.models;
 
-import java.sql.Timestamp;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Ranking {
-    @JsonProperty("id_ranking")
+
     private Long id_ranking;
-    @JsonProperty("puntuacion")
-    private Integer puntuacion;
-    @JsonProperty("fecha")
-    private Timestamp fecha;
-    @JsonProperty("id_voluntario")
+
     private Long id_voluntario;
 
+    private Integer posicion_ranking;
+
+    private Long id_tarea;
+
+    private Boolean asignado_ranking;
+
+    // Constructor vacío
     public Ranking() {
 
     }
 
-    public Ranking(Long id_ranking, Integer puntuacion, Timestamp fecha, Long id_voluntario) {
+    public Ranking(Long id_ranking, Long id_voluntario, Integer posicion_ranking, Long id_tarea,
+                   Boolean asignado_ranking) {
         this.id_ranking = id_ranking;
-        this.puntuacion = puntuacion;
-        this.fecha = fecha;
         this.id_voluntario = id_voluntario;
-    }
-
-    public Ranking(Integer puntuacion, Timestamp fecha, Long id_voluntario) {
-        this.puntuacion = puntuacion;
-        this.fecha = fecha;
-        this.id_voluntario = id_voluntario;
+        this.posicion_ranking = posicion_ranking;
+        this.id_tarea = id_tarea;
+        this.asignado_ranking = asignado_ranking;
     }
 
     public Long getIdRanking() {
@@ -39,22 +34,6 @@ public class Ranking {
         this.id_ranking = id_ranking;
     }
 
-    public Integer getPuntuacion() {
-        return puntuacion;
-    }
-
-    public void setPuntuacion(Integer puntuacion) {
-        this.puntuacion = puntuacion;
-    }
-
-    public Timestamp getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Timestamp fecha) {
-        this.fecha = fecha;
-    }
-
     public Long getIdVoluntario() {
         return id_voluntario;
     }
@@ -63,5 +42,27 @@ public class Ranking {
         this.id_voluntario = id_voluntario;
     }
 
-    
+    public Integer getPosicionRanking() {
+        return posicion_ranking;
+    }
+
+    public void setPosicionRanking(Integer posicion_ranking) {
+        this.posicion_ranking = posicion_ranking;
+    }
+
+    public Long getIdTarea() {
+        return id_tarea;
+    }
+
+    public void setIdTarea(Long id_tarea) {
+        this.id_tarea = id_tarea;
+    }
+
+    public Boolean getAsignadoRanking() {
+        return asignado_ranking;
+    }
+
+    public void setAsignadoRanking(Boolean asignado_ranking) {
+        this.asignado_ranking = asignado_ranking;
+    }
 }

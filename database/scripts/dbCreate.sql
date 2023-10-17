@@ -1,5 +1,4 @@
 --------------------------- Creación de tablas ---------------------------------
-
 CREATE TABLE IF NOT EXISTS voluntario(
     id_voluntario SERIAL PRIMARY KEY,
     nombre_voluntario VARCHAR(255),
@@ -9,7 +8,7 @@ CREATE TABLE IF NOT EXISTS voluntario(
     fecha_nacimiento_voluntario DATE,
     disponibilidad_voluntario DATE, -- Referente a un día en particular por simplicidad
 	email_voluntario VARCHAR(255),
-	contrasena_voluntario VARCHAR(255)
+	password_voluntario VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS habilidad(
@@ -28,7 +27,7 @@ CREATE TABLE IF NOT EXISTS coordinador(
     apellido_coordinador VARCHAR(255),
     id_institucion INT, -- Referencia a la instución del coordinador
 	email_coordinador VARCHAR(255),
-	contraseña_coordinador VARCHAR(255),
+	password_coordinador VARCHAR(255),
 	CONSTRAINT fk_coordinador_institucion
         FOREIGN KEY (id_institucion)
         REFERENCES institucion(id_institucion)
@@ -85,8 +84,7 @@ CREATE TABLE IF NOT EXISTS eme_habilidad (
 
 CREATE TABLE IF NOT EXISTS tarea (
     id_tarea SERIAL PRIMARY KEY,
-    descripcion VARCHAR(255),
-    fecha_asignacion DATE,
+    descripcion_tarea VARCHAR(255),
     id_emergencia INT, -- Referencia a la emergencia (clave foránea)
     estado_tarea BOOL, -- Referencia al estado de la tarea (clave foránea)
     CONSTRAINT fk_tarea_emergencia

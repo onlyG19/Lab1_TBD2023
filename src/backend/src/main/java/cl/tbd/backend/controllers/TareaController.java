@@ -23,6 +23,7 @@ public class TareaController {
         this.tareaService = tareaService;
     }
 
+    // GET/READ
     @GetMapping("/tareas")
     public List<Tarea> getAllTareas() {
         return tareaService.getAllTareas();
@@ -43,16 +44,19 @@ public class TareaController {
         return tareaService.getAllTareasByEstadoTareaId(id_estado_tarea);
     }
 
+    // CREATE
     @PostMapping("/tarea")
     public void createTarea(@RequestBody Tarea tarea) {
         tareaService.createTarea(tarea);
     }
 
+    // UPDATE
     @PutMapping("/tarea/{id}")
     public void updateTarea(@PathVariable Long id, @RequestBody Tarea tarea) {
         tareaService.updateTarea(id, tarea);
     }
 
+    // DELETE
     @DeleteMapping("/tarea/{id}")
     public void deleteTarea(@PathVariable Long id) {
         tareaService.deleteTarea(id);

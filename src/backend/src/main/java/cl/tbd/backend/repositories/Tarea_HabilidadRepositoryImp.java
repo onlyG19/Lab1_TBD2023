@@ -30,11 +30,11 @@ public class Tarea_HabilidadRepositoryImp implements Tarea_HabilidadRepository {
     }
 
     @Override
-    public Tarea_Habilidad getTareaHabilidadById(Long id) {
-        String sql = "SELECT * FROM tarea_habilidad WHERE id_tarea_habilidad = :id";
+    public Tarea_Habilidad getTareaHabilidadById(Long id_tarea_habilidad) {
+        String sql = "SELECT * FROM tarea_habilidad WHERE id_tarea_habilidad = :id_tarea_habilidad";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_tarea_habilidad", id_tarea_habilidad)
                     .executeAndFetchFirst(Tarea_Habilidad.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,12 +78,14 @@ public class Tarea_HabilidadRepositoryImp implements Tarea_HabilidadRepository {
 
     @Override
     public void createTareaHabilidad(Tarea_Habilidad tarea_habilidad) {
-        String sql = "INSERT INTO tarea_habilidad (id_tarea, id_habilidad) VALUES (:id_tarea, :id_habilidad)";
+        String sql = "INSERT INTO tarea_habilidad (id_tarea, id_habilidad, puntaje_tarea_habilidad) " +
+                "VALUES (:id_tarea, :id_habilidad, :puntaje_tarea_habilidad)";
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
                     .addParameter("id_tarea", tarea_habilidad.getIdTarea())
                     .addParameter("id_habilidad", tarea_habilidad.getIdHabilidad())
+                    .addParameter("puntaje_tarea_habilidad", tarea_habilidad.getPuntajeTareaHabilidad())
                     .executeUpdate()
                     .getKey();
 
@@ -98,12 +100,14 @@ public class Tarea_HabilidadRepositoryImp implements Tarea_HabilidadRepository {
 
     @Override
     public void updateTareaHabilidad(Tarea_Habilidad tarea_habilidad) {
-        String sql = "UPDATE tarea_habilidad SET id_tarea = :id_tarea, id_habilidad = :id_habilidad WHERE id_tarea_habilidad = :id_tarea_habilidad";
+        String sql = "UPDATE tarea_habilidad SET id_tarea = :id_tarea, id_habilidad = :id_habilidad , " +
+                "puntaje_tarea_habilidad =:puntaje_tarea_habilidad WHERE id_tarea_habilidad = :id_tarea_habilidad";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("id_tarea", tarea_habilidad.getIdTarea())
                     .addParameter("id_habilidad", tarea_habilidad.getIdHabilidad())
+                    .addParameter("puntaje_tarea_habilidad", tarea_habilidad.getPuntajeTareaHabilidad())
                     .addParameter("id_tarea_habilidad", tarea_habilidad.getIdTareaHabilidad())
                     .executeUpdate();
         } catch (Exception e) {
@@ -113,12 +117,12 @@ public class Tarea_HabilidadRepositoryImp implements Tarea_HabilidadRepository {
     }
 
     @Override
-    public void deleteTareaHabilidad(Long id) {
-        String sql = "DELETE FROM tarea_habilidad WHERE id_tarea_habilidad = :id";
+    public void deleteTareaHabilidad(Long id_tarea_habilidad) {
+        String sql = "DELETE FROM tarea_habilidad WHERE id_tarea_habilidad = :id_tarea_habilidad";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_tarea_habilidad", id_tarea_habilidad)
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

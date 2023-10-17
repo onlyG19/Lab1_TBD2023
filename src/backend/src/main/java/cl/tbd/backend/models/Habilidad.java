@@ -4,6 +4,11 @@ public class Habilidad {
     private Long id_habilidad;
     private String nombre_habilidad;
 
+    // Constructor vacío
+    public Habilidad(){
+
+    }
+
     public Habilidad(Long id_habilidad, String nombre_habilidad) {
         this.id_habilidad = id_habilidad;
         this.nombre_habilidad = nombre_habilidad;
@@ -21,11 +26,11 @@ public class Habilidad {
         this.id_habilidad = id_habilidad;
     }
 
-    public String getName() {
+    public String getNombreHabilidad() {
         return nombre_habilidad;
     }
 
-    public void setName(String nombre_habilidad) {
+    public void setNombreHabilidad(String nombre_habilidad) {
         this.nombre_habilidad = nombre_habilidad;
     }
 }

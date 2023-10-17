@@ -4,6 +4,11 @@ public class Institucion {
     private Long id_institucion;
     private String nombre_institucion;
 
+    // Constructor vacío
+    public Institucion() {
+
+    }
+
     public Institucion(Long id_institucion, String nombre_institucion) {
         this.id_institucion = id_institucion;
         this.nombre_institucion = nombre_institucion;

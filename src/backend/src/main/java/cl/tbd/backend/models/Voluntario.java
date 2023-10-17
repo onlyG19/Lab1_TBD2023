@@ -2,57 +2,43 @@ package cl.tbd.backend.models;
 
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Voluntario {
-    @JsonProperty("id_voluntario")
+
     private Long id_voluntario;
-    @JsonProperty("nombre")
-    private String nombre;
-    @JsonProperty("apellido")
-    private String apellido;
-    @JsonProperty("email")
-    private String email;
-    @JsonProperty("telefono")
-    private String telefono;
-    @JsonProperty("direccion")
-    private String direccion;
-    @JsonProperty("fecha_de_nacimiento")
-    private Date fecha_de_nacimiento;
-    @JsonProperty("genero")
-    private String genero;
-    @JsonProperty("ranking")
-    private Integer ranking;
-    @JsonProperty("contrasena")
-    private String contrasena;
 
+    private String nombre_voluntario;
+
+    private String apellido_voluntario;
+
+    private String telefono_voluntario;
+
+    private String direccion_voluntario;
+
+    private Date fecha_nacimiento_voluntario;
+
+    private Date disponibilidad_voluntario;
+
+    private String password_voluntario;
+
+    private String email_voluntario;
+
+    // Constructor vacío
     public Voluntario() {
-        
+
     }
 
-    public Voluntario(Long id_voluntario, String nombre, String apellido, String email, String telefono, String direccion, Date fecha_de_nacimiento, String genero, Integer ranking, String contrasena) {
+    public Voluntario(Long id_voluntario, String nombre_voluntario, String apellido_voluntario,
+                      String telefono_voluntario, String direccion_voluntario, Date fecha_nacimiento_voluntario,
+                      Date disponibilidad_voluntario, String password_voluntario, String email_voluntario) {
         this.id_voluntario = id_voluntario;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.fecha_de_nacimiento = fecha_de_nacimiento;
-        this.genero = genero;
-        this.ranking = ranking;
-        this.contrasena = contrasena;
-    }
-
-    public Voluntario(String nombre, String apellido, String email, String telefono, String direccion, Date fecha_de_nacimiento, String genero, Integer ranking, String contrasena) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.fecha_de_nacimiento = fecha_de_nacimiento;
-        this.genero = genero;
-        this.ranking = ranking;
-        this.contrasena = contrasena;
+        this.nombre_voluntario = nombre_voluntario;
+        this.apellido_voluntario = apellido_voluntario;
+        this.telefono_voluntario = telefono_voluntario;
+        this.direccion_voluntario = direccion_voluntario;
+        this.fecha_nacimiento_voluntario = fecha_nacimiento_voluntario;
+        this.disponibilidad_voluntario = disponibilidad_voluntario;
+        this.password_voluntario = password_voluntario;
+        this.email_voluntario = email_voluntario;
     }
 
     public Long getIdVoluntario() {
@@ -64,74 +50,66 @@ public class Voluntario {
     }
 
     public String getNombreVoluntario() {
-        return nombre;
+        return nombre_voluntario;
     }
 
-    public void setNombreVoluntario(String nombre) {
-        this.nombre = nombre;
+    public void setNombreVoluntario(String nombre_voluntario) {
+        this.nombre_voluntario = nombre_voluntario;
     }
 
     public String getApellidoVoluntario() {
-        return apellido;
+        return apellido_voluntario;
     }
 
-    public void setApellidoVoluntario(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getEmailVoluntario() {
-        return email;
-    }
-
-    public void setEmailVoluntario(String email) {
-        this.email = email;
+    public void setApellidoVoluntario(String apellido_voluntario) {
+        this.apellido_voluntario = apellido_voluntario;
     }
 
     public String getTelefonoVoluntario() {
-        return telefono;
+        return telefono_voluntario;
     }
 
-    public void setTelefonoVoluntario(String telefono) {
-        this.telefono = telefono;
+    public void setTelefonoVoluntario(String telefono_voluntario) {
+        this.telefono_voluntario = telefono_voluntario;
     }
 
     public String getDireccionVoluntario() {
-        return direccion;
+        return direccion_voluntario;
     }
 
-    public void setDireccionVoluntario(String direccion) {
-        this.direccion = direccion;
+    public void setDireccionVoluntario(String direccion_voluntario) {
+        this.direccion_voluntario = direccion_voluntario;
     }
 
-    public Date getFechaDeNacimientoVoluntario() {
-        return fecha_de_nacimiento;
+    public Date getFechaNacimientoVoluntario() {
+        return fecha_nacimiento_voluntario;
     }
 
-    public void setFechaDeNacimientoVoluntario(Date fecha_de_nacimiento) {
-        this.fecha_de_nacimiento = fecha_de_nacimiento;
+    public void setFechaNacimientoVoluntario(Date fecha_nacimiento_voluntario) {
+        this.fecha_nacimiento_voluntario = fecha_nacimiento_voluntario;
     }
 
-    public String getGeneroVoluntario() {
-        return genero;
+    public Date getDisponibilidadVoluntario() {
+        return disponibilidad_voluntario;
     }
 
-    public void setGeneroVoluntario(String genero) {
-        this.genero = genero;
+    public void setDisponibilidadVoluntario(Date disponibilidad_voluntario) {
+        this.disponibilidad_voluntario = disponibilidad_voluntario;
     }
 
-    public Integer getRankingVoluntario() {
-        return ranking;
+    public String getPasswordVoluntario() {
+        return password_voluntario;
     }
 
-    public void setRankingVoluntario(Integer ranking) {
-        this.ranking = ranking;
+    public void setPasswordVoluntario(String password_voluntario) {
+        this.password_voluntario = password_voluntario;
     }
 
-    public String getContrasenaVoluntario() {
-        return contrasena;
+    public String getEmailVoluntario() {
+        return email_voluntario;
     }
 
-    public void setContrasenaVoluntario(String contrasena) {
-        this.contrasena = contrasena;
+    public void setEmailVoluntario(String email_voluntario) {
+        this.email_voluntario = email_voluntario;
     }
 }

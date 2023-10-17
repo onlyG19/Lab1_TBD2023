@@ -23,6 +23,7 @@ public class Tarea_HabilidadController {
         this.tarea_habilidadService  = tarea_habilidadService;
     }
 
+    // GET/READ
     @GetMapping("/tarea_habilidades")
     public List<Tarea_Habilidad> getAllTareaHabilidades() {
         return tarea_habilidadService.getAllTareaHabilidades();
@@ -43,16 +44,19 @@ public class Tarea_HabilidadController {
         return tarea_habilidadService.getAllTareaHabilidadesByHabilidadId(id_habilidad);
     }
 
+    // CREATE
     @PostMapping("/tarea_habilidad")
     public void createTareaHabilidad(@RequestBody Tarea_Habilidad tarea_habilidad) {
         tarea_habilidadService.createTareaHabilidad(tarea_habilidad);
     }
 
+    // UPDATE
     @PutMapping("/tarea_habilidad/{id}")
     public void updateTareaHabilidad(@PathVariable Long id, @RequestBody Tarea_Habilidad tarea_habilidad) {
         tarea_habilidadService.updateTareaHabilidad(id, tarea_habilidad);
     }
 
+    // DELETE
     @DeleteMapping("/tarea_habilidad/{id}")
     public void deleteTareaHabilidad(@PathVariable Long id) {
         tarea_habilidadService.deleteTareaHabilidad(id);

@@ -23,6 +23,7 @@ public class RankingController {
         this.rankingService = rankingService;
     }
 
+    // GET/READ
     @GetMapping("/rankings")
     public List<Ranking> getAllRankings() {
         return rankingService.getAllRankings();
@@ -38,16 +39,19 @@ public class RankingController {
         return rankingService.getAllRankingsByVoluntarioId(id_voluntario);
     }
 
+    // CREATE
     @PostMapping("/ranking")
     public void createRanking(@RequestBody Ranking ranking) {
         rankingService.createRanking(ranking);
     }
 
+    // UPDATE
     @PutMapping("/ranking/{id}")
     public void updateRanking(@PathVariable Long id, @RequestBody Ranking ranking) {
         rankingService.updateRanking(id, ranking);
     }
 
+    // DELETE
     @DeleteMapping("/ranking/{id}")
     public void deleteRanking(@PathVariable Long id) {
         rankingService.deleteRanking(id);

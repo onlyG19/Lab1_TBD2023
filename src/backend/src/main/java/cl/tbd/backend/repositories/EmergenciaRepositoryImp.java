@@ -30,11 +30,11 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     }
 
     @Override
-    public Emergencia getEmergenciaById(Long id) {
-        String sql = "SELECT * FROM emergencia WHERE id_emergencia = :id";
+    public Emergencia getEmergenciaById(Long id_emergencia) {
+        String sql = "SELECT * FROM emergencia WHERE id_emergencia = :id_emergencia";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_emergencia", id_emergencia)
                     .executeAndFetchFirst(Emergencia.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,15 +78,17 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public void createEmergencia(Emergencia emergencia) {
-        String sql = "INSERT INTO emergencia (nombre_emergencia, descripcion, fecha_hora_creacion, id_coordinador, id_institucion) VALUES (:nombre_emergencia, :descripcion, :fecha_hora_creacion, :id_coordinador, :id_institucion)";
+        String sql = "INSERT INTO emergencia (nombre_emergencia, descripcion_emergencia, fecha_creacion_emergencia, " +
+                "id_coordinador, id_institucion) VALUES (:nombre_emergencia, :descripcion_emergencia, " +
+                ":fecha_creacion_emergencia, :id_coordinador, :id_institucion)";
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
                     .addParameter("nombre_emergencia", emergencia.getNombreEmergencia())
-                    .addParameter("descripcion", emergencia.getDescripcionEmergencia())
-                    .addParameter("fecha_hora_creacion", emergencia.getFechaHoraCreacionEmergencia())
-                    .addParameter("id_coordinador", emergencia.getIdCoordinadorEmergencia())
-                    .addParameter("id_institucion", emergencia.getIdInstitucionEmergencia())
+                    .addParameter("descripcion_emergencia", emergencia.getDescripcionEmergencia())
+                    .addParameter("fecha_creacion_emergencia", emergencia.getFechaCreacionEmergencia())
+                    .addParameter("id_coordinador", emergencia.getIdCoordinador())
+                    .addParameter("id_institucion", emergencia.getIdInstitucion())
                     .executeUpdate()
                     .getKey();
 
@@ -101,15 +103,17 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
 
     @Override
     public void updateEmergencia(Emergencia emergencia) {
-        String sql = "UPDATE emergencia SET nombre_emergencia = :nombre_emergencia, descripcion = :descripcion, fecha_hora_creacion = :fecha_hora_creacion, id_coordinador = :id_coordinador, id_institucion = :id_institucion WHERE id_emergencia = :id_emergencia";
+        String sql = "UPDATE emergencia SET nombre_emergencia = :nombre_emergencia, " +
+                "descripcion_emergencia = :descripcion_emergencia, fecha_creacion_emergencia = :fecha_creacion_emergencia," +
+                "id_coordinador = :id_coordinador, id_institucion = :id_institucion WHERE id_emergencia = :id_emergencia";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
                     .addParameter("nombre_emergencia", emergencia.getNombreEmergencia())
-                    .addParameter("descripcion", emergencia.getDescripcionEmergencia())
-                    .addParameter("fecha_hora_creacion", emergencia.getFechaHoraCreacionEmergencia())
-                    .addParameter("id_coordinador", emergencia.getIdCoordinadorEmergencia())
-                    .addParameter("id_institucion", emergencia.getIdInstitucionEmergencia())
+                    .addParameter("descripcion_emergencia", emergencia.getDescripcionEmergencia())
+                    .addParameter("fecha_creacion_emergencia", emergencia.getFechaCreacionEmergencia())
+                    .addParameter("id_coordinador", emergencia.getIdCoordinador())
+                    .addParameter("id_institucion", emergencia.getIdInstitucion())
                     .addParameter("id_emergencia", emergencia.getIdEmergencia())
                     .executeUpdate();
         } catch (Exception e) {
@@ -119,12 +123,12 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     }
     
     @Override
-    public void deleteEmergencia(Long id) {
-        String sql = "DELETE FROM emergencia WHERE id_emergencia = :id";
+    public void deleteEmergencia(Long id_emergencia) {
+        String sql = "DELETE FROM emergencia WHERE id_emergencia = :id_emergencia";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("id_emergencia", id_emergencia)
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

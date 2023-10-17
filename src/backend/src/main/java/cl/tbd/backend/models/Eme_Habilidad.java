@@ -3,13 +3,14 @@ package cl.tbd.backend.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Eme_Habilidad {
-    @JsonProperty("id_eme_habilidad")
+
     private Long id_eme_habilidad;
-    @JsonProperty("id_emergencia")
+
     private Long id_emergencia;
-    @JsonProperty("id_habilidad")
+
     private Long id_habilidad;
 
+    // Constructor vacío
     public Eme_Habilidad() {
 
     }

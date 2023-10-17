@@ -1,40 +1,28 @@
 package cl.tbd.backend.models;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Emergencia {
-    @JsonProperty("id_emergencia")
+
     private Long id_emergencia;
-    @JsonProperty("nombre_emergencia")
     private String nombre_emergencia;
-    @JsonProperty("descripcion")
-    private String descripcion;
-    @JsonProperty("fecha_hora_creacion")
-    private Timestamp fecha_hora_creacion;
-    @JsonProperty("id_coordinador")
+    private String descripcion_emergencia;
+    private Date fecha_creacion_emergencia;
     private Long id_coordinador;
-    @JsonProperty("id_institucion")
     private Long id_institucion;
 
-    public Emergencia() {
-        
+    // Constructor Vacío
+    public Emergencia(){
+
     }
     
-    public Emergencia(Long id_emergencia, String nombre_emergencia, String descripcion, Timestamp fecha_hora_creacion, Long id_coordinador, Long id_institucion) {
+    public Emergencia(Long id_emergencia, String nombre_emergencia, String descripcion_emergencia,
+                      Date fecha_creacion_emergencia, Long id_coordinador, Long id_institucion) {
         this.id_emergencia = id_emergencia;
         this.nombre_emergencia = nombre_emergencia;
-        this.descripcion = descripcion;
-        this.fecha_hora_creacion = fecha_hora_creacion;
-        this.id_coordinador = id_coordinador;
-        this.id_institucion = id_institucion;
-    }
-
-    public Emergencia(String nombre_emergencia, String descripcion, Timestamp fecha_hora_creacion, Long id_coordinador, Long id_institucion) {
-        this.nombre_emergencia = nombre_emergencia;
-        this.descripcion = descripcion;
-        this.fecha_hora_creacion = fecha_hora_creacion;
+        this.descripcion_emergencia = descripcion_emergencia;
+        this.fecha_creacion_emergencia = fecha_creacion_emergencia;
         this.id_coordinador = id_coordinador;
         this.id_institucion = id_institucion;
     }
@@ -56,34 +44,34 @@ public class Emergencia {
     }
 
     public String getDescripcionEmergencia() {
-        return descripcion;
+        return descripcion_emergencia;
     }
 
     public void setDescripcionEmergencia(String descripcion) {
-        this.descripcion = descripcion;
+        this.descripcion_emergencia = descripcion;
     }
 
-    public Timestamp getFechaHoraCreacionEmergencia() {
-        return fecha_hora_creacion;
+    public Date getFechaCreacionEmergencia() {
+        return fecha_creacion_emergencia;
     }
 
-    public void setFechaHoraCreacionEmergencia(Timestamp fecha_hora_creacion) {
-        this.fecha_hora_creacion = fecha_hora_creacion;
+    public void setFechaCreacionEmergencia(Date fecha_hora_creacion) {
+        this.fecha_creacion_emergencia = fecha_hora_creacion;
     }
 
-    public Long getIdCoordinadorEmergencia() {
+    public Long getIdCoordinador() {
         return id_coordinador;
     }
 
-    public void setIdCoordinadorEmergencia(Long id_coordinador) {
+    public void setIdCoordinador(Long id_coordinador) {
         this.id_coordinador = id_coordinador;
     }
 
-    public Long getIdInstitucionEmergencia() {
+    public Long getIdInstitucion() {
         return id_institucion;
     }
 
-    public void setIdInstitucionEmergencia(Long id_institucion) {
+    public void setIdInstitucion(Long id_institucion) {
         this.id_institucion = id_institucion;
     }
 }

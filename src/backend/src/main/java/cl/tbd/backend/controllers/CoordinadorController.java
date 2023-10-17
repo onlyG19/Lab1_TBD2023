@@ -3,6 +3,8 @@ package cl.tbd.backend.controllers;
 import cl.tbd.backend.models.Coordinador;
 import cl.tbd.backend.models.Voluntario;
 import cl.tbd.backend.services.CoordinadorService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ public class CoordinadorController {
         this.coordinadorService = coordinadorService;
     }
 
+    // GET
     @GetMapping("/coordinadores")
     public List<Coordinador> getAllCordinadores(){
         return coordinadorService.getAllCoordinador();
@@ -27,15 +30,15 @@ public class CoordinadorController {
     @GetMapping("/coordinador/{id}")
     @ResponseBody
     public Coordinador getCoordinadorById(@PathVariable Long id) {
-            return coordinadorService.getCoordinadorById(id);
+        return coordinadorService.getCoordinadorById(id);
     }
+
     // CREATE
     @PostMapping("/coordinador")
     @ResponseBody
     public void createCoordinador(@RequestBody Coordinador coordinador){
         coordinadorService.createCoordinador(coordinador);
     }
-
 
     // UPDATE
     @PutMapping("/coordinador/{id}")

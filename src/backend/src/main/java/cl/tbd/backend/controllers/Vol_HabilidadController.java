@@ -23,6 +23,7 @@ public class Vol_HabilidadController {
         this.vol_habilidadService = vol_habilidadService;
     }
 
+    // GET/READ
     @GetMapping("/vol_habilidades")
     public List<Vol_Habilidad> getAllVolHabilidades() {
         return vol_habilidadService.getAllVolHabilidades();
@@ -43,16 +44,19 @@ public class Vol_HabilidadController {
         return vol_habilidadService.getAllVolHabilidadesByHabilidadId(id_habilidad);
     }
 
+    // CREATE
     @PostMapping("/vol_habilidad")
     public void createVolHabilidad(@RequestBody Vol_Habilidad vol_habilidad) {
         vol_habilidadService.createVolHabilidad(vol_habilidad);
     }
 
+    // UPDATE
     @PutMapping("/vol_habilidad/{id}")
     public void updateVolHabilidad(@PathVariable Long id, @RequestBody Vol_Habilidad vol_habilidad) {
         vol_habilidadService.updateVolHabilidad(id, vol_habilidad);
     }
 
+    // DELETE
     @DeleteMapping("/vol_habilidad/{id}")
     public void deleteVolHabilidad(@PathVariable Long id) {
         vol_habilidadService.deleteVolHabilidad(id);

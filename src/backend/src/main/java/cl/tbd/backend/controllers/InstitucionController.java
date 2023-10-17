@@ -17,6 +17,7 @@ public class InstitucionController {
         this.institucionService = institucionService;
     }
 
+    // GET/READ
     @GetMapping("/instituciones")
     public List<Institucion> getAllInstituciones() {
         return institucionService.getAllInstituciones();
@@ -27,16 +28,19 @@ public class InstitucionController {
         return institucionService.getInstitucionById(id);
     }
 
+    // CREATE
     @PostMapping("/institucion")
     public void createInstitucion(@RequestBody Institucion institucion) {
         institucionService.createInstitucion(institucion);
     }
 
+    // UPDATE
     @PutMapping("/institucion/{id}")
     public void updateInstitucion(@PathVariable Long id, @RequestBody Institucion institucion) {
         institucionService.updateInstitucion(id,institucion);
     }
 
+    // DELETE
     @DeleteMapping("/institucion/{id}")
     public void deleteInstitucion(@PathVariable Long id) {
         institucionService.deleteInstitucion(id);
