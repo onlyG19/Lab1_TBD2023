@@ -60,6 +60,23 @@ public class RankingRepositoryImp implements RankingRepository {
     }
 
     @Override
+    public List<Ranking> getAllRankingsByTareaId(Long id_tarea) {
+        String sql = "SELECT * FROM ranking WHERE id_tarea = :id_tarea";
+        List<Ranking> listaRankings;
+
+        try (Connection conn = sql2o.open()) {
+            listaRankings = conn.createQuery(sql)
+                    .addParameter("id_tarea", id_tarea)
+                    .executeAndFetch(Ranking.class);
+
+            return listaRankings;
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener los rankings de la tarea", e);
+        }
+    }
+
+    @Override
     public void createRanking(Ranking ranking) {
         String sql = "INSERT INTO ranking (id_voluntario, posicion_ranking, id_tarea, asignado_ranking) " +
                 "VALUES (:id_voluntario, :posicion_ranking, :id_tarea, :asignado_ranking)";

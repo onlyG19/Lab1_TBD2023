@@ -1,13 +1,9 @@
 package cl.tbd.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Eme_Habilidad {
 
     private Long id_eme_habilidad;
-
     private Long id_emergencia;
-
     private Long id_habilidad;
 
     // Constructor vacío
@@ -49,7 +45,4 @@ public class Eme_Habilidad {
     public void setIdHabilidad(Long id_habilidad) {
         this.id_habilidad = id_habilidad;
     }
-
-    
-
 }

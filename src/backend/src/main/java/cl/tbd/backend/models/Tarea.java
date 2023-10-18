@@ -1,15 +1,10 @@
 package cl.tbd.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Tarea {
 
     private Long id_tarea;
-
     private String descripcion_tarea;
-
     private Boolean estado_tarea;
-
     private Long id_emergencia;
 
     // Constructor Vacío

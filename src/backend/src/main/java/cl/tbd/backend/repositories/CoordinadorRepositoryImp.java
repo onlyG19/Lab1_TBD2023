@@ -7,8 +7,6 @@ import org.sql2o.Connection;
 import org.sql2o.Query;
 import org.sql2o.Sql2o;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 @Repository

@@ -3,13 +3,9 @@ package cl.tbd.backend.models;
 public class Ranking {
 
     private Long id_ranking;
-
     private Long id_voluntario;
-
     private Integer posicion_ranking;
-
     private Long id_tarea;
-
     private Boolean asignado_ranking;
 
     // Constructor vacío

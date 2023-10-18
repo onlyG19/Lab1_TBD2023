@@ -60,23 +60,6 @@ public class TareaRepositoryImp implements TareaRepository {
     }
 
     @Override
-    public List<Tarea> getAllTareasByEstadoTareaId(Long id_estado_tarea) {
-        String sql = "SELECT * FROM tarea WHERE estado_tarea = :id_estado_tarea";
-        List<Tarea> listaTareas;
-
-        try (Connection conn = sql2o.open()) {
-            listaTareas = conn.createQuery(sql)
-                    .addParameter("id_estado_tarea", id_estado_tarea)
-                    .executeAndFetch(Tarea.class);
-
-            return listaTareas;
-        } catch (Exception e){
-            e.printStackTrace();
-            throw new RuntimeException("Error al obtener las tareas del estado de la tarea", e);
-        }
-    }
-
-    @Override
     public void createTarea(Tarea tarea) {
         String sql = "INSERT INTO tarea (descripcion_tarea, id_emergencia, estado_tarea) " +
                 "VALUES (:descripcion_tarea, :id_emergencia, :estado_tarea)";

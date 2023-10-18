@@ -1,6 +1,7 @@
 package cl.tbd.backend.models;
 
 public class Habilidad {
+    
     private Long id_habilidad;
     private String nombre_habilidad;
 

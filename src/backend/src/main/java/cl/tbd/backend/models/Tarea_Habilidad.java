@@ -3,11 +3,8 @@ package cl.tbd.backend.models;
 public class Tarea_Habilidad {
 
     private Long id_tarea_habilidad;
-
     private Long id_tarea;
-
     private Long id_habilidad;
-
     private Integer puntaje_tarea_habilidad;
 
     // Constructor vacío

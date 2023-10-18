@@ -48,7 +48,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
-                    .addParameter("nombre_institucion", institucion.getName())
+                    .addParameter("nombre_institucion", institucion.getNombreInstitucion())
                     .executeUpdate()
                     .getKey();
 
@@ -67,7 +67,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
-                    .addParameter("nombre_institucion", institucion.getName())
+                    .addParameter("nombre_institucion", institucion.getNombreInstitucion())
                     .addParameter("id_institucion", institucion.getIdInstitucion())
                     .executeUpdate();
         } catch (Exception e) {

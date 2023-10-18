@@ -5,21 +5,13 @@ import java.sql.Date;
 public class Voluntario {
 
     private Long id_voluntario;
-
     private String nombre_voluntario;
-
     private String apellido_voluntario;
-
     private String telefono_voluntario;
-
     private String direccion_voluntario;
-
     private Date fecha_nacimiento_voluntario;
-
     private Date disponibilidad_voluntario;
-
     private String password_voluntario;
-
     private String email_voluntario;
 
     // Constructor vacío
