@@ -135,4 +135,18 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             throw new RuntimeException("Error al eliminar la emergencia", e);
         }
     }
+
+    @Override
+    public int numeroTareasActivasEmergencia(Long id_emergencia) {
+        String sql = "SELECT COUNT(*) FROM tarea WHERE id_emergencia = :id_emergencia AND estado_tarea = 1";
+
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("id_emergencia", id_emergencia)
+                    .executeScalar(Integer.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener el numero de tareas activas de la emergencia", e);
+        }
+    }
 }

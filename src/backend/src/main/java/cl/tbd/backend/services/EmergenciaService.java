@@ -62,4 +62,9 @@ public class EmergenciaService {
     public void deleteEmergencia(@PathVariable Long id) {
         emergenciaRepository.deleteEmergencia(id);
     }
+
+    @GetMapping("/emergencia/numeroTareasActivas/{id_emergencia}")
+    public int numeroTareasActivasEmergencia(@PathVariable Long id_emergencia) {
+        return emergenciaRepository.numeroTareasActivasEmergencia(id_emergencia);
+    }
 }
