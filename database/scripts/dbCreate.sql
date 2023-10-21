@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS emergencia (
     fecha_creacion_emergencia TIMESTAMP,
     id_coordinador INT NOT NULL, -- ID del coordinador que crea la emergencia
     id_institucion INT NOT NULL, -- ID de la institucion que proviene la creacion de la emergencia
+    estado_emergencia BOOLEAN NOT NULL,
     CONSTRAINT fk_emergencia_coordinador
         FOREIGN KEY (id_coordinador)
         REFERENCES coordinador(id_coordinador),
