@@ -64,7 +64,7 @@
           this.opcion = 'Activar';
         }else{
           this.emergencia.estado_emergencia = 'Activo';
-          this.opcion = "Desactivar";
+          this.opcion = 'Desactivar';
         }
       },
       activoInactivo(estado){
@@ -74,7 +74,7 @@
         return 'Inactivo';
       },
       getTareas () {
-        axios.get(`http://localhost:8093/tareas/emergencia/${this.emergencia.id_emergencia}`)
+        axios.get(`http://localhost:8080/tareas/emergencia/${this.emergencia.id_emergencia}`)
           .then(response => {
             this.tareas = response.data.map(tarea => {
               tarea.estado_tarea = this.activoInactivo(tarea.estado_tarea);
@@ -86,7 +86,7 @@
           })
       },
       cantidadTareasActivasEmergencia () {
-        axios.get(`http://localhost:8093/emergencia/${this.emergencia.id_emergencia}/tareas/activas/cantidad`)
+        axios.get(`http://localhost:8080/emergencia/${this.emergencia.id_emergencia}/tareas/activas/cantidad`)
           .then(response => {
             this.resumen_tareas = this.resumen_tareas + response.data;
           })

@@ -1,7 +1,7 @@
 <template>
   <fieldset class="form-register">
     <legend style="font-size: 1.5em; padding: 10px; color: #005a85">Registro de Voluntarios</legend>
-  <Register />
+    <Register />
   </fieldset>
 </template>
 

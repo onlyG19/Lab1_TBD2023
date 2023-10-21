@@ -17,11 +17,14 @@
     data () {
       return {
         emergencies: '',
+        idCoord: 1
       }
     },
     methods: {
       getAllEmergencies() {
-        axios.get(`http://localhost:8093/emergencias`)
+        // idCoord es temporal, la idea es cargar la id del usuario
+        // esto a partir de cargar usuario usando local/sesion item
+        axios.get(`http://localhost:8080/emergencias/coordinador/${this.idCoord}`) 
           .then(response => {
             this.emergencies = response.data;
           })
