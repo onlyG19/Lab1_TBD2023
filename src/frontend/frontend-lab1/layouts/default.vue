@@ -14,23 +14,23 @@
       <v-list>
         <!-- Opciones de navegación -->
         <v-list-item-group>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title to="/">Inicio</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-alert</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title to="/emergencias">Emergencias</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
+            <v-list-item to="/">
+              <v-list-item-action>
+                <v-icon>mdi-home</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>Inicio</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item to="/emergencias">
+              <v-list-item-action >
+                <v-icon>mdi-alert</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>Emergencias</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          <v-list-item to="organiza">
             <v-list-item-action>
               <v-icon>mdi-account-group</v-icon>
             </v-list-item-action>
@@ -38,12 +38,12 @@
               <v-list-item-title to="/organiza">Organiza</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item>
+          <v-list-item to="/contacto">
             <v-list-item-action>
               <v-icon>mdi-email</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title to="/contacto">Contacto</v-list-item-title>
+              <v-list-item-title>Contacto</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -56,7 +56,7 @@
         >
         <v-spacer></v-spacer>
         <!-- Botón de inicio de sesión -->
-        <v-btn text to="/iniciar-sesion">Cerrar Sesión</v-btn>
+        <v-btn text to="/login">Cerrar Sesión</v-btn>
       </v-app-bar>
     <v-main>
         <Nuxt />

@@ -8,7 +8,7 @@
       <div class="form-container">
         <LogIn class="login-form" typeUser="voluntario"/>
         <CarouselsV />
-        <a class="login-form">¿Deseas unirte?</a>
+        <nuxt-link to="/register" class="login-form">¿Deseas unirte?</nuxt-link>
       </div>
       </v-tab-item>
       <v-tab-item transition="fade-transition">

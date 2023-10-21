@@ -1,14 +1,14 @@
 <template>
-  <v-footer app class="pa-2" dark>
+  <v-footer app inset absolute class="pa-2" dark>
     <v-container>
       <v-row>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="6" style="padding-bottom: 0;">
           <h3 class="font-weight-bold text-sm mb-2">Más Información</h3>
           <ul>
-            <li>
+            <li class="li-footer">
               <a class="text-sm" href="/sobre-nosotros">Sobre Nosotros</a>
             </li>
-            <li>
+            <li class="li-footer">
               <a class="text-sm" href="/voluntariados-disponibles"
                 >Voluntariados Disponibles</a
               >
@@ -20,13 +20,13 @@
             </li>
           </ul>
         </v-col>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="6" style="padding-bottom: 0;">
           <h3 class="font-weight-bold text-sm mb-2">Contacto</h3>
           <p class="text-sm mb-1">
             Si tienes alguna pregunta, no dudes en contactarnos:
           </p>
           <ul>
-            <li class="text-sm">Correo Electrónico: info@tuempresa.com</li>
+            <li class="text-sm li-footer">Correo Electrónico: info@tuempresa.com</li>
             <li class="text-sm">Teléfono: (123) 456-7890</li>
           </ul>
         </v-col>
@@ -54,7 +54,7 @@ ul {
 }
 
 /* Estilos CSS para los elementos de la lista del footer */
-li {
+li .li-footer{
   margin-bottom: 5px; /* Ajusta el espaciado entre elementos de la lista */
 }
 
