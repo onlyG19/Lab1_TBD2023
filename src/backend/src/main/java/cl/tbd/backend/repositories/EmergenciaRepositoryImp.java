@@ -80,7 +80,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     public void createEmergencia(Emergencia emergencia) {
         String sql = "INSERT INTO emergencia (nombre_emergencia, descripcion_emergencia, fecha_creacion_emergencia, " +
                 "id_coordinador, id_institucion) VALUES (:nombre_emergencia, :descripcion_emergencia, " +
-                ":fecha_creacion_emergencia, :id_coordinador, :id_institucion)";
+                ":fecha_creacion_emergencia, :id_coordinador, :id_institucion, :estado_emergencia)";
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
@@ -89,6 +89,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
                     .addParameter("fecha_creacion_emergencia", emergencia.getFechaCreacionEmergencia())
                     .addParameter("id_coordinador", emergencia.getIdCoordinador())
                     .addParameter("id_institucion", emergencia.getIdInstitucion())
+                    .addParameter("estado_emergencia", emergencia.getEstadoEmergencia())
                     .executeUpdate()
                     .getKey();
 
@@ -105,7 +106,8 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     public void updateEmergencia(Emergencia emergencia) {
         String sql = "UPDATE emergencia SET nombre_emergencia = :nombre_emergencia, " +
                 "descripcion_emergencia = :descripcion_emergencia, fecha_creacion_emergencia = :fecha_creacion_emergencia," +
-                "id_coordinador = :id_coordinador, id_institucion = :id_institucion WHERE id_emergencia = :id_emergencia";
+                "id_coordinador = :id_coordinador, id_institucion = :id_institucion WHERE id_emergencia = :id_emergencia," +
+                "estado_emergencia = :estado_emergencia";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
@@ -115,6 +117,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
                     .addParameter("id_coordinador", emergencia.getIdCoordinador())
                     .addParameter("id_institucion", emergencia.getIdInstitucion())
                     .addParameter("id_emergencia", emergencia.getIdEmergencia())
+                    .addParameter("estado_emergencia", emergencia.getEstadoEmergencia())
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,6 +136,20 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error al eliminar la emergencia", e);
+        }
+    }
+
+    @Override
+    public Long cantidadTareasActivasByEmergenciaId(Long id_emergencia){
+        String sql = "SELECT TareasActivasEmergencia(:id_emergencia)";
+
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("id_emergencia", id_emergencia)
+                    .executeScalar(Long.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener la cantidad de tareas activas", e);
         }
     }
 }

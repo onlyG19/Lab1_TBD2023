@@ -11,6 +11,7 @@ public class Emergencia {
     private Date fecha_creacion_emergencia;
     private Long id_coordinador;
     private Long id_institucion;
+    private Boolean estado_emergencia;
 
     // Constructor Vacío
     public Emergencia(){
@@ -18,17 +19,19 @@ public class Emergencia {
     }
     
     public Emergencia(Long id_emergencia, String nombre_emergencia, String descripcion_emergencia,
-                      Date fecha_creacion_emergencia, Long id_coordinador, Long id_institucion) {
+                      Date fecha_creacion_emergencia, Long id_coordinador, Long id_institucion,
+                      Boolean estado_emergencia) {
         this.id_emergencia = id_emergencia;
         this.nombre_emergencia = nombre_emergencia;
         this.descripcion_emergencia = descripcion_emergencia;
         this.fecha_creacion_emergencia = fecha_creacion_emergencia;
         this.id_coordinador = id_coordinador;
         this.id_institucion = id_institucion;
+        this.estado_emergencia = estado_emergencia;
     }
 
     public Long getIdEmergencia() {
-        return id_emergencia;
+        return this.id_emergencia;
     }
 
     public void setIdEmergencia(Long id_emergencia) {
@@ -36,7 +39,7 @@ public class Emergencia {
     }
 
     public String getNombreEmergencia() {
-        return nombre_emergencia;
+        return this.nombre_emergencia;
     }
 
     public void setNombreEmergencia(String nombre_emergencia) {
@@ -44,7 +47,7 @@ public class Emergencia {
     }
 
     public String getDescripcionEmergencia() {
-        return descripcion_emergencia;
+        return this.descripcion_emergencia;
     }
 
     public void setDescripcionEmergencia(String descripcion) {
@@ -52,7 +55,7 @@ public class Emergencia {
     }
 
     public Date getFechaCreacionEmergencia() {
-        return fecha_creacion_emergencia;
+        return this.fecha_creacion_emergencia;
     }
 
     public void setFechaCreacionEmergencia(Date fecha_hora_creacion) {
@@ -60,7 +63,7 @@ public class Emergencia {
     }
 
     public Long getIdCoordinador() {
-        return id_coordinador;
+        return this.id_coordinador;
     }
 
     public void setIdCoordinador(Long id_coordinador) {
@@ -68,10 +71,14 @@ public class Emergencia {
     }
 
     public Long getIdInstitucion() {
-        return id_institucion;
+        return this.id_institucion;
     }
 
     public void setIdInstitucion(Long id_institucion) {
         this.id_institucion = id_institucion;
     }
+
+    public Boolean getEstadoEmergencia() { return this.estado_emergencia; }
+
+    public void serEstadoEmergencia(Boolean estado_emergencia) { this.estado_emergencia = estado_emergencia; }
 }

@@ -3,19 +3,14 @@ package cl.tbd.backend.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import cl.tbd.backend.models.Emergencia;
 import cl.tbd.backend.repositories.EmergenciaRepository;
 
 @RestController
 @Service
+@CrossOrigin(origins = "http://localhost:3030/")
 public class EmergenciaService {
     private final EmergenciaRepository emergenciaRepository;
 
@@ -42,6 +37,11 @@ public class EmergenciaService {
     @GetMapping("/emergencias/institucion/{id_institucion}")
     public List<Emergencia> getAllEmergenciasByInstitucionId(@PathVariable Long id_institucion) {
         return emergenciaRepository.getAllEmergenciasByInstitucionId(id_institucion);
+    }
+
+    @GetMapping("/emergencia/{id_emergencia}/tareas/activas/cantidad")
+    public Long cantidadTareasActivasByEmergenciaId(@PathVariable Long id_emergencia){
+        return emergenciaRepository.cantidadTareasActivasByEmergenciaId(id_emergencia);
     }
 
     // CREATE
