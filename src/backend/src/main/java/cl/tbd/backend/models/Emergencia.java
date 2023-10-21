@@ -80,5 +80,5 @@ public class Emergencia {
 
     public Boolean getEstadoEmergencia() { return this.estado_emergencia; }
 
-    public void serEstadoEmergencia(Boolean estado_emergencia) { this.estado_emergencia = estado_emergencia; }
+    public void setEstadoEmergencia(Boolean estado_emergencia) { this.estado_emergencia = estado_emergencia; }
 }

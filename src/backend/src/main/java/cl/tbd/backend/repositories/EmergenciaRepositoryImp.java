@@ -106,8 +106,8 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     public void updateEmergencia(Emergencia emergencia) {
         String sql = "UPDATE emergencia SET nombre_emergencia = :nombre_emergencia, " +
                 "descripcion_emergencia = :descripcion_emergencia, fecha_creacion_emergencia = :fecha_creacion_emergencia," +
-                "id_coordinador = :id_coordinador, id_institucion = :id_institucion WHERE id_emergencia = :id_emergencia," +
-                "estado_emergencia = :estado_emergencia";
+                "id_coordinador = :id_coordinador, id_institucion = :id_institucion, estado_emergencia = :estado_emergencia" +
+                " WHERE id_emergencia = :id_emergencia";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)

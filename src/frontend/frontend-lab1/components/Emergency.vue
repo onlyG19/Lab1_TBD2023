@@ -1,10 +1,10 @@
 <template>
   <v-card>
     <v-card-title>
-      {{ emergencia.nombre_emergencia }}  (Estado: {{ this.emergencia.estado_emergencia}})
+      {{ emergencia.nombre_emergencia }}  (Estado: {{ emergencia.estado_emergencia}})
     </v-card-title>
     <v-card-subtitle>
-      {{ emergencia.fecha_creacion_emergencia }}
+      {{ date }}
     </v-card-subtitle>
     <v-card-text>
       {{ emergencia.descripcion_emergencia}}
@@ -55,6 +55,7 @@
         tareas: [],
         resumen_tareas: 'La cantidad de tareas activas es: ',
         opcion: '',
+        date: ''
       }
     },
     methods: {
@@ -66,6 +67,22 @@
           this.emergencia.estado_emergencia = 'Activo';
           this.opcion = 'Desactivar';
         }
+        let json={
+          id_emergencia: this.emergencia.id_emergencia,
+          nombre_emergencia: this.emergencia.nombre_emergencia,
+          descripcion_emergencia: this.emergencia.descripcion_emergencia,
+          fecha_creacion_emergencia: this.emergencia.fecha_creacion_emergencia,
+          id_coordinador: this.emergencia.id_coordinador,
+          id_institucion: this.emergencia.id_institucion,
+          estado_emergencia: this.activoInactivo(this.emergencia.estado_emergencia)
+        };
+        axios.put(`http://localhost:8080/emergencia/${this.emergencia.id_emergencia}`, json, {
+          headers: {
+            'Content-Type':'application/json'
+          }
+        }).catch(error => {
+            console.log(error);
+          });
       },
       activoInactivo(estado){
         if(estado === 'Inactivo') return false;
@@ -96,7 +113,7 @@
       }
     },
     created() {
-      this.emergencia.fecha_creacion_emergencia = new Date(this.emergencia.fecha_creacion_emergencia)
+      this.date = new Date(this.emergencia.fecha_creacion_emergencia)
         .toLocaleDateString("es-CL",
           {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
             hour: 'numeric', minute: 'numeric', second: 'numeric'});
