@@ -12,6 +12,5 @@ public interface EmergenciaRepository {
     void createEmergencia(Emergencia emergencia);
     void updateEmergencia(Emergencia emergencia);
     void deleteEmergencia(Long id);
-
     Long cantidadTareasActivasByEmergenciaId(Long id_emergencia);
 }
