@@ -36,34 +36,25 @@
 </template>
 
 <style scoped>
-/* Estilos CSS para el footer y su contenido */
-.v-footer {
-  padding: 5px; /* Ajusta el espaciado interno del footer */
-  font-size: 15px; /* Ajusta el tamaño de fuente del footer */
-}
-
 /* Estilos CSS para los títulos del footer */
 .font-weight-bold {
   font-weight: bold; /* Aplica negrita a los títulos */
 }
-
 /* Estilos CSS para las listas del footer */
 ul {
   list-style: none; /* Quita los marcadores de lista */
   padding: 0; /* Elimina el espaciado interno de las listas */
 }
-
-/* Estilos CSS para los elementos de la lista del footer */
-li .li-footer{
-  margin-bottom: 5px; /* Ajusta el espaciado entre elementos de la lista */
-}
-
 /* Estilos CSS para el texto del footer */
 .text-sm {
   font-size: 15px; /* Ajusta el tamaño de fuente del texto */
 }
-/* Estilos CSS para el footer */
-.v-footer {
-  height: 130px; /* Ajusta la altura del footer según tus preferencias */
+a {
+  transition: color 0.3s; /* Transición suave de color en 0.3 segundos */
+  text-decoration: none; /* Quita el subrayado de los enlaces */
+}
+/* Cambia el color a blanco al hacer hover sobre los enlaces de información */
+a:hover {
+  color: #fff; /* Cambia el color a blanco al hacer hover */
 }
 </style>
