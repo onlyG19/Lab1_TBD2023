@@ -20,20 +20,6 @@
       @input="$v.form.surname.$touch()"
       @blur="$v.form.surname.$touch()"
       ></v-text-field>
-    <v-row>
-      <v-col col="12" md="6">
-    <v-text-field
-      v-model="form.rut"
-      :error-messages="rutErrors"
-      label="Rut"
-      required
-      filled
-      dense
-      @input="$v.form.rut.$touch()"
-      @blur="$v.form.rut.$touch()"
-      ></v-text-field>
-      </v-col>
-      <v-col col="12" md="6">
     <v-text-field
       v-model="form.phone"
       :error-messages="phoneErrors"
@@ -44,8 +30,6 @@
       @input="$v.form.phone.$touch()"
       @blur="$v.form.phone.$touch()"
       ></v-text-field>
-    </v-col>
-    </v-row>
     <v-text-field
       v-model="form.email"
       :error-messages="emailErrors"
@@ -80,16 +64,16 @@
       ></v-text-field>
       </v-col>
       <v-col col="12" md="6">
-    <v-text-field
-      v-model="form.gender"
-      :error-messages="genderErrors"
-      label="Género"
-      required
-      filled
-      dense
-      @input="$v.form.gender.$touch()"
-      @blur="$v.form.gender.$touch()"
-      ></v-text-field>
+        <v-text-field
+          v-model="form.disponibilidad"
+          :error-messages="disponibilidadErrors"
+          label="Disponibilidad"
+          required
+          filled
+          dense
+          @input="$v.form.disponibilidad.$touch()"
+          @blur="$v.form.disponibilidad.$touch()"
+        ></v-text-field>
       </v-col>
     </v-row>
     <v-text-field
@@ -129,7 +113,6 @@
 <script>
   import { validationMixin } from 'vuelidate'
   import { required, minLength, email, sameAs} from 'vuelidate/lib/validators'
-  import { validate, clean, format, getCheckDigit } from 'rut.js'
   import {withParams} from 'vuelidate/lib'
 import axios from 'axios'
 
@@ -140,12 +123,11 @@ import axios from 'axios'
           form: {
     name: {required},
   surname: {required},
-  rut: {required},
   email: { required, email },
   phone: {required},
   address: {required},
   birthdate: {required},
-  gender: {required},
+  disponibilidad: {required},
   password: { required, minLength: minLength(8) },
   confirmPassword: {
   required,
@@ -160,11 +142,10 @@ import axios from 'axios'
         name: '',
         surname: '',
         email: '',
-        rut: '',
         phone: '',
         address: '',
         birthdate: '',
-        gender: '',
+        disponibilidad: '',
         password: '',
         confirmPassword: '',
         },
@@ -182,14 +163,6 @@ import axios from 'axios'
         const errors = []
         if (!this.$v.form.surname.$dirty) return errors
         !this.$v.form.surname.required && errors.push('Se necesita el apellido')
-        return errors;
-    },
-      rutErrors () {
-        const errors = []
-        if (!this.$v.form.rut.$dirty) return errors
-        console.log(validate(this.form.rut))
-        !validate(this.form.rut) && errors.push('El rut es inválido')
-        !this.$v.form.rut.required && errors.push('Se necesita el rut')
         return errors;
     },
     emailErrors () {
@@ -217,10 +190,10 @@ import axios from 'axios'
         !this.$v.form.birthdate.required && errors.push('Se necesita fecha de nacimiento')
         return errors;
     },
-      genderErrors () {
+      disponibilidadErrors () {
         const errors = []
-        if (!this.$v.form.gender.$dirty) return errors
-        !this.$v.form.gender.required && errors.push('Se necesita género')
+        if (!this.$v.form.disponibilidad.$dirty) return errors
+        !this.$v.form.disponibilidad.required && errors.push('Se necesita disponibilidad')
         return errors;
     },
     passwordErrors() {
@@ -241,12 +214,12 @@ import axios from 'axios'
   methods: {
     async register () {
         this.$v.$touch()
-        const errors = this.nameErrors + this.surnameErrors + this.rutErrors + this.phoneErrors + this.emailErrors + this.addressErrors + this.birthdateErrors + this.genderErrors + this.passwordErrors + this.confirmPasswordErrors;
+        const errors = this.nameErrors + this.surnameErrors + this.emailErrors + this.addressErrors + this.birthdateErrors + this.disponibilidadErrors + this.passwordErrors + this.confirmPasswordErrors;
         console.log(this.$v.$invalid)
-        if (!this.$v.form.$invalid){
-            const newUser = {nombre: this.name, apellido: this.surname, correo: this.email,
-                             rut: format(this.rut), telefono: this.phone, direccion: this.address,
-                             nacimiento: this.birthdate, genero: this.gender, contrasenia: this.password};
+        if (!errors){
+            const newUser = {nombre: this.form.name, apellido: this.form.surname, correo: this.form.email,
+                             telefono: this.form.phone, direccion: this.form.address,
+                             nacimiento: this.form.birthdate, disponibilidad: this.form.disponibilidad, contrasenia: this.form.password};
             // try{
             //   const reponse = await axios.post("http//localhost:8080/voluntario/register", userData); // endpoint: /voluntario/register cambiar segun necesidad
             //   if (response.status == 200) {  // Registro Exitoso
