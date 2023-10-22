@@ -8,13 +8,13 @@
       <v-tab-item transition="fade-transition">
       <div class="form-container">
         <LogIn class="login-form" typeUser="voluntario"/>
-        <CarouselsV />
+        <Carousels :imgs="imgsVoluntario" />
         <nuxt-link to="/register" class="login-form">¿Deseas unirte?</nuxt-link>
       </div>
       </v-tab-item>
       <v-tab-item transition="fade-transition">
       <div class="form-container">
-        <CarouselsC />
+        <Carousels :imgs="imgsCoordinador" />
         <LogIn class="login-form" typeUser="coordinador"/>
       </div>
       </v-tab-item>
@@ -24,6 +24,17 @@
 <script>
   export default{
     layout: 'log&reg',
+    data (){
+      return {
+        imgsCoordinador: [
+          { src: require("../assets/loginCor.jpeg") },
+          { src: require("../assets/loginVol.jpg") },
+        ],
+        imgsVoluntario: [
+          { src: require("../assets/loginVol.jpeg") },
+          { src: require("../assets/loginVol.jpg") }]
+      }
+    }
   };
 </script>
 
