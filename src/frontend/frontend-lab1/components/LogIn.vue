@@ -121,7 +121,7 @@ export default {
           sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
           console.log('Soy un coordinador');
 
-          this.$router.push("/"); 
+          this.$router.push("/emergencias"); 
         }
         
       } catch (error) {

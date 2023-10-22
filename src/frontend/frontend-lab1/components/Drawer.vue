@@ -7,9 +7,9 @@
     </div>
     <v-divider></v-divider>
     <div class="text-center my-2">
-      <v-subheader>Tipo de Usuario</v-subheader>
+      <v-subheader>Tipo de Usuario: {{ userType }}</v-subheader>
       <v-divider></v-divider>
-      <v-subheader>Nombre de Usuario</v-subheader>
+      <v-subheader>Nombre de Usuario: {{ userName }}</v-subheader>
     </div>
     <v-divider></v-divider>
     <v-list>
@@ -67,13 +67,37 @@ export default {
   },
   data() {
     return {
-      localDrawer: this.drawer
+      localDrawer: this.drawer,
+      userType: '',
+      userName: ''
     };
   },
   watch: {
     drawer(newVal) {
       this.localDrawer = newVal;
     }
-  }
+  },
+  created() {
+    this.loadUserData();
+  },
+  methods: {
+    async loadUserData() {
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      if (user) {
+        if (user.id_coordinador) {
+          this.userType = 'Coordinador';
+          this.userName = `${user.nombre_coordinador} ${user.apellido_coordinador}`;
+        } else if (user.id_voluntario) {
+          this.userType = 'Voluntario';
+          this.userName = `${user.nombre_voluntario} ${user.apellido_voluntario}`;
+        } else {
+          console.log('El tipo de usuario no se pudo determinar.');
+        }
+      } else {
+        console.log('No se encontró ningún usuario en sessionStorage.');
+      }
+        
+    },
+  },
 }
 </script>
