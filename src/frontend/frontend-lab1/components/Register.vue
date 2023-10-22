@@ -119,7 +119,7 @@
       block
       large
       color="primary"
-      @click="submit"
+      @click.prevent="register"
     >
       Registrarse
     </v-btn>
@@ -131,6 +131,7 @@
   import { required, minLength, email, sameAs} from 'vuelidate/lib/validators'
   import { validate, clean, format, getCheckDigit } from 'rut.js'
   import {withParams} from 'vuelidate/lib'
+import axios from 'axios'
 
   export default{
   mixins: [validationMixin],
@@ -238,7 +239,7 @@
     },
 
   methods: {
-    submit () {
+    async register () {
         this.$v.$touch()
         const errors = this.nameErrors + this.surnameErrors + this.rutErrors + this.phoneErrors + this.emailErrors + this.addressErrors + this.birthdateErrors + this.genderErrors + this.passwordErrors + this.confirmPasswordErrors;
         console.log(this.$v.$invalid)
@@ -246,6 +247,31 @@
             const newUser = {nombre: this.name, apellido: this.surname, correo: this.email,
                              rut: format(this.rut), telefono: this.phone, direccion: this.address,
                              nacimiento: this.birthdate, genero: this.gender, contrasenia: this.password};
+            // try{
+            //   const reponse = await axios.post("http//localhost:8080/voluntario/register", userData); // endpoint: /voluntario/register cambiar segun necesidad
+            //   if (response.status == 200) {  // Registro Exitoso
+            //     console.log("Registro exitoso, status 200");
+            //     console.log(response);
+            //     console.log(response.data.message);
+            //     console.log("Error? : " + response.data.error);
+
+            //     this.showMessage= true;
+            //     this.messageText= "Registro exitoso.";
+            //     this.messageClass= "success-message";
+            //   } else {
+            //     console.error("Error en el registro");
+            //     this.showMessage = true;
+            //     this.messageText = "Error en el registro. Por favor, inténtalo de nuevo.";
+            //     this.messageClass = "error-message";
+            //   }
+            // } catch (error) {
+            //   console.log("Error en la solicitud, error");
+            //   console.log(error.response.data.message);
+            //   console.log("Error? : " + error.response.data.error);
+            //   this.showMessage = true;
+            //   this.messageText = "Error en el registro. Por favor, inténtalo de nuevo.";
+            //   this.messageClass = "error-message";
+            // };
             console.log(newUser);
             console.log("registrado, maquina");
         }
