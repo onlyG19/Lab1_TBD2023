@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="drawer" app color="primary" dark width="200">
+  <v-navigation-drawer v-model="localDrawer" app color="primary" dark width="200">
     <div class="d-flex justify-center align-center my-4">
       <v-avatar size="150">
         <img src="../assets/perfil2.png" alt="Imagen de Usuario" />
@@ -64,6 +64,16 @@
 export default {
   props: {
     drawer: Boolean
+  },
+  data() {
+    return {
+      localDrawer: this.drawer
+    };
+  },
+  watch: {
+    drawer(newVal) {
+      this.localDrawer = newVal;
+    }
   }
 }
 </script>

@@ -11,4 +11,6 @@ public interface VoluntarioRepository {
     void createVoluntario(Voluntario voluntario);
     void updateVoluntario(Voluntario voluntario);
     void deleteVoluntario(Long id);
+
+    Voluntario getVoluntarioByEmail(String email);
 }
