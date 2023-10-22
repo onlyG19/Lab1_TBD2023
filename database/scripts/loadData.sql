@@ -104,7 +104,7 @@ VALUES
     (7, 2, 2, 2, FALSE);
 
 -------------------------------------------------- Variables para auditar -------------------------------------------
-SET app.id_coordinador_editor = '10';
+--SET app.id_coordinador_editor = '10';
 
 -------------------------------------------------- Consulta UPDATE --------------------------------------------------
-UPDATE public.emergencia SET descripcion_emergencia='NUEVA DESC 30' WHERE id_emergencia=1;
+--UPDATE public.emergencia SET descripcion_emergencia='NUEVA DESC 30' WHERE id_emergencia=1;
