@@ -12,5 +12,5 @@ public class RegistrationCoordinador {
     @JsonProperty("contrasenia")
     private String password;
     @JsonProperty("institucion")
-    private String idInstitucion;
+    private Long idInstitucion;
 }

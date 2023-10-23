@@ -74,6 +74,7 @@ public class CoordinadorService {
             coordinador.setEmailCoordinador(registration.getEmail());
             coordinador.setNombreCoordinador(registration.getNombre());
             coordinador.setApellidoCoordinador(registration.getApellido());
+            coordinador.setIdInstitucion(registration.getIdInstitucion());
             coordinador.setPasswordCoordinador(new BCryptPasswordEncoder().encode(registration.getPassword()));
             coordinadorRepository.createCoordinador(coordinador);
             // Response

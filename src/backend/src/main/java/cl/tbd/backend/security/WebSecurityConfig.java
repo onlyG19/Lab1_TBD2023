@@ -49,6 +49,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/instituciones").permitAll()
                         .requestMatchers(HttpMethod.GET, "/emergencia/numeroTareasActivas/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/emergencia/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/ranking/listaRanking/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/ranking/full_ranking/**").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic()
                 .authenticationEntryPoint(authenticationEntryPoint())
