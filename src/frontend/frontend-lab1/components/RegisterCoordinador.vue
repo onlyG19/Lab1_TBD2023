@@ -208,7 +208,7 @@ export default{
       // console.log(newUser);
     },
 
-    obtenerInstituticones(){
+    obtenerInstituciones(){
       axios.get(`http://localhost:8080/instituciones`)
         .then(response => {
           this.instituciones = response.data.map(institucion => (
@@ -222,7 +222,7 @@ export default{
 
 
   created() {
-    this.obtenerInstituticones();
+    this.obtenerInstituciones();
   }
 }
 </script>
