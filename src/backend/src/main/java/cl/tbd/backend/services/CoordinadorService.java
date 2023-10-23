@@ -65,7 +65,7 @@ public class CoordinadorService {
 
 
     @PostMapping("/coordinador/register")
-    public ResponseEntity<CoordinadorRegisterResponse> registerUsuario(@RequestBody Registration registration){
+    public ResponseEntity<CoordinadorRegisterResponse> registerUsuario(@RequestBody RegistrationCoordinador registration){
         Coordinador coordinador = coordinadorRepository.getCoordinadorByEmail(registration.getEmail());
         CoordinadorRegisterResponse response = new CoordinadorRegisterResponse();
         if(coordinador == null){

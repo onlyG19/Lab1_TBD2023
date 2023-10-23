@@ -46,6 +46,7 @@ public class WebSecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(HttpMethod.POST, "/coordinador/register","/coordinador/login", "/voluntario/login", "/voluntario/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/instituciones").permitAll()
                         .requestMatchers(HttpMethod.GET, "/emergencia/numeroTareasActivas/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/emergencia/**").authenticated()
                         .anyRequest().authenticated())
