@@ -59,6 +59,7 @@
           required
           filled
           dense
+          type="date"
           @input="$v.form.birthdate.$touch()"
           @blur="$v.form.birthdate.$touch()"
         ></v-text-field>
@@ -71,6 +72,7 @@
           required
           filled
           dense
+          type="date"
           @input="$v.form.disponibilidad.$touch()"
           @blur="$v.form.disponibilidad.$touch()"
         ></v-text-field>
@@ -107,9 +109,9 @@
 
 <script>
 import { validationMixin } from "vuelidate";
-import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
-import { withParams } from "vuelidate/lib";
+import { required, minLength, email, sameAs, numeric, alphaNum, minValue, maxLength} from "vuelidate/lib/validators";
 import axios from "axios";
+//import { subYears } from 'date-fns';
 
 export default {
   mixins: [validationMixin],
@@ -119,14 +121,13 @@ export default {
       name: { required },
       surname: { required },
       email: { required, email },
-      phone: { required },
+      phone: { required, numeric, minLength: minLength(9), maxLength: maxLength(9)},
       address: { required },
-      birthdate: { required },
+      birthdate: { required, /*minValue: minValue(subYears(new Date(), 150)) */},
       disponibilidad: { required },
-      password: { required, minLength: minLength(8) },
+      password: { required, minLength: minLength(8), alphaNum},
       confirmPassword: {
-        required,
-        sameAs: withParams({ type: "password" }, sameAs("password")),
+        sameAs: sameAs("password"),
       },
     },
   },
@@ -170,6 +171,9 @@ export default {
     phoneErrors() {
       const errors = [];
       if (!this.$v.form.phone.$dirty) return errors;
+      if (!this.$v.form.phone.numeric || !this.$v.form.phone.minLength || !this.$v.form.phone.maxLength) {
+        errors.push("Debe ser un teléfono válido.");
+      }
       !this.$v.form.phone.required &&
         errors.push("El número de teléfono es obligatorio.");
       return errors;
@@ -205,8 +209,8 @@ export default {
     confirmPasswordErrors() {
       const errors = [];
       if (!this.$v.form.confirmPassword.$dirty) return errors;
-      !this.$v.form.confirmPassword.required &&
-        errors.push("La confirmación de contraseña es obligatoria.");
+      !this.$v.form.confirmPassword.sameAs &&
+        errors.push("Las contraseñas no coinciden.");
       return errors;
     },
   },
