@@ -8,6 +8,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import cl.tbd.backend.models.Ranking;
+import cl.tbd.backend.models.RankingLite;
 
 @Repository
 public class RankingRepositoryImp implements RankingRepository {
@@ -129,6 +130,38 @@ public class RankingRepositoryImp implements RankingRepository {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error al eliminar el ranking", e);
+        }
+    }
+
+    @Override
+    public List<RankingLite> rankingLite(int id_tarea, int c_voluntarios) {
+        String sql = "SELECT * FROM calcular_ranking_lite(:id_tarea, :c_voluntarios)";
+
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("id_tarea", id_tarea)
+                    .addParameter("c_voluntarios", c_voluntarios)
+                    .executeAndFetch(RankingLite.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al mostrar el ranking", e);
+        }
+    }
+
+    @Override
+    public void rankingFull(int id_tarea, int c_voluntarios) {
+        String sql = "SELECT calcular_ranking(:id_tarea, :c_voluntarios)";
+
+        try (Connection conn = sql2o.open()) {
+                conn.createQuery(sql)
+                    .addParameter("id_tarea", id_tarea)
+                    .addParameter("c_voluntarios", c_voluntarios)
+                    .executeAndFetch(RankingLite.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al mostrar el ranking", e);
         }
     }
 }
