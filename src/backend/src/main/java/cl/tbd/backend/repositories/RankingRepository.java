@@ -3,6 +3,7 @@ package cl.tbd.backend.repositories;
 import java.util.List;
 
 import cl.tbd.backend.models.Ranking;
+import cl.tbd.backend.models.RankingLite;
 
 public interface RankingRepository {
     List<Ranking> getAllRankings();
@@ -12,4 +13,8 @@ public interface RankingRepository {
     void createRanking(Ranking ranking);
     void updateRanking(Ranking ranking);
     void deleteRanking(Long id);
+
+    List<RankingLite> rankingLite(int id_tarea, int c_voluntarios);
+
+    void rankingFull(int id_tarea, int c_voluntarios);
 }
