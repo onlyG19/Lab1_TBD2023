@@ -20,7 +20,8 @@ Se debe clonar o descargar el proyecto desde GitHub, la URL al repositorio del p
 # Base de Datos
 Se debe crear una base de datos llamada postgres1, luego es necesario utilizando PgAdmin4
 correr los archivos de script que se encuentran en la ruta database/scripts en el siguiente orden:
-	1- dbCreate.sql : Es el archivo que contiene la creación de tablas y el trigger
+	
+ 	1- dbCreate.sql : Es el archivo que contiene la creación de tablas y el trigger
 
 	2- functions.sql : Aquí se encuentran la función de conteo de tareas activas y las de ranking
 
@@ -98,7 +99,8 @@ Para utilizarlas seguir los siguientes pasos utilizando Postman:
 		http://localhost:8080/ranking/listaRanking/{id_tarea}/{c_voluntario}
 		a1. Reemplazar {id_tarea} con el valor de la id de la tarea solicitada
 		y {c_voluntario} con la cantidad de voluntarios requeridos
-		a2. Enviar la consulta en formato GET, si quisieramos por ejemplo 3 voluntarios para la tarea de id 1, debería verse así
+		a2. Enviar la consulta en formato GET, si quisieramos por ejemplo 3 voluntarios para la tarea de id 1, 
+  		debería verse así:
 		GET: http://localhost:8080/ranking/listaRanking/1/3
 		a3. Observar los contenidos en la consola de Postman
 
@@ -106,5 +108,6 @@ Para utilizarlas seguir los siguientes pasos utilizando Postman:
 		http://localhost:8080/ranking/full_ranking/{id_tarea}/{c_voluntario}
 		b1. Reemplazar {id_tarea} con el valor de la id de la tarea solicitada
 		y {c_voluntario} con la cantidad de voluntarios requeridos
-		b2. Enviar la consulta en formato GET, si quisieramos por ejemplo 3 voluntarios para la tarea de id 1, debería verse así
+		b2. Enviar la consulta en formato GET, si quisieramos por ejemplo 3 voluntarios para la tarea de id 1, 
+  		debería verse así:
 		POST: http://localhost:8080/ranking/listaRanking/1/3
