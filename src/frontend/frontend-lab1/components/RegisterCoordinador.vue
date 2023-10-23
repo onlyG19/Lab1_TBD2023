@@ -154,42 +154,58 @@ export default{
   },
 
   methods: {
-    async register () {
-      this.$v.$touch()
-      const errors = this.nameErrors + this.surnameErrors + this.emailErrors + this.institucionErrors + this.passwordErrors + this.confirmPasswordErrors;
-      console.log(this.$v.$invalid)
-      if (!errors){
-        const newUser = {nombre_coordinador: this.form.name, apellido_coordinador: this.form.surname, email_coordinador: this.form.email,
-           id_institucion: this.form.institucion, password_coordinador: this.form.password};
-        // try{
-        //   const reponse = await axios.post("http//localhost:8080/voluntario/register", userData); // endpoint: /voluntario/register cambiar segun necesidad
-        //   if (response.status == 200) {  // Registro Exitoso
-        //     console.log("Registro exitoso, status 200");
-        //     console.log(response);
-        //     console.log(response.data.message);
-        //     console.log("Error? : " + response.data.error);
+    async register() {
+      
+      const newUser = {
+        nombre: this.form.name,
+        apellido: this.form.surname,
+        correo: this.form.email,
+        direccion: this.form.address,
+        contrasenia: this.form.password,
+        institucion: this.form.institucion
+      };
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/coordinador/register",
+          newUser
+        ); // Cambiado de 'userData' a 'newUser'
+        if (response.status === 200) {
+          // Registro Exitoso
+          console.log("Registro exitoso, status 200");
+          console.log(response);
+          console.log(response.data.message);
+          console.log("Error? : " + response.data.error);
+          if(response.data.error == true){
+            console.error("Error en el registro");
+            this.showMessage = true;
+            this.messageText =
+            "Error en el registro. Por favor, inténtalo de nuevo.";
+            this.messageClass = "error-message";
+          }else{
+            this.showMessage = true;
+            this.messageText = "Registro exitoso.";
+            this.messageClass = "success-message";
 
-        //     this.showMessage= true;
-        //     this.messageText= "Registro exitoso.";
-        //     this.messageClass= "success-message";
-        //   } else {
-        //     console.error("Error en el registro");
-        //     this.showMessage = true;
-        //     this.messageText = "Error en el registro. Por favor, inténtalo de nuevo.";
-        //     this.messageClass = "error-message";
-        //   }
-        // } catch (error) {
-        //   console.log("Error en la solicitud, error");
-        //   console.log(error.response.data.message);
-        //   console.log("Error? : " + error.response.data.error);
-        //   this.showMessage = true;
-        //   this.messageText = "Error en el registro. Por favor, inténtalo de nuevo.";
-        //   this.messageClass = "error-message";
-        // };
-        console.log(newUser);
-        console.log("registrado, maquina");
+          }
+
+          
+        } else {
+          console.error("Error en el registro");
+          this.showMessage = true;
+          this.messageText =
+            "Error en el registro. Por favor, inténtalo de nuevo.";
+          this.messageClass = "error-message";
+        }
+      } catch (error) {
+        console.log("Error en la solicitud, error");
+        console.log(error.response.data.message);
+        console.log("Error? : " + error.response.data.error);
+        this.showMessage = true;
+        this.messageText =
+          "Error en el registro. Por favor, inténtalo de nuevo.";
+        this.messageClass = "error-message";
       }
-      else console.log("no registrado");
+      // console.log(newUser);
     },
 
     obtenerInstituciones(){

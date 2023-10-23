@@ -17,20 +17,32 @@
     data () {
       return {
         emergencies: '',
-        idCoord: 1
+        idCoord: 0
       }
     },
     methods: {
-      getAllEmergencies() {
-        // idCoord es temporal, la idea es cargar la id del usuario
-        // esto a partir de cargar usuario usando local/sesion item
-        axios.get(`http://localhost:8080/emergencias/coordinador/${this.idCoord}`) 
+      async getAllEmergencies() {
+        const user = JSON.parse(sessionStorage.getItem("user")); // Obtén los datos del usuario de sessionStorage
+        const token = localStorage.getItem("token");
+        console.log(user.id_coordinador);
+        
+        if(user && token){
+          this.idCoord = user.id_coordinador; // Usa la ID del usuario recuperado de sessionStorage
+          await axios.get(`http://localhost:8080/emergencias/coordinador/${this.idCoord}`,{
+            headers: {
+            Authorization: `Bearer ${token}`,
+            }
+          })
           .then(response => {
             this.emergencies = response.data;
           })
           .catch(error => {
             console.log(error);
-          })
+          });
+        } else {
+        console.log("No se encontró ningún usuario en sessionStorage.");
+        }
+        
 
       }
     },

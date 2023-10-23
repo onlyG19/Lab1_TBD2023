@@ -110,4 +110,17 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
             throw new RuntimeException("Error al eliminar el voluntario", e);
         }
     }
+
+    @Override
+    public Voluntario getVoluntarioByEmail(String email) {
+        String sql = "SELECT * FROM voluntario WHERE email_voluntario = :email";
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("email", email)
+                    .executeAndFetchFirst(Voluntario.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener el voluntario por email", e);
+        }
+    }
 }

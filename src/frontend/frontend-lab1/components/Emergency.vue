@@ -60,6 +60,8 @@
     },
     methods: {
       cambiarEstadoEmergencia(){
+        const token = localStorage.getItem("token");
+
         if(this.activoInactivo(this.emergencia.estado_emergencia)){
           this.emergencia.estado_emergencia = 'Inactivo';
           this.opcion = 'Activar';
@@ -78,7 +80,8 @@
         };
         axios.put(`http://localhost:8080/emergencia/${this.emergencia.id_emergencia}`, json, {
           headers: {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            Authorization: `Bearer ${token}`
           }
         }).catch(error => {
             console.log(error);
@@ -91,7 +94,12 @@
         return 'Inactivo';
       },
       getTareas () {
-        axios.get(`http://localhost:8080/tareas/emergencia/${this.emergencia.id_emergencia}`)
+        const token = localStorage.getItem("token");
+        axios.get(`http://localhost:8080/tareas/emergencia/${this.emergencia.id_emergencia}`,{
+            headers: {
+            Authorization: `Bearer ${token}`,
+            }
+          })
           .then(response => {
             this.tareas = response.data.map(tarea => {
               tarea.estado_tarea = this.activoInactivo(tarea.estado_tarea);
@@ -103,7 +111,12 @@
           })
       },
       cantidadTareasActivasEmergencia () {
-        axios.get(`http://localhost:8080/emergencia/${this.emergencia.id_emergencia}/tareas/activas/cantidad`)
+        const token = localStorage.getItem("token");
+        axios.get(`http://localhost:8080/emergencia/numeroTareasActivas/${this.emergencia.id_emergencia}`,{
+            headers: {
+            Authorization: `Bearer ${token}`,
+            }
+          })// /emergencia/numeroTareasActivas/{id_emergencia}
           .then(response => {
             this.resumen_tareas = this.resumen_tareas + response.data;
           })
