@@ -77,8 +77,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, minLength, email, sameAs} from 'vuelidate/lib/validators'
-import {withParams} from 'vuelidate/lib'
+import { required, minLength, email, sameAs, alphaNum} from 'vuelidate/lib/validators'
 import axios from 'axios'
 
 export default{
@@ -90,10 +89,10 @@ export default{
       surname: {required},
       email: { required, email },
       institucion: {required},
-      password: { required, minLength: minLength(8) },
+      password: { required, minLength: minLength(8), alphaNum },
       confirmPassword: {
         required,
-        sameAs: withParams({type: 'password'}, sameAs('password')),
+        sameAs: sameAs('password'),
       },
     }
   },
@@ -128,7 +127,7 @@ export default{
     emailErrors () {
       const errors = []
       if (!this.$v.form.email.$dirty) return errors
-      !this.$v.form.email.email && errors.push('El correo debe ser válido.')
+      !this.$v.form.email.email && errors.push('El correo debe ser válido (por ejemplo: usuario@dominio.com).')
       !this.$v.form.email.required && errors.push('El correo electrónico es obligatorio.')
       return errors;
     },
@@ -143,70 +142,71 @@ export default{
       if (!this.$v.form.password.$dirty) return errors
       !this.$v.form.password.required && errors.push('La contraseña es obligatoria.')
       !this.$v.form.password.minLength && errors.push('La contraseña debe tener al menos 8 caracteres.')
+      !this.$v.form.password.alphaNum && errors.push('La contraseña debe ser alphanumerica')
       return errors
     },
     confirmPasswordErrors () {
       const errors = []
       if (!this.$v.form.confirmPassword.$dirty) return errors
-      !this.$v.form.confirmPassword.required && errors.push('La confirmación de contraseña es obligatoria.')
+      !this.$v.form.confirmPassword.sameAs && errors.push('Las contraseñas no coinciden.')
       return errors;
     },
   },
 
   methods: {
     async register() {
+      this.$v.form.$touch();
+      if(!this.$v.form.$invalid){
+        const newUser = {
+          nombre: this.form.name,
+          apellido: this.form.surname,
+          correo: this.form.email,
+          direccion: this.form.address,
+          contrasenia: this.form.password,
+          institucion: this.form.institucion
+        };
+        try {
+          const response = await axios.post(
+            "http://localhost:8080/coordinador/register",
+            newUser
+          ); // Cambiado de 'userData' a 'newUser'
+          if (response.status === 200) {
+            // Registro Exitoso
+            console.log("Registro exitoso, status 200");
+            console.log(response.data.message);
+            console.log("Error? : " + response.data.error);
+            if(response.data.error == true){
+              console.error("Error en el registro");
+              this.showMessage = true;
+              this.messageText =
+                "Error en el registro. Por favor, inténtalo de nuevo.";
+              this.messageClass = "error-message";
+            }else{
+              this.showMessage = true;
+              this.messageText = "Registro exitoso.";
+              this.messageClass = "success-message";
 
-      const newUser = {
-        nombre: this.form.name,
-        apellido: this.form.surname,
-        correo: this.form.email,
-        direccion: this.form.address,
-        contrasenia: this.form.password,
-        institucion: this.form.institucion
-      };
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/coordinador/register",
-          newUser
-        ); // Cambiado de 'userData' a 'newUser'
-        if (response.status === 200) {
-          // Registro Exitoso
-          console.log("Registro exitoso, status 200");
-          console.log(response);
-          console.log(response.data.message);
-          console.log("Error? : " + response.data.error);
-          if(response.data.error == true){
+            }
+
+
+          } else {
             console.error("Error en el registro");
             this.showMessage = true;
             this.messageText =
-            "Error en el registro. Por favor, inténtalo de nuevo.";
+              "Error en el registro. Por favor, inténtalo de nuevo.";
             this.messageClass = "error-message";
-          }else{
-            this.showMessage = true;
-            this.messageText = "Registro exitoso.";
-            this.messageClass = "success-message";
-
           }
-
-
-        } else {
-          console.error("Error en el registro");
+        } catch (error) {
+          console.log("Error en la solicitud, error");
+          console.log(error.response.data.message);
+          console.log("Error? : " + error.response.data.error);
           this.showMessage = true;
           this.messageText =
             "Error en el registro. Por favor, inténtalo de nuevo.";
           this.messageClass = "error-message";
         }
-      } catch (error) {
-        console.log("Error en la solicitud, error");
-        console.log(error.response.data.message);
-        console.log("Error? : " + error.response.data.error);
-        this.showMessage = true;
-        this.messageText =
-          "Error en el registro. Por favor, inténtalo de nuevo.";
-        this.messageClass = "error-message";
+        this.$router.push("/login");
       }
-      console.log(newUser);
-      this.$router.push("/login");
     },
 
     obtenerInstituciones(){

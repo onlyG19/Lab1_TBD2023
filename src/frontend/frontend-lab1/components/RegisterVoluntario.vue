@@ -111,7 +111,6 @@
 import { validationMixin } from "vuelidate";
 import { required, minLength, email, sameAs, numeric, alphaNum, minValue, maxLength} from "vuelidate/lib/validators";
 import axios from "axios";
-//import { subYears } from 'date-fns';
 
 export default {
   mixins: [validationMixin],
@@ -123,7 +122,7 @@ export default {
       email: { required, email },
       phone: { required, numeric, minLength: minLength(9), maxLength: maxLength(9)},
       address: { required },
-      birthdate: { required, /*minValue: minValue(subYears(new Date(), 150)) */},
+      birthdate: { required},
       disponibilidad: { required },
       password: { required, minLength: minLength(8), alphaNum},
       confirmPassword: {
@@ -163,7 +162,7 @@ export default {
     emailErrors() {
       const errors = [];
       if (!this.$v.form.email.$dirty) return errors;
-      !this.$v.form.email.email && errors.push("El correo debe ser válido.");
+      !this.$v.form.email.email && errors.push("El correo debe ser válido (por ejemplo: usuario@dominio.com).");
       !this.$v.form.email.required &&
         errors.push("El correo electrónico es obligatorio.");
       return errors;
@@ -172,7 +171,7 @@ export default {
       const errors = [];
       if (!this.$v.form.phone.$dirty) return errors;
       if (!this.$v.form.phone.numeric || !this.$v.form.phone.minLength || !this.$v.form.phone.maxLength) {
-        errors.push("Debe ser un teléfono válido.");
+        errors.push("Debe ser un teléfono válido. Ej: 123456789");
       }
       !this.$v.form.phone.required &&
         errors.push("El número de teléfono es obligatorio.");
@@ -204,6 +203,7 @@ export default {
       !this.$v.form.password.required && errors.push("La contraseña es obligatoria.");
       !this.$v.form.password.minLength &&
         errors.push("La contraseña debe tener al menos 8 caracteres.");
+      !this.$v.form.password.alphaNum && errors.push("La contraseña debe ser alfanumerica");
       return errors;
     },
     confirmPasswordErrors() {
@@ -217,7 +217,8 @@ export default {
 
   methods: {
     async register() {
-
+      this.$v.form.$touch();
+      if (!this.$v.form.$invalid){
         const newUser = {
           nombre: this.form.name,
           apellido: this.form.surname,
@@ -236,15 +237,13 @@ export default {
           if (response.status === 200) {
             // Registro Exitoso
             console.log("Registro exitoso, status 200");
-            console.log(response);
-            console.log(response.data.message);
             console.log(response.data.message);
             console.log("Error? : " + response.data.error);
             if(response.data.error == true){
               console.error("Error en el registro");
               this.showMessage = true;
               this.messageText =
-              "Error en el registro. Por favor, inténtalo de nuevo.";
+                "Error en el registro. Por favor, inténtalo de nuevo.";
               this.messageClass = "error-message";
             }else{
               this.showMessage = true;
@@ -270,9 +269,9 @@ export default {
             "Error en el registro. Por favor, inténtalo de nuevo.";
           this.messageClass = "error-message";
         }
-        console.log(newUser);
         this.$router.push("/login");
       }
+    }
   },
 
 };

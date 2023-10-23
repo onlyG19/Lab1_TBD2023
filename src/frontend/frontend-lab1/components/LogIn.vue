@@ -31,7 +31,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, minLength, email } from 'vuelidate/lib/validators'
+import { required, minLength, email, alphaNum} from 'vuelidate/lib/validators'
 import axios from 'axios'
 
 export default {
@@ -39,7 +39,7 @@ export default {
 
   validations: {
     email: { required, email },
-    password: { required, minLength: minLength(8) },
+    password: { required, minLength: minLength(8), alphaNum},
   },
 
   props: {
@@ -52,6 +52,7 @@ export default {
   data: () => ({
     email: '',
     password: '',
+    errorInico: false,
   }),
 
   computed: {
@@ -67,69 +68,76 @@ export default {
       if (!this.$v.password.$dirty) return errors
       !this.$v.password.required && errors.push('La contraseña es obligatoria.')
       !this.$v.password.minLength && errors.push('La contraseña debe tener al menos 8 caracteres.')
+      !this.$v.password.alphaNum && errors.push('La contraseña debe ser alphanumerica')
+      if(this.errorInico) errors.push('Correo y contraseña incorrectas. Favor de verificar datos.')
       return errors
     },
   },
 
   methods: {
     async loginUser(){
-      console.log(this.typeUser);
-      if (this.typeUser === 'voluntario') { // CASO DE LOGIN VOLUNTARIO
-      const userData = {
-        email: this.email,
-        password: this.password
-      };
+      this.$v.$touch();
+      console.log(this.$v.$invalid);
+      if(!this.$v.$invalid) {
+        if (this.typeUser === 'voluntario') { // CASO DE LOGIN VOLUNTARIO
+          const userData = {
+            email: this.email,
+            password: this.password
+          };
 
-      try {
-        const response = await axios.post("http://localhost:8080/voluntario/login", userData);
-        if (response.status === 200) {
-          console.log(response.data.message);
-          console.log("Error? : " + response.data.error);
-          if(process.client){
-            const token = response.data.token;
-            localStorage.setItem("token", token); // Almacena el token en localStorage
+          try {
+            const response = await axios.post("http://localhost:8080/voluntario/login", userData);
+            if (response.status === 200) {
+              console.log(response.data.message);
+              console.log("Error? : " + response.data.error);
+              if(process.client){
+                const token = response.data.token;
+                localStorage.setItem("token", token); // Almacena el token en localStorage
 
-            // Almacena la informacion del usuario en sessionStorage
-            sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+                // Almacena la informacion del usuario en sessionStorage
+                sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+              }
+
+              this.$router.push("/");
+            }
+
+          } catch (error) {
+            // Manejo de errores
+            console.error('Error durante la solicitud de inicio de sesión:', error);
+            this.errorInico = true;
+            this.$v.$touch();
           }
-          console.log('Soy un voluntario');
-
-          this.$router.push("/");
         }
+        else{   // CASO DE LOGIN COORDINADOR
+          const userData = {
+            email: this.email,
+            password: this.password
+          };
 
-      } catch (error) {
-        // Manejo de errores
-        console.error('Error durante la solicitud de inicio de sesión:', error);
-      }
-    }
-    else{   // CASO DE LOGIN COORDINADOR
-      const userData = {
-        email: this.email,
-        password: this.password
-      };
+          try {
+            const response = await axios.post("http://localhost:8080/coordinador/login", userData);
+            if (response.status === 200) {
+              console.log("Inicio de sesión exitoso, status 200");
+              console.log(response.data.message);
+              console.log("Error? : " + response.data.error);
 
-      try {
-        const response = await axios.post("http://localhost:8080/coordinador/login", userData);
-        if (response.status === 200) {
-          console.log("Inicio de sesión exitoso, status 200");
-          console.log(response.data.message);
-          console.log("Error? : " + response.data.error);
+              if(process.client){
+                const token = response.data.token;
+                localStorage.setItem("token", token); // Almacena el token en localStorage
 
-          if(process.client){
-            const token = response.data.token;
-            localStorage.setItem("token", token); // Almacena el token en localStorage
+                // Almacena la informacion del usuario en sessionStorage
+                sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+              }
 
-            // Almacena la informacion del usuario en sessionStorage
-            sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+              this.$router.push("/emergencias");
+            }
+
+          } catch (error) {
+            // Manejo de errores
+            console.error('Error durante la solicitud de inicio de sesión:', error);
+            this.errorInico = true;
+            this.$v.$touch();
           }
-          console.log('Soy un coordinador');
-
-          this.$router.push("/emergencias");
-        }
-
-      } catch (error) {
-        // Manejo de errores
-        console.error('Error durante la solicitud de inicio de sesión:', error);
       }
 
     }
