@@ -2,6 +2,7 @@ package cl.tbd.backend.services;
 
 import java.util.List;
 
+import cl.tbd.backend.models.RankingLite;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.tbd.backend.models.Ranking;
+import cl.tbd.backend.models.RankingLite;
 import cl.tbd.backend.repositories.RankingRepository;
 
 @RestController
@@ -61,5 +63,16 @@ public class RankingService {
     @DeleteMapping("/ranking/{id}")
     public void deleteRanking(@PathVariable Long id) {
         rankingRepository.deleteRanking(id);
+    }
+
+    // RANKING LITE
+    @GetMapping("/ranking/listaRanking/{id_tarea}/{c_voluntarios}")
+    public List<RankingLite> rankingLite(@PathVariable int id_tarea, @PathVariable int c_voluntarios){
+        return rankingRepository.rankingLite(id_tarea, c_voluntarios);
+    }
+
+    @PostMapping("/ranking/full_ranking/{id_tarea}/{c_voluntarios}")
+    public void rankingFull(@PathVariable int id_tarea, @PathVariable int c_voluntarios){
+        rankingRepository.rankingFull(id_tarea, c_voluntarios);
     }
 }

@@ -1,3 +1,4 @@
+-- Función para calcular la cantidad de tareas activas de cada emergencia
 CREATE FUNCTION TareasActivasEmergencia(BIGINT) returns BIGINT
 AS
 $$
@@ -11,3 +12,71 @@ BEGIN
 END;
 $$
 LANGUAGE plpgsql;
+
+-- Función para calcular mostrar y calcular el ranking pero sin inserción
+CREATE OR REPLACE FUNCTION calcular_ranking_lite(tarea INT, rank_range INT) RETURNS TABLE (
+    id_tarea INT,
+	id_voluntario INT,
+    total_puntos INT,
+    lugar INT,
+    se_asigna BOOLEAN
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+		tarea AS id_tarea,
+        v.id_voluntario,
+        COALESCE(SUM(th.puntaje_tarea_habilidad)::INT, 0) AS total_puntos,
+        ROW_NUMBER() OVER (ORDER BY COALESCE(SUM(th.puntaje_tarea_habilidad)::INT, 0) DESC)::INT AS lugar,
+        CASE
+            WHEN ROW_NUMBER() OVER (ORDER BY COALESCE(SUM(th.puntaje_tarea_habilidad)::INT, 0) DESC) <= rank_range THEN true
+            ELSE false
+        END AS se_asigna	
+    FROM
+        voluntario v
+    LEFT JOIN
+        vol_habilidad vh ON v.id_voluntario = vh.id_voluntario
+    LEFT JOIN
+        tarea_habilidad th ON vh.id_habilidad = th.id_habilidad AND th.id_tarea = tarea
+    GROUP BY
+        v.id_voluntario
+    ORDER BY
+        total_puntos DESC;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Testeo de calcular_ranking_lite
+--SELECT * FROM calcular_ranking_lite(1, 3);  
+
+-- Función que calcula el ranking y lo inserta a la tabla ranking
+CREATE OR REPLACE FUNCTION calcular_ranking(tarea INT, rank_range INT) RETURNS VOID AS $$
+BEGIN
+    WITH ranking_cte AS (
+        SELECT
+            v.id_voluntario,
+            ROW_NUMBER() OVER (ORDER BY COALESCE(SUM(th.puntaje_tarea_habilidad)::INT, 0) DESC)::INT AS posicion_ranking,
+            tarea AS id_tarea,
+            CASE
+                WHEN ROW_NUMBER() OVER (ORDER BY COALESCE(SUM(th.puntaje_tarea_habilidad)::INT, 0) DESC) <= rank_range THEN true
+                ELSE false
+            END AS asignado_ranking,
+            COALESCE(SUM(th.puntaje_tarea_habilidad)::INT, 0) AS puntaje_ranking
+        FROM
+            voluntario v
+        LEFT JOIN
+            vol_habilidad vh ON v.id_voluntario = vh.id_voluntario
+        LEFT JOIN
+            tarea_habilidad th ON vh.id_habilidad = th.id_habilidad AND th.id_tarea = tarea
+        GROUP BY
+            v.id_voluntario
+    )
+    
+    INSERT INTO ranking (id_voluntario, posicion_ranking, id_tarea, asignado_ranking)
+    SELECT id_voluntario, posicion_ranking, id_tarea, asignado_ranking
+    FROM ranking_cte;
+
+END;
+$$ LANGUAGE plpgsql;
+
+-- Testeo de calcular_ranking
+-- SELECT * FROM calcular_ranking(1, 3); 
