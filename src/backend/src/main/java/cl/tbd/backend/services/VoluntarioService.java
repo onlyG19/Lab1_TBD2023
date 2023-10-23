@@ -67,6 +67,10 @@ public class VoluntarioService {
             voluntario.setEmailVoluntario(registration.getEmail());
             voluntario.setNombreVoluntario(registration.getNombre());
             voluntario.setApellidoVoluntario(registration.getApellido());
+            voluntario.setDireccionVoluntario(registration.getDireccion());
+            voluntario.setTelefonoVoluntario(registration.getTelefono());
+            voluntario.setFechaNacimientoVoluntario(registration.getFecha_nacimiento());
+            voluntario.setDisponibilidadVoluntario(registration.getDisponibilidad());
             voluntario.setPasswordVoluntario(new BCryptPasswordEncoder().encode(registration.getPassword()));
             voluntarioRepository.createVoluntario(voluntario);
             // Contruir response

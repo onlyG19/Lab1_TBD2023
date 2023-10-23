@@ -28,7 +28,7 @@ public class WebSecurityConfig {
 
         JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
         jwtAuthenticationFilter.setAuthenticationManager(authManager);
-        jwtAuthenticationFilter.setFilterProcessesUrl("usuario/login");
+        jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
         // Configuración CORS para permitir cualquier origen
 
