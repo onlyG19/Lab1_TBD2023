@@ -191,6 +191,22 @@ export default{
       }
       else console.log("no registrado");
     },
+
+    obtenerInstituticones(){
+      axios.get(`http://localhost:8080/instituciones`)
+        .then(response => {
+          this.instituciones = response.data.map(institucion => (
+            {text: institucion.nombre_institucion, value: institucion.id_institucion})
+          )})
+        .catch(error => {
+          console.log(error);
+        })
+    },
   },
+
+
+  created() {
+    this.obtenerInstituticones();
+  }
 }
 </script>

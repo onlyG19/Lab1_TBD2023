@@ -15,7 +15,6 @@
   export default {
     props: {
       imgs: {
-        type: Object,
         required: true,
       }
     },
