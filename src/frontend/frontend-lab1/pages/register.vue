@@ -18,7 +18,7 @@
       <v-tab-item transition="fade-transition">
         <fieldset class="form-register">
           <legend style="font-size: 1.5em; padding: 10px; color: #005a85">Registro de Voluntarios</legend>
-          <Register />
+          <RegisterVoluntario />
         </fieldset>
       </v-tab-item>
       <v-tab-item transition="fade-transition">
