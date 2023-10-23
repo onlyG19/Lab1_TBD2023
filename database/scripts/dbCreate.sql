@@ -126,7 +126,7 @@ DECLARE
 	query_text TEXT;
 BEGIN 
 	IF (TG_OP = 'UPDATE') THEN
-		id_coordinador_editor := current_setting('app.id_coordinador_editor', true)::INT; -- Se extrae la id del coordinador editor
+		-- id_coordinador_editor := current_setting('app.id_coordinador_editor', true)::INT; -- Se extrae la id del coordinador editor
 		
 		query_text = 'UPDATE emergencia SET id_emergencia=' || NEW.id_emergencia || ', nombre_emergencia="' || NEW.nombre_emergencia ||
 		'", descripcion_emergencia="' || NEW.descripcion_emergencia || '", fecha_creacion_emergencia=' || NEW.fecha_creacion_emergencia || 
@@ -135,7 +135,7 @@ BEGIN
 		
 		INSERT INTO emergencia_log (id_emergencia, operacion_emergencia_log, 
 								   id_coordinador, consulta_emergencia_log)
-		VALUES (OLD.id_emergencia, 'UPDATE', id_coordinador_editor, query_text); 
+		VALUES (OLD.id_emergencia, 'UPDATE', OLD.id_coordinador, query_text); 
 	END IF;
 	RETURN NEW;
 END
