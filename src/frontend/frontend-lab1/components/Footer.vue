@@ -26,7 +26,7 @@
             Si tienes alguna pregunta, no dudes en contactarnos:
           </p>
           <ul>
-            <li class="text-sm li-footer">Correo Electrónico: info@tuempresa.com</li>
+            <li class="text-sm li-footer">Correo Electrónico: voluntasks@volunteam.cl</li>
             <li class="text-sm">Teléfono: (123) 456-7890</li>
           </ul>
         </v-col>

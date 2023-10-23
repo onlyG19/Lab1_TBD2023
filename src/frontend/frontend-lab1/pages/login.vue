@@ -6,7 +6,7 @@
       Ir a inicio
     </v-btn>
     <v-btn color="white" text to="/register">
-      <v-icon left>mdi-home</v-icon>
+      <v-icon left>mdi-account</v-icon>
       Registrarse
     </v-btn>
   </div>
