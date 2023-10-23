@@ -3,11 +3,12 @@
 --------------------------------------------------- CARGA DE DATOS -------------------------------------------------
 INSERT INTO voluntario (nombre_voluntario, apellido_voluntario, telefono_voluntario, direccion_voluntario, fecha_nacimiento_voluntario, disponibilidad_voluntario, email_voluntario, password_voluntario)
 VALUES
-    ('Manuel', 'Pérez', '+56912345678', 'Calle Los Pinos 123', '1990-05-10', '2023-10-19', 'manuel@example.com', 'contraseña123'),
-    ('María', 'López', '+56998765432', 'Avenida Central 456', '1988-08-15', '2023-10-20', 'maria@example.com', 'clave456'),
-    ('Alejandro', 'González', '+56976543210', 'Ruta del Mar 789', '1995-03-22', '2023-10-21', 'alejandro@example.com', 'miclave123'),
-    ('Isabel', 'Torres', '+56955555555', 'Avenida del Sol 987', '1987-12-05', '2023-10-22', 'isabel@example.com', 'clave1234'),
-    ('Felipe', 'Vega', '+56933333333', 'Calle de las Flores 234', '1992-06-30', '2023-10-23', 'felipe@example.com', 'contrasena5678');
+	-- $2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW es encriptacion para 12345678
+    ('Manuel', 'Pérez', '+56912345678', 'Calle Los Pinos 123', '1990-05-10', '2023-10-19', 'manuel@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW'),
+    ('María', 'López', '+56998765432', 'Avenida Central 456', '1988-08-15', '2023-10-20', 'maria@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW'),
+    ('Alejandro', 'González', '+56976543210', 'Ruta del Mar 789', '1995-03-22', '2023-10-21', 'alejandro@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW'),
+    ('Isabel', 'Torres', '+56955555555', 'Avenida del Sol 987', '1987-12-05', '2023-10-22', 'isabel@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW'),
+    ('Felipe', 'Vega', '+56933333333', 'Calle de las Flores 234', '1992-06-30', '2023-10-23', 'felipe@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW');
 
 INSERT INTO habilidad (nombre_habilidad)
 VALUES
@@ -26,10 +27,11 @@ VALUES
 
 INSERT INTO coordinador (nombre_coordinador, apellido_coordinador, id_institucion, email_coordinador, password_coordinador)
 VALUES
-    ('Luis', 'Sánchez', 1, 'luis@example.com', 'clave123'),
-    ('Ana', 'Rodríguez', 2, 'ana@example.com', 'clave456'),
-    ('Carlos', 'Martínez', 3, 'carlos@example.com', 'clave789'),
-    ('Isabel', 'Gómez', 1, 'isabel@example.com', 'clave101112');
+	-- $2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW es encriptacion para 12345678
+    ('Luis', 'Sánchez', 1, 'luis@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW'),
+    ('Ana', 'Rodríguez', 2, 'ana@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW'),
+    ('Carlos', 'Martínez', 3, 'carlos@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW'),
+    ('Isabel', 'Gómez', 1, 'isabel@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW');
 
 
 INSERT INTO vol_habilidad (id_voluntario, id_habilidad)
@@ -80,23 +82,9 @@ VALUES
 INSERT INTO tarea_habilidad (id_tarea, id_habilidad, puntaje_tarea_habilidad)
 VALUES
     (1, 1, 90),
+	(1, 3, 90),
     (2, 2, 80),
     (3, 2, 85),
     (4, 4, 75),
     (4, 3, 95);
 
-INSERT INTO ranking (id_voluntario, posicion_ranking, id_tarea, asignado_ranking)
-VALUES
-    (1, 1, 1, TRUE),
-    (2, 2, 1, TRUE),
-    (3, 3, 1, TRUE),
-    (4, 4, 1, FALSE),
-    (5, 5, 1, TRUE),
-    (1, 6, 2, FALSE),
-    (2, 2, 2, FALSE);
-
--------------------------------------------------- Variables para auditar -------------------------------------------
---SET app.id_coordinador_editor = '10';
-
--------------------------------------------------- Consulta UPDATE --------------------------------------------------
---UPDATE public.emergencia SET descripcion_emergencia='NUEVA DESC 30' WHERE id_emergencia=1;

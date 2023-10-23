@@ -8,7 +8,6 @@ BEGIN
     WHERE el.operacion_emergencia_log = 'UPDATE'
     GROUP BY el.id_coordinador, el.operacion_emergencia_log;
 
-    -- Return the result set
     RETURN QUERY EXECUTE 'SELECT * FROM datos_reporte';
 END;
 $$;
