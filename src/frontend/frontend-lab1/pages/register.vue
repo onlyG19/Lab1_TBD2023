@@ -1,20 +1,33 @@
 <template>
   <div>
-    <div class="btn-container">
-      <v-btn
-      absolute
-      top
-      right
-      class="mt-4" 
-      color="white" 
-      variant="elevated" 
-      text to="/"
-      >Inicio</v-btn>
+    <div class="centered-button">
+      <v-btn color="white" text to="/">
+        <v-icon left>mdi-home</v-icon>
+        Ir a inicio
+      </v-btn>
+      <v-btn color="white" text to="/login">
+        <v-icon left>mdi-home</v-icon>
+        Loguearse
+      </v-btn>
     </div>
-    <fieldset class="form-register">
-      <legend style="font-size: 1.5em; padding: 10px; color: #005a85">Registro de Voluntarios</legend>
-      <Register />
-    </fieldset>
+    <v-tabs
+      fixed-tabs
+    >
+      <v-tab>Voluntarios</v-tab>
+      <v-tab>Coordinadores</v-tab>
+      <v-tab-item transition="fade-transition">
+        <fieldset class="form-register">
+          <legend style="font-size: 1.5em; padding: 10px; color: #005a85">Registro de Voluntarios</legend>
+          <Register />
+        </fieldset>
+      </v-tab-item>
+      <v-tab-item transition="fade-transition">
+        <fieldset class="form-register">
+          <legend style="font-size: 1.5em; padding: 10px; color: #005a85">Registro de Coodinadores</legend>
+          <RegisterCoordinador />
+        </fieldset>
+      </v-tab-item>
+    </v-tabs>
   </div>
 </template>
 
@@ -34,11 +47,13 @@
   margin-bottom: 5rem;
 }
 
-.btn-container{
-  margin-top: 0;
-  margin-bottom: 5rem;
+.centered-button {
+  text-align: center;
+  margin: 2em auto; /* Centrar vertical y horizontalmente el botón */
+  width: 50%; /* Establecer el ancho del botón al 50% del contenedor */
 }
-.v-btn{
+.v-btn {
   background-color: rgb(22, 112, 181);
+  margin-top: 1em;
 }
 </style>
