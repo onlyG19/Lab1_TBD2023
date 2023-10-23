@@ -82,7 +82,12 @@ export default {
   },
   methods: {
     async loadUserData() {
-      const user = JSON.parse(sessionStorage.getItem("user"));
+      let user = null;
+      let holi = "s";
+      if(process.client){
+        user = JSON.parse(sessionStorage.getItem("user"));
+        holi = "a";
+      }
       if (user) {
         if (user.id_coordinador) {
           this.userType = 'Coordinador';
@@ -94,9 +99,10 @@ export default {
           console.log('El tipo de usuario no se pudo determinar.');
         }
       } else {
+        console.log(holi);
         console.log('No se encontró ningún usuario en sessionStorage.');
       }
-        
+
     },
   },
 }

@@ -85,12 +85,13 @@ export default {
         if (response.status === 200) {
           console.log(response.data.message);
           console.log("Error? : " + response.data.error);
+          if(process.client){
+            const token = response.data.token;
+            localStorage.setItem("token", token); // Almacena el token en localStorage
 
-          const token = response.data.token;
-          localStorage.setItem("token", token); // Almacena el token en localStorage
-
-          // Almacena la informacion del usuario en sessionStorage
-          sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+            // Almacena la informacion del usuario en sessionStorage
+            sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+          }
           console.log('Soy un voluntario');
 
           this.$router.push("/");
@@ -114,11 +115,13 @@ export default {
           console.log(response.data.message);
           console.log("Error? : " + response.data.error);
 
-          const token = response.data.token;
-          localStorage.setItem("token", token); // Almacena el token en localStorage
+          if(process.client){
+            const token = response.data.token;
+            localStorage.setItem("token", token); // Almacena el token en localStorage
 
-          // Almacena la informacion del usuario en sessionStorage
-          sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+            // Almacena la informacion del usuario en sessionStorage
+            sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+          }
           console.log('Soy un coordinador');
 
           this.$router.push("/emergencias");

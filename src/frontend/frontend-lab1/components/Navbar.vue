@@ -15,8 +15,11 @@ export default {
       this.$emit("toggleDrawer");
     },
     cerrarSesion() {
-      localStorage.removeItem("token");
-      sessionStorage.removeItem("user");
+      if(process.client){
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("user");
+      }
+      window.location.reload();
     }
   }
 }

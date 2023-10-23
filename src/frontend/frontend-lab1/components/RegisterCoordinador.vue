@@ -205,7 +205,8 @@ export default{
           "Error en el registro. Por favor, inténtalo de nuevo.";
         this.messageClass = "error-message";
       }
-      // console.log(newUser);
+      console.log(newUser);
+      this.$router.push("/login");
     },
 
     obtenerInstituciones(){
