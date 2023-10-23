@@ -39,7 +39,7 @@ public class EmergenciaService {
         return emergenciaRepository.getAllEmergenciasByInstitucionId(id_institucion);
     }
 
-    @GetMapping("/emergencia/{id_emergencia}/tareas/activas/cantidad")
+    @GetMapping("/emergencia/numeroTareasActivas/{id_emergencia}")
     public Long cantidadTareasActivasByEmergenciaId(@PathVariable Long id_emergencia){
         return emergenciaRepository.cantidadTareasActivasByEmergenciaId(id_emergencia);
     }

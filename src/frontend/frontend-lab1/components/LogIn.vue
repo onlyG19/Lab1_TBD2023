@@ -23,12 +23,7 @@
       type="password"
     ></v-text-field>
 
-    <v-btn
-      block
-      large
-      color="primary"
-      @click.prevent="loginUser"
-    >
+    <v-btn block large color="primary" @click.prevent="loginUser">
       Iniciar Sesión
     </v-btn>
   </form>
@@ -37,6 +32,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, minLength, email } from 'vuelidate/lib/validators'
+import axios from 'axios'
 
 export default {
   mixins: [validationMixin],
@@ -78,65 +74,62 @@ export default {
   methods: {
     async loginUser(){
       console.log(this.typeUser);
-      if(this.typeUser === 'voluntario'){
-        // const userData = {
-        //   email_voluntario: this.email,
-        //   password_voluntario: this.password
-        // };
-        // try {
-        //   const response = await axios.post("http//localhost:8080/voluntario/login", userData); // siendo ruta/voluntario/login el endpoint 
-        // if (response.status === 200) {
-        //   console.log("Inicio de sesión exitoso, status 200");
-        //   console.log(response.data.message);
-        //   console.log("Error? : " + response.data.error);
+      if (this.typeUser === 'voluntario') { // CASO DE LOGIN VOLUNTARIO
+      const userData = {
+        email: this.email,
+        password: this.password
+      };
 
-        //   // Almacenar el token de autenticación en el almacenamiento local (localStorage) o en una cookie
-        //   const token = response.data.token;
-        //   localStorage.setItem("token", token); // Almacena el token en localStorage
+      try {
+        const response = await axios.post("http://localhost:8080/voluntario/login", userData); 
+        if (response.status === 200) {
+          console.log(response.data.message);
+          console.log("Error? : " + response.data.error);
 
+          const token = response.data.token;
+          localStorage.setItem("token", token); // Almacena el token en localStorage
 
-        //   // Almacena la informacion del uusario en sessionStorage
-        //   sessionStorage.setItem("user",JSON.stringify(response.data.usuario))
+          // Almacena la informacion del usuario en sessionStorage
+          sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+          console.log('Soy un voluntario');
 
-        //   // Redirige al usuario a la página principal o a donde desees después del inicio de sesión
-        //   // Puedes usar Vue Router para manejar la navegación
-        //   this.$router.push("/"); // Reemplazar '/' si fuese necesario, la idea es que vaya a home con la navbar de momento
-        // } catch (error) {
-        // console.log("Error en la solicitud");
-        // console.log(error);
-        // alert("Credenciales incorrectas, Ingrese nuevamente") 
-       // }
-       console.log('Soy un voluntario')
-      } else {
-        // const userData = {
-        //   email_coordinador: this.email,
-        //   password_coordinador: this.password
-        // };
-        // try {
-        //   const response = await axios.post("http//localhost:8080/coordinador/login", userData);  // siendo ruta/coordinador/login el endpoint
-        // if (response.status === 200) {
-        //   console.log("Inicio de sesión exitoso, status 200");
-        //   console.log(response.data.message);
-        //   console.log("Error? : " + response.data.error);
-
-        //   // Almacenar el token de autenticación en el almacenamiento local (localStorage) o en una cookie
-        //   const token = response.data.token;
-        //   localStorage.setItem("token", token); // Almacena el token en localStorage
-
-
-        //   // Almacena la informacion del uusario en sessionStorage
-        //   sessionStorage.setItem("user",JSON.stringify(response.data.usuario))
-
-        //   // Redirige al usuario a la página principal o a donde desees después del inicio de sesión
-        //   // Puedes usar Vue Router para manejar la navegación
-        //   this.$router.push("/"); // Reemplazar '/' si fuese necesario, la idea es que vaya a home con la navbar de momento
-        // } catch (error) {
-        // console.log("Error en la solicitud");
-        // console.log(error);
-        // alert("Credenciales incorrectas, Ingrese nuevamente");
-        console.log('Soy un Coordinador')
+          this.$router.push("/"); 
+        }
+        
+      } catch (error) {
+        // Manejo de errores
+        console.error('Error durante la solicitud de inicio de sesión:', error);
       }
     }
+    else{   // CASO DE LOGIN COORDINADOR
+      const userData = {
+        email: this.email,
+        password: this.password
+      };
+
+      try {
+        const response = await axios.post("http://localhost:8080/coordinador/login", userData); 
+        if (response.status === 200) {
+          console.log("Inicio de sesión exitoso, status 200");
+          console.log(response.data.message);
+          console.log("Error? : " + response.data.error);
+
+          const token = response.data.token;
+          localStorage.setItem("token", token); // Almacena el token en localStorage
+
+          // Almacena la informacion del usuario en sessionStorage
+          sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
+          console.log('Soy un coordinador');
+
+          this.$router.push("/emergencias"); 
+        }
+        
+      } catch (error) {
+        // Manejo de errores
+        console.error('Error durante la solicitud de inicio de sesión:', error);
+      }
+
+    }
   },
-}
+}}
 </script>
