@@ -6,7 +6,7 @@
         Ir a inicio
       </v-btn>
       <v-btn color="white" text to="/login">
-        <v-icon left>mdi-home</v-icon>
+        <v-icon left>mdi-login</v-icon>
         Loguearse
       </v-btn>
     </div>

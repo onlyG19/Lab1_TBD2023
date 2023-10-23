@@ -150,63 +150,63 @@ export default {
     nameErrors() {
       const errors = [];
       if (!this.$v.form.name.$dirty) return errors;
-      !this.$v.form.name.required && errors.push("Se necesita el nombre");
+      !this.$v.form.name.required && errors.push("El nombre es obligatorio.");
       return errors;
     },
     surnameErrors() {
       const errors = [];
       if (!this.$v.form.surname.$dirty) return errors;
-      !this.$v.form.surname.required && errors.push("Se necesita el apellido");
+      !this.$v.form.surname.required && errors.push("El apellido es obligatorio.");
       return errors;
     },
     emailErrors() {
       const errors = [];
       if (!this.$v.form.email.$dirty) return errors;
-      !this.$v.form.email.email && errors.push("El correo debe ser válido");
+      !this.$v.form.email.email && errors.push("El correo debe ser válido.");
       !this.$v.form.email.required &&
-        errors.push("Se necesita correo electrónico");
+        errors.push("El correo electrónico es obligatorio.");
       return errors;
     },
     phoneErrors() {
       const errors = [];
       if (!this.$v.form.phone.$dirty) return errors;
       !this.$v.form.phone.required &&
-        errors.push("Se necesita el número de teléfono");
+        errors.push("El número de teléfono es obligatorio.");
       return errors;
     },
     addressErrors() {
       const errors = [];
       if (!this.$v.form.address.$dirty) return errors;
-      !this.$v.form.address.required && errors.push("Se necesita la dirección");
+      !this.$v.form.address.required && errors.push("La dirección es obligatoria.");
       return errors;
     },
     birthdateErrors() {
       const errors = [];
       if (!this.$v.form.birthdate.$dirty) return errors;
       !this.$v.form.birthdate.required &&
-        errors.push("Se necesita fecha de nacimiento");
+        errors.push("La fecha de nacimiento es obligatoria.");
       return errors;
     },
     disponibilidadErrors() {
       const errors = [];
       if (!this.$v.form.disponibilidad.$dirty) return errors;
       !this.$v.form.disponibilidad.required &&
-        errors.push("Se necesita disponibilidad");
+        errors.push("La disponibilidad es obligatoria.");
       return errors;
     },
     passwordErrors() {
       const errors = [];
       if (!this.$v.form.password.$dirty) return errors;
-      !this.$v.form.password.required && errors.push("Se necesita contraseña");
+      !this.$v.form.password.required && errors.push("La contraseña es obligatoria.");
       !this.$v.form.password.minLength &&
-        errors.push("Contraseña debe tener al menos 8 caracteres");
+        errors.push("La contraseña debe tener al menos 8 caracteres.");
       return errors;
     },
     confirmPasswordErrors() {
       const errors = [];
       if (!this.$v.form.confirmPassword.$dirty) return errors;
       !this.$v.form.confirmPassword.required &&
-        errors.push("Se necesita confirmar la contraseña");
+        errors.push("La confirmación de contraseña es obligatoria.");
       return errors;
     },
   },

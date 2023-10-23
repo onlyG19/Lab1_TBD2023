@@ -116,46 +116,46 @@ export default{
     nameErrors () {
       const errors = []
       if (!this.$v.form.name.$dirty) return errors
-      !this.$v.form.name.required && errors.push('Se necesita el nombre')
+      !this.$v.form.name.required && errors.push('El nombre es obligatorio.')
       return errors;
     },
     surnameErrors () {
       const errors = []
       if (!this.$v.form.surname.$dirty) return errors
-      !this.$v.form.surname.required && errors.push('Se necesita el apellido')
+      !this.$v.form.surname.required && errors.push('El apellido es obligatorio.')
       return errors;
     },
     emailErrors () {
       const errors = []
       if (!this.$v.form.email.$dirty) return errors
-      !this.$v.form.email.email && errors.push('El correo debe ser válido')
-      !this.$v.form.email.required && errors.push('Se necesita correo electrónico')
+      !this.$v.form.email.email && errors.push('El correo debe ser válido.')
+      !this.$v.form.email.required && errors.push('El correo electrónico es obligatorio.')
       return errors;
     },
     institucionErrors () {
       const errors = []
       if (!this.$v.form.institucion.$dirty) return errors
-      !this.$v.form.institucion.required && errors.push('Se necesita la institucion')
+      !this.$v.form.institucion.required && errors.push('La institución es obligatoria.')
       return errors;
     },
     passwordErrors() {
       const errors = []
       if (!this.$v.form.password.$dirty) return errors
-      !this.$v.form.password.required && errors.push('Se necesita contraseña')
-      !this.$v.form.password.minLength && errors.push('Contraseña debe tener al menos 8 caracteres')
+      !this.$v.form.password.required && errors.push('La contraseña es obligatoria.')
+      !this.$v.form.password.minLength && errors.push('La contraseña debe tener al menos 8 caracteres.')
       return errors
     },
     confirmPasswordErrors () {
       const errors = []
       if (!this.$v.form.confirmPassword.$dirty) return errors
-      !this.$v.form.confirmPassword.required && errors.push('Se necesita confirmar la contraseña')
+      !this.$v.form.confirmPassword.required && errors.push('La confirmación de contraseña es obligatoria.')
       return errors;
     },
   },
 
   methods: {
     async register() {
-      
+
       const newUser = {
         nombre: this.form.name,
         apellido: this.form.surname,
@@ -188,7 +188,7 @@ export default{
 
           }
 
-          
+
         } else {
           console.error("Error en el registro");
           this.showMessage = true;

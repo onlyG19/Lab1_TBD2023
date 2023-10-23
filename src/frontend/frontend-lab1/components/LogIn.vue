@@ -58,15 +58,15 @@ export default {
     emailErrors () {
       const errors = []
       if (!this.$v.email.$dirty) return errors
-      !this.$v.email.email && errors.push('El correo debe ser válido')
-      !this.$v.email.required && errors.push('Se necesita correo electrónico')
+      !this.$v.email.email && errors.push('El correo debe tener un formato válido (por ejemplo, usuario@dominio.com)')
+      !this.$v.email.required && errors.push('El correo electrónico es obligatorio.')
       return errors;
     },
     passwordErrors() {
       const errors = []
       if (!this.$v.password.$dirty) return errors
-      !this.$v.password.required && errors.push('Se necesita contraseña')
-      !this.$v.password.minLength && errors.push('Contraseña debe tener al menos 8 caracteres')
+      !this.$v.password.required && errors.push('La contraseña es obligatoria.')
+      !this.$v.password.minLength && errors.push('La contraseña debe tener al menos 8 caracteres.')
       return errors
     },
   },
@@ -81,7 +81,7 @@ export default {
       };
 
       try {
-        const response = await axios.post("http://localhost:8080/voluntario/login", userData); 
+        const response = await axios.post("http://localhost:8080/voluntario/login", userData);
         if (response.status === 200) {
           console.log(response.data.message);
           console.log("Error? : " + response.data.error);
@@ -93,9 +93,9 @@ export default {
           sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
           console.log('Soy un voluntario');
 
-          this.$router.push("/"); 
+          this.$router.push("/");
         }
-        
+
       } catch (error) {
         // Manejo de errores
         console.error('Error durante la solicitud de inicio de sesión:', error);
@@ -108,7 +108,7 @@ export default {
       };
 
       try {
-        const response = await axios.post("http://localhost:8080/coordinador/login", userData); 
+        const response = await axios.post("http://localhost:8080/coordinador/login", userData);
         if (response.status === 200) {
           console.log("Inicio de sesión exitoso, status 200");
           console.log(response.data.message);
@@ -121,9 +121,9 @@ export default {
           sessionStorage.setItem("user", JSON.stringify(response.data.usuario));
           console.log('Soy un coordinador');
 
-          this.$router.push("/emergencias"); 
+          this.$router.push("/emergencias");
         }
-        
+
       } catch (error) {
         // Manejo de errores
         console.error('Error durante la solicitud de inicio de sesión:', error);
