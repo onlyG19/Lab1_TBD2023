@@ -108,7 +108,7 @@ export default{
         password: '',
         confirmPassword: '',
       },
-      instituciones: [{text: "hole", value: 2 }, {text: "bye", value: 5}],
+      instituciones: [],
     }
   },
   computed: {

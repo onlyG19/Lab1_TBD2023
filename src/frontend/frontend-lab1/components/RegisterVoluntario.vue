@@ -59,6 +59,7 @@
       required
       filled
       dense
+      type="date"
       @input="$v.form.birthdate.$touch()"
       @blur="$v.form.birthdate.$touch()"
       ></v-text-field>
@@ -71,6 +72,7 @@
           required
           filled
           dense
+          type="date"
           @input="$v.form.disponibilidad.$touch()"
           @blur="$v.form.disponibilidad.$touch()"
         ></v-text-field>
