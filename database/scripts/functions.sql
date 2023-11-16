@@ -80,3 +80,42 @@ $$ LANGUAGE plpgsql;
 
 -- Testeo de calcular_ranking
 -- SELECT * FROM calcular_ranking(1, 3); 
+
+
+
+-- Funiocn que obtiene los volutiarios inscritos en una emergencia y que estan dentro de un Radio
+CREATE OR REPLACE FUNCTION obtener_voluntarios_en_radio(id_emergencia INT, radio FLOAT)
+RETURNS TABLE (
+    id_voluntario INT,
+    nombre_voluntario VARCHAR(255),
+    apellido_voluntario VARCHAR(255),
+    telefono_voluntario VARCHAR(15),
+    direccion_voluntario VARCHAR(255),
+    fecha_nacimiento_voluntario DATE,
+    disponibilidad_voluntario DATE,
+    email_voluntario VARCHAR(255),
+    geom GEOMETRY(Point, 4326)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        v.id_voluntario,
+        v.nombre_voluntario,
+        v.apellido_voluntario,
+        v.telefono_voluntario,
+        v.direccion_voluntario,
+        v.fecha_nacimiento_voluntario,
+        v.disponibilidad_voluntario,
+        v.email_voluntario,
+        v.geom
+    FROM
+        voluntario v
+    JOIN
+        vol_habilidad vh ON v.id_voluntario = vh.id_voluntario
+    JOIN
+        eme_habilidad eh ON vh.id_habilidad = eh.id_habilidad
+    WHERE
+        eh.id_emergencia = id_emergencia
+        AND ST_Within(v.geom, ST_Buffer(eh.geom_emergencia, radio)); -- Se usa ST_Buffer para crear un buffer de radio km, y luego se usa ST_Within para ver si el voluntario esta dentro de ese buffer
+END;
+$$ LANGUAGE plpgsql;
