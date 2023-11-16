@@ -1,3 +1,7 @@
+--------------------------- Agregar Extension Postgis ------------------------
+CREATE EXTENSION IF NOT EXISTS postgis;
+
+
 --------------------------- Creación de tablas ---------------------------------
 CREATE TABLE IF NOT EXISTS voluntario(
     id_voluntario SERIAL PRIMARY KEY,
@@ -8,7 +12,8 @@ CREATE TABLE IF NOT EXISTS voluntario(
     fecha_nacimiento_voluntario DATE,
     disponibilidad_voluntario DATE, -- Referente a un día en particular por simplicidad
 	email_voluntario VARCHAR(255),
-	password_voluntario VARCHAR(255)
+	password_voluntario VARCHAR(255),
+    geom GEOMETRY(Point, 4326)
 );
 
 CREATE TABLE IF NOT EXISTS habilidad(
