@@ -65,12 +65,12 @@ VALUES
     (5, 4); -- Voluntario 5 tiene Habilidad 4
 
 
-INSERT INTO emergencia (nombre_emergencia, descripcion_emergencia, fecha_creacion_emergencia, id_coordinador, id_institucion, estado_emergencia)
+INSERT INTO emergencia (nombre_emergencia, descripcion_emergencia, fecha_creacion_emergencia, id_coordinador, id_institucion, estado_emergencia, geom_emergencia)
 VALUES
-    ('Incendio Forestal', 'Emergencia por fuego en bosque', '2023-10-19 14:30:00', 1, 1, false), -- Coordinador 1 e Institución 1
-    ('Inundación', 'Emergencia por inundaciones', '2023-10-20 12:15:00', 2, 2, true), -- Coordinador 2 e Institución 2
-    ('Terremoto', 'Emergencia sísmica', '2023-10-21 09:45:00', 3, 3, false), -- Coordinador 3 e Institución 3
-    ('Deslizamiento de tierra', 'Emergencia por deslizamiento', '2023-10-22 17:20:00', 4, 1, true); -- Coordinador 4 e Institución 1
+    ('Incendio Forestal', 'Emergencia por fuego en bosque', '2023-10-19 14:30:00', 1, 1, false, ST_SetSRID(ST_GeomFromText('POINT(-70.692909 -33.444485)'), 4326)), -- Coordinador 1 e Institución 1
+    ('Inundación', 'Emergencia por inundaciones', '2023-10-20 12:15:00', 2, 2, true, ST_SetSRID(ST_GeomFromText('POINT(-70.650925 -33.431587)'), 4326)), -- Coordinador 2 e Institución 2
+    ('Terremoto', 'Emergencia sísmica', '2023-10-21 09:45:00', 3, 3, false, ST_SetSRID(ST_GeomFromText('POINT(-70.650925 -33.431587)'), 4326)), -- Coordinador 3 e Institución 3
+    ('Deslizamiento de tierra', 'Emergencia por deslizamiento', '2023-10-22 17:20:00', 4, 1, true, ST_SetSRID(ST_GeomFromText('POINT(-70.650925 -33.431587)'), 4326)); -- Coordinador 4 e Institución 1
 
 
 INSERT INTO eme_habilidad (id_eme_habilidad, id_emergencia, id_habilidad)
