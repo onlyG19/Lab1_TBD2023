@@ -81,9 +81,11 @@ $$ LANGUAGE plpgsql;
 -- Testeo de calcular_ranking
 -- SELECT * FROM calcular_ranking(1, 3); 
 
+SELECT * FROM calcular_ranking(1, 5); 
 
 
--- Funiocn que obtiene los volutiarios inscritos en una emergencia y que estan dentro de un Radio
+
+-- Funcion que obtiene los volutiarios inscritos en una emergencia y que estan dentro de un Radio
 CREATE OR REPLACE FUNCTION obtener_voluntarios_emergencia_radio(id_emergencia_param INT, radio FLOAT)
     RETURNS TABLE (
                       id_voluntario INT,
@@ -110,11 +112,15 @@ BEGIN
             v.geom
         FROM
             voluntario v
-                JOIN vol_habilidad vh ON v.id_voluntario = vh.id_voluntario
-                JOIN eme_habilidad eh ON vh.id_habilidad = eh.id_habilidad
-                JOIN emergencia e ON eh.id_emergencia = e.id_emergencia
+                JOIN ranking r ON v.id_voluntario = r.id_voluntario  -- AND r.asignado_ranking = TRUE 
+				-- Para tomar voluntarios asignados a las tareas (TRUE), no asignados(FALSE) o todos (Comentar el AND)
+                JOIN tarea t ON t.id_tarea = r.id_tarea
+                JOIN emergencia e ON t.id_emergencia = e.id_emergencia
         WHERE
                 e.id_emergencia = id_emergencia_param
           AND ST_DWITHIN(v.geom::geography, e.geom_emergencia::geography, radio); -- Radio en metros
 END;
 $$ LANGUAGE plpgsql;
+
+-- Ejemplo de uso con id_emergencia = 1 y 8km de radio
+-- SELECT * FROM obtener_voluntarios_emergencia_radio(1, 8000);
