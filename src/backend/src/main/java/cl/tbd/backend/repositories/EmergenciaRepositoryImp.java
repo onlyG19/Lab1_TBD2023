@@ -2,6 +2,7 @@ package cl.tbd.backend.repositories;
 
 import java.util.List;
 
+import cl.tbd.backend.models.Voluntario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -79,8 +80,9 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     @Override
     public void createEmergencia(Emergencia emergencia) {
         String sql = "INSERT INTO emergencia (nombre_emergencia, descripcion_emergencia, fecha_creacion_emergencia, " +
-                "id_coordinador, id_institucion) VALUES (:nombre_emergencia, :descripcion_emergencia, " +
-                ":fecha_creacion_emergencia, :id_coordinador, :id_institucion, :estado_emergencia)";
+                "id_coordinador, id_institucion, estado_emergencia, geom_emergencia) VALUES (:nombre_emergencia, " +
+                ":descripcion_emergencia, :fecha_creacion_emergencia, :id_coordinador, :id_institucion, " +
+                ":estado_emergencia, :geom_emergencia)";
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
@@ -90,6 +92,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
                     .addParameter("id_coordinador", emergencia.getIdCoordinador())
                     .addParameter("id_institucion", emergencia.getIdInstitucion())
                     .addParameter("estado_emergencia", emergencia.getEstadoEmergencia())
+                    .addParameter("geom_emergencia", emergencia.getGeomEmergencia())
                     .executeUpdate()
                     .getKey();
 
@@ -106,8 +109,8 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     public void updateEmergencia(Emergencia emergencia) {
         String sql = "UPDATE emergencia SET nombre_emergencia = :nombre_emergencia, " +
                 "descripcion_emergencia = :descripcion_emergencia, fecha_creacion_emergencia = :fecha_creacion_emergencia," +
-                "id_coordinador = :id_coordinador, id_institucion = :id_institucion, estado_emergencia = :estado_emergencia" +
-                " WHERE id_emergencia = :id_emergencia";
+                "id_coordinador = :id_coordinador, id_institucion = :id_institucion, estado_emergencia = :estado_emergencia, " +
+                "geom_emergencia = :geom_emergencia WHERE id_emergencia = :id_emergencia";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
@@ -118,6 +121,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
                     .addParameter("id_institucion", emergencia.getIdInstitucion())
                     .addParameter("id_emergencia", emergencia.getIdEmergencia())
                     .addParameter("estado_emergencia", emergencia.getEstadoEmergencia())
+                    .addParameter("geom_emergencia", emergencia.getGeomEmergencia())
                     .executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -150,6 +154,21 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error al obtener la cantidad de tareas activas", e);
+        }
+    }
+
+    @Override
+    public List<Voluntario> obtenerVoluntariosEmergenciaRadio(Long id_emergencia, float radio) {
+        String sql = "SELECT * FROM obtener_voluntarios_emergencia_radio(:id_emergencia_param, :radio)";
+
+        try  (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
+                    .addParameter("id_emergencia_param", id_emergencia)
+                    .addParameter("radio", radio)
+                    .executeAndFetch(Voluntario.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw  new RuntimeException("Error al obtener los voluntarios en el radio de entrada de la emergencia", e);
         }
     }
 }

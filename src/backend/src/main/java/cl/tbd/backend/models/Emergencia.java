@@ -1,5 +1,7 @@
 package cl.tbd.backend.models;
 
+import org.locationtech.jts.geom.Geometry;
+
 import java.util.Date;
 
 
@@ -13,6 +15,8 @@ public class Emergencia {
     private Long id_institucion;
     private Boolean estado_emergencia;
 
+    private Geometry geom_emergencia;
+
     // Constructor Vacío
     public Emergencia(){
 
@@ -20,7 +24,7 @@ public class Emergencia {
     
     public Emergencia(Long id_emergencia, String nombre_emergencia, String descripcion_emergencia,
                       Date fecha_creacion_emergencia, Long id_coordinador, Long id_institucion,
-                      Boolean estado_emergencia) {
+                      Boolean estado_emergencia, Geometry geom_emergencia) {
         this.id_emergencia = id_emergencia;
         this.nombre_emergencia = nombre_emergencia;
         this.descripcion_emergencia = descripcion_emergencia;
@@ -28,6 +32,7 @@ public class Emergencia {
         this.id_coordinador = id_coordinador;
         this.id_institucion = id_institucion;
         this.estado_emergencia = estado_emergencia;
+        this.geom_emergencia = geom_emergencia;
     }
 
     public Long getIdEmergencia() {
@@ -81,4 +86,12 @@ public class Emergencia {
     public Boolean getEstadoEmergencia() { return this.estado_emergencia; }
 
     public void setEstadoEmergencia(Boolean estado_emergencia) { this.estado_emergencia = estado_emergencia; }
+
+    public Geometry getGeomEmergencia() {
+        return geom_emergencia;
+    }
+
+    public void setGeomEmergencia(Geometry geom_emergencia) {
+        this.geom_emergencia = geom_emergencia;
+    }
 }

@@ -86,7 +86,7 @@ SELECT * FROM calcular_ranking(1, 5);
 
 
 -- Funcion que obtiene los volutiarios inscritos en una emergencia y que estan dentro de un Radio
-CREATE OR REPLACE FUNCTION obtener_voluntarios_emergencia_radio(id_emergencia_param INT, radio FLOAT)
+CREATE OR REPLACE FUNCTION obtener_voluntarios_emergencia_radio(id_emergencia_param BIGINT, radio FLOAT)
     RETURNS TABLE (
                       id_voluntario INT,
                       nombre_voluntario VARCHAR(255),
@@ -109,7 +109,7 @@ BEGIN
             v.fecha_nacimiento_voluntario,
             v.disponibilidad_voluntario,
             v.email_voluntario,
-            v.geom
+            v.geom_voluntario
         FROM
             voluntario v
                 JOIN ranking r ON v.id_voluntario = r.id_voluntario  -- AND r.asignado_ranking = TRUE 
@@ -118,9 +118,10 @@ BEGIN
                 JOIN emergencia e ON t.id_emergencia = e.id_emergencia
         WHERE
                 e.id_emergencia = id_emergencia_param
-          AND ST_DWITHIN(v.geom::geography, e.geom_emergencia::geography, radio); -- Radio en metros
+          AND ST_DWITHIN(v.geom_voluntario::geography, e.geom_emergencia::geography, radio); -- Radio en metros
 END;
 $$ LANGUAGE plpgsql;
 
 -- Ejemplo de uso con id_emergencia = 1 y 8km de radio
 -- SELECT * FROM obtener_voluntarios_emergencia_radio(1, 8000);
+SELECT * FROM obtener_voluntarios_emergencia_radio(1, 8000);

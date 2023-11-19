@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS voluntario(
     disponibilidad_voluntario DATE, -- Referente a un día en particular por simplicidad
 	email_voluntario VARCHAR(255),
 	password_voluntario VARCHAR(255),
-    geom GEOMETRY(Point, 4326)
+    geom_voluntario GEOMETRY(Point, 4326)
 );
 
 CREATE TABLE IF NOT EXISTS habilidad(

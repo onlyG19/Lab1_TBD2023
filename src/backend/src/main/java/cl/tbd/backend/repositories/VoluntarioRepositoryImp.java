@@ -45,9 +45,9 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     public void createVoluntario(Voluntario voluntario) {
         String sql = "INSERT INTO voluntario (nombre_voluntario, apellido_voluntario, telefono_voluntario, " +
                 "direccion_voluntario, fecha_nacimiento_voluntario, disponibilidad_voluntario," +
-                "password_voluntario, email_voluntario) " +
+                "password_voluntario, email_voluntario, geom_voluntario) " +
                 "VALUES (:nombre_voluntario, :apellido_voluntario, :telefono_voluntario, :direccion_voluntario, " +
-                ":fecha_nacimiento_voluntario, :disponibilidad_voluntario, :password_voluntario, :email_voluntario)";
+                ":fecha_nacimiento_voluntario, :disponibilidad_voluntario, :password_voluntario, :email_voluntario, :geom_voluntario)";
 
         try (Connection conn = sql2o.open()) {
             Integer idInteger = (Integer) conn.createQuery(sql, true)
@@ -59,6 +59,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                     .addParameter("disponibilidad_voluntario", voluntario.getDisponibilidadVoluntario())
                     .addParameter("password_voluntario", voluntario.getPasswordVoluntario())
                     .addParameter("email_voluntario", voluntario.getEmailVoluntario())
+                    .addParameter("geom_voluntario", voluntario.getGeomVoluntario())
                     .executeUpdate()
                     .getKey();
 
@@ -77,7 +78,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                 "apellido_voluntario = :apellido_voluntario, telefono_voluntario = :telefono_voluntario, " +
                 "direccion_voluntario = :direccion_voluntario, fecha_nacimiento_voluntario = :fecha_nacimiento_voluntario, " +
                 "disponibilidad_voluntario = :disponibilidad_voluntario, password_voluntario = :password_voluntario, " +
-                "email_voluntario = :email_voluntario WHERE id_voluntario = :id_voluntario";
+                "email_voluntario = :email_voluntario, geom_voluntario = :geom_voluntario WHERE id_voluntario = :id_voluntario";
 
         try (Connection conn = sql2o.open()) {
             conn.createQuery(sql)
@@ -89,6 +90,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                     .addParameter("disponibilidad_voluntario", voluntario.getDisponibilidadVoluntario())
                     .addParameter("password_voluntario", voluntario.getPasswordVoluntario())
                     .addParameter("email_voluntario", voluntario.getEmailVoluntario())
+                    .addParameter("geom_voluntario", voluntario.getGeomVoluntario())
                     .addParameter("id_voluntario", voluntario.getIdVoluntario())
                     .executeUpdate();
         } catch (Exception e) {

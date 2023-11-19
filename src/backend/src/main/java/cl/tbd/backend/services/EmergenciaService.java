@@ -2,6 +2,8 @@ package cl.tbd.backend.services;
 
 import java.util.List;
 
+import cl.tbd.backend.models.Radio;
+import cl.tbd.backend.models.Voluntario;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +44,11 @@ public class EmergenciaService {
     @GetMapping("/emergencia/numeroTareasActivas/{id_emergencia}")
     public Long cantidadTareasActivasByEmergenciaId(@PathVariable Long id_emergencia){
         return emergenciaRepository.cantidadTareasActivasByEmergenciaId(id_emergencia);
+    }
+
+    @PostMapping("/emergencia/voluntariosEnElRadio/{id_emergencia}")
+    public List<Voluntario> obtenerVoluntariosEmergenciaRadio(@PathVariable Long id_emergencia, @RequestBody Radio radio) {
+        return emergenciaRepository.obtenerVoluntariosEmergenciaRadio(id_emergencia, radio.getRadio());
     }
 
     // CREATE

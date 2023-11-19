@@ -1,5 +1,7 @@
 package cl.tbd.backend.models;
 
+import org.locationtech.jts.geom.Geometry;
+
 import java.sql.Date;
 
 public class Voluntario {
@@ -13,6 +15,7 @@ public class Voluntario {
     private Date disponibilidad_voluntario;
     private String password_voluntario;
     private String email_voluntario;
+    private Geometry geom_voluntario;
 
     // Constructor vacío
     public Voluntario() {
@@ -21,7 +24,7 @@ public class Voluntario {
 
     public Voluntario(Long id_voluntario, String nombre_voluntario, String apellido_voluntario,
                       String telefono_voluntario, String direccion_voluntario, Date fecha_nacimiento_voluntario,
-                      Date disponibilidad_voluntario, String password_voluntario, String email_voluntario) {
+                      Date disponibilidad_voluntario, String password_voluntario, String email_voluntario, Geometry geom_voluntario) {
         this.id_voluntario = id_voluntario;
         this.nombre_voluntario = nombre_voluntario;
         this.apellido_voluntario = apellido_voluntario;
@@ -31,6 +34,7 @@ public class Voluntario {
         this.disponibilidad_voluntario = disponibilidad_voluntario;
         this.password_voluntario = password_voluntario;
         this.email_voluntario = email_voluntario;
+        this.geom_voluntario = geom_voluntario;
     }
 
     public Long getIdVoluntario() {
@@ -103,5 +107,13 @@ public class Voluntario {
 
     public void setEmailVoluntario(String email_voluntario) {
         this.email_voluntario = email_voluntario;
+    }
+
+    public Geometry getGeomVoluntario() {
+        return geom_voluntario;
+    }
+
+    public void setGeomVoluntario(Geometry geom_voluntario) {
+        this.geom_voluntario = geom_voluntario;
     }
 }
