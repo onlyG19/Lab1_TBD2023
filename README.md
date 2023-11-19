@@ -79,7 +79,7 @@ Se puede acceder a la lista de Tareas asociadas a la emergencia apretando el men
 
 - Trigger: Existe un único trigger el cual se encarga de registrar los cambios hechos a la tabla de emergencia, para ver la acción de este trigger se recomiendan los siguientes pasos:
 	1. Iniciar sesión con usuario coordinador 
-	(por ejemplo, correo: luis@example.com, contraseña: 12345678)
+	(por ejemplo, correo: juan.perez@example.com, contraseña: 12345678)
 	2. Activar/Desactivar una emergencia
 	3. Ver la tabla emergencia_log la cual guarda los datos obtenidos por el trigger
 
@@ -111,3 +111,34 @@ Para utilizarlas seguir los siguientes pasos utilizando Postman:
 		b2. Enviar la consulta en formato GET, si quisieramos por ejemplo 3 voluntarios para la tarea de id 1, 
   		debería verse así:
 		POST: http://localhost:8080/ranking/listaRanking/1/3
+
+## LAB 2: Integración de Funcionalidades PostGIS
+
+### Actualizaciones:
+
+En esta segunda fase del proyecto, se han incorporado capacidades de PostGIS para gestionar datos geoespaciales. A continuación, se detallan las modificaciones realizadas y las nuevas funcionalidades implementadas.
+
+- **Añadido Campo Geoespacial:**
+  Se ha introducido un nuevo campo de tipo "geometry" en las tablas de `voluntario` y `emergencia`. Este campo permite almacenar información sobre la ubicación geoespacial de estas entidades. Cabe destacar que ambas implementaciones se realizaron en el formato EPSG 4326.
+
+- **Actualización de Operaciones CRUD:**
+  Las operaciones CRUD en el backend se han actualizado para adaptarse a los cambios introducidos en las tablas mencionadas anteriormente. Ahora, el sistema puede manejar datos geoespaciales en las entidades `voluntario` y `emergencia`.
+
+- **Datos de Prueba:**
+  Se han creado datos de prueba específicos para evaluar y demostrar las capacidades de almacenamiento y manipulación de datos geoespaciales. En el archivo `loadData.sql`, se han creado 20 voluntarios con ubicaciones geoespaciales diversas a lo largo de Chile. De manera análoga, se han generado datos de emergencias con información geoespacial asociada.
+
+- **Nueva Función para Obtener Voluntarios en un Radio:**
+  En el archivo `functions.sql`, se ha implementado una nueva función denominada `obtener_voluntarios_emergencia_radio(id_emergencia_param INT, radio FLOAT)`. Esta función permite obtener voluntarios que se encuentren dentro de un radio específico (definido por el usuario) de una emergencia dada. La función retorna una tabla con los voluntarios que cumplen con esta condición.
+
+### Instrucciones para Ejecutar la nueva Funcionalidad:
+
+1. **Preparación de Datos:**
+   - Asegúrese de haber ejecutado los scripts de creación de la base de datos, carga de datos y funciones.
+
+2. **Uso de la Nueva Función:**
+   - Para utilizar la función que obtiene voluntarios en un radio, puede ejecutarla desde una herramienta de consulta SQL con el siguiente comando:
+     ```sql
+     SELECT * FROM obtener_voluntarios_emergencia_radio(id_emergencia, radio);
+     ```
+     Sustituya `id_emergencia` con la ID de la emergencia deseada y `radio` con el valor del radio en metros que desea aplicar.
+
