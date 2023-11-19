@@ -96,7 +96,7 @@ CREATE OR REPLACE FUNCTION obtener_voluntarios_emergencia_radio(id_emergencia_pa
                       fecha_nacimiento_voluntario DATE,
                       disponibilidad_voluntario DATE,
                       email_voluntario VARCHAR(255),
-                      geom GEOMETRY(Point, 4326)
+                      geom_voluntario GEOMETRY(Point, 4326)
                   ) AS $$
 BEGIN
     RETURN QUERY
@@ -124,4 +124,3 @@ $$ LANGUAGE plpgsql;
 
 -- Ejemplo de uso con id_emergencia = 1 y 8km de radio
 -- SELECT * FROM obtener_voluntarios_emergencia_radio(1, 8000);
-SELECT * FROM obtener_voluntarios_emergencia_radio(1, 8000);
