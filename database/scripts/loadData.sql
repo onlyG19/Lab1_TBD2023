@@ -1,7 +1,7 @@
 -- noinspection SqlNoDataSourceInspectionForFile
 
 --------------------------------------------------- CARGA DE DATOS ----------------------------------------------------
-INSERT INTO voluntario (nombre_voluntario, apellido_voluntario, telefono_voluntario, direccion_voluntario, fecha_nacimiento_voluntario, disponibilidad_voluntario, email_voluntario, password_voluntario, geom)
+INSERT INTO voluntario (nombre_voluntario, apellido_voluntario, telefono_voluntario, direccion_voluntario, fecha_nacimiento_voluntario, disponibilidad_voluntario, email_voluntario, password_voluntario, geom_voluntario)
 VALUES
     -- $2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW es encriptacion para 12345678
     ('Juan', 'Pérez', '+56901234567', 'Nueva Imperial N° 4261', '1990-01-01', '2023-11-20', 'juan.perez@example.com', '$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW', ST_SetSRID(ST_GeomFromText('POINT(-70.692909 -33.444485)'), 4326)),
