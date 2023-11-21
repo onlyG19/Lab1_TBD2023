@@ -134,6 +134,10 @@ En esta segunda fase del proyecto, se han incorporado capacidades de PostGIS par
 
 1. **Preparación de Datos:**
    - Asegúrese de haber ejecutado los scripts de creación de la base de datos, carga de datos y funciones.
+   - Para emular la demostración y debido a que los voluntarios se conectan a la emergencia a partir del ranking,
+     es necesario correr la función calcular_ranking(id_tarea, cantidad_voluntarios), para así tener voluntarios
+     inscritos en la emergencia, al correr el archivo functions.sql se corre también una query de ejemplo
+     que calcula el ranking con los valores: calcular_ranking(1, 5), 5 voluntarios para la tarea 1.
 
 2. **Uso de la Nueva Función:**
    - Para utilizar la función que obtiene voluntarios en un radio, puede ejecutarla desde una herramienta de consulta SQL con el siguiente comando:
@@ -141,4 +145,5 @@ En esta segunda fase del proyecto, se han incorporado capacidades de PostGIS par
      SELECT * FROM obtener_voluntarios_emergencia_radio(id_emergencia, radio);
      ```
      Sustituya `id_emergencia` con la ID de la emergencia deseada y `radio` con el valor del radio en metros que desea aplicar.
+     La ID utilizada en la demo es 1.
 
