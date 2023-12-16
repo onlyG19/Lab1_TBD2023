@@ -1,0 +1,584 @@
+[{
+    "nombre_voluntario": "Juan",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Pérez",
+    "telefono_voluntario": "+56901234567",
+    "direccion_voluntario": "Nueva Imperial N° 4261",
+    "fecha_nacimiento_voluntario": "1990-01-01",
+    "disponibilidad_voluntario": "2023-11-20",
+    "email_voluntario": "juan.perez@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.692909,
+        -33.444485
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Maria",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      }
+    ],
+    "apellido_voluntario": "González",
+    "telefono_voluntario": "+56907654321",
+    "direccion_voluntario": "Eliodoro Yañez N°2.881",
+    "fecha_nacimiento_voluntario": "1985-05-15",
+    "disponibilidad_voluntario": "2023-11-22",
+    "email_voluntario": "maria.gonzalez@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.593534,
+        -33.42792
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Pedro",
+    "habilidades": [
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Soto",
+    "telefono_voluntario": "+56909876543",
+    "direccion_voluntario": "Leal N° 499",
+    "fecha_nacimiento_voluntario": "1993-09-20",
+    "disponibilidad_voluntario": "2023-11-25",
+    "email_voluntario": "pedro.soto@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.635748,
+        -33.491304
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Carla",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      }
+    ],
+    "apellido_voluntario": "López",
+    "telefono_voluntario": "+56901234567",
+    "direccion_voluntario": "Av. Vicuña Mackenna N° 584",
+    "fecha_nacimiento_voluntario": "1988-03-12",
+    "disponibilidad_voluntario": "2023-11-28",
+    "email_voluntario": "carla.lopez@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.631806,
+        -33.44859
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Miguel",
+    "habilidades": [
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Martínez",
+    "telefono_voluntario": "+56907654321",
+    "direccion_voluntario": "Venancia Leiva N° 2311",
+    "fecha_nacimiento_voluntario": "1995-07-30",
+    "disponibilidad_voluntario": "2023-12-01",
+    "email_voluntario": "miguel.martinez@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.633001,
+        -33.558203
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Fernanda",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Gómez",
+    "telefono_voluntario": "+56909876543",
+    "direccion_voluntario": "Isidora Goyenechea Nº 3614",
+    "fecha_nacimiento_voluntario": "1983-11-05",
+    "disponibilidad_voluntario": "2023-12-04",
+    "email_voluntario": "fernanda.gomez@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.5922,
+        -33.4137
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Diego",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Hernández",
+    "telefono_voluntario": "+56901234567",
+    "direccion_voluntario": "Pasaje Las Malvas N° 179",
+    "fecha_nacimiento_voluntario": "1992-04-18",
+    "disponibilidad_voluntario": "2023-12-07",
+    "email_voluntario": "diego.hernandez@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.740746,
+        -33.366722
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Ana",
+    "habilidades": [
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Torres",
+    "telefono_voluntario": "+56907654321",
+    "direccion_voluntario": "Diagonal Paraguay N° 406",
+    "fecha_nacimiento_voluntario": "1986-08-22",
+    "disponibilidad_voluntario": "2023-12-10",
+    "email_voluntario": "ana.torres@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.641562,
+        -33.442884
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Gonzalo",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      }
+    ],
+    "apellido_voluntario": "Ramírez",
+    "telefono_voluntario": "+56909876543",
+    "direccion_voluntario": "Artesanos N° 750",
+    "fecha_nacimiento_voluntario": "1998-02-10",
+    "disponibilidad_voluntario": "2023-12-13",
+    "email_voluntario": "gonzalo.ramirez@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.650925,
+        -33.431587
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Camila",
+    "habilidades": [
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Silva",
+    "telefono_voluntario": "+56901234567",
+    "direccion_voluntario": "Av. Einstein Nº 684",
+    "fecha_nacimiento_voluntario": "1991-06-25",
+    "disponibilidad_voluntario": "2023-12-16",
+    "email_voluntario": "camila.silva@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.645477,
+        -33.405472
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Ricardo",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Fuentes",
+    "telefono_voluntario": "+56907654321",
+    "direccion_voluntario": "Calle San Joaquín 291, Rancagua",
+    "fecha_nacimiento_voluntario": "1984-12-15",
+    "disponibilidad_voluntario": "2023-12-19",
+    "email_voluntario": "ricardo.fuentes@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.7015,
+        -34.1725
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Lorena",
+    "habilidades": [
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      }
+    ],
+    "apellido_voluntario": "Herrera",
+    "telefono_voluntario": "+56909876543",
+    "direccion_voluntario": "Union Obrera, 284 1048 Rancagua",
+    "fecha_nacimiento_voluntario": "1997-10-08",
+    "disponibilidad_voluntario": "2023-12-22",
+    "email_voluntario": "lorena.herrera@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.73225982995358,
+        -34.166472476475676
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Pablo",
+    "habilidades": [
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      }
+    ],
+    "apellido_voluntario": "Cáceres",
+    "telefono_voluntario": "+56901234567",
+    "direccion_voluntario": "Calle 3 Norte 346, Talca",
+    "fecha_nacimiento_voluntario": "1989-03-28",
+    "disponibilidad_voluntario": "2023-12-25",
+    "email_voluntario": "pablo.caceres@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -71.6618,
+        -35.4271
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Catalina",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Vargas",
+    "telefono_voluntario": "+56907654321",
+    "direccion_voluntario": "San Pedro Nolasco 380, Concepción",
+    "fecha_nacimiento_voluntario": "1994-07-03",
+    "disponibilidad_voluntario": "2023-12-28",
+    "email_voluntario": "catalina.vargas@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -73.0457,
+        -36.7777
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Felipe",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      }
+    ],
+    "apellido_voluntario": "Mendoza",
+    "telefono_voluntario": "+56909876543",
+    "direccion_voluntario": "Aníbal Pinto 335, Concepción",
+    "fecha_nacimiento_voluntario": "1987-11-18",
+    "disponibilidad_voluntario": "2023-12-31",
+    "email_voluntario": "felipe.mendoza@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -73.0489,
+        -36.8279
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Isabel",
+    "habilidades": [
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Ortiz",
+    "telefono_voluntario": "+56901234567",
+    "direccion_voluntario": "Doñigue 620, Punta Arenas",
+    "fecha_nacimiento_voluntario": "1996-05-05",
+    "disponibilidad_voluntario": "2023-11-18",
+    "email_voluntario": "isabel.ortiz@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.9499,
+        -53.12011
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Martín",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Lara",
+    "telefono_voluntario": "+56907654321",
+    "direccion_voluntario": "Pasaje Antonio Benedicto Cebrian 621, Punta Arenas",
+    "fecha_nacimiento_voluntario": "1990-09-12",
+    "disponibilidad_voluntario": "2023-11-21",
+    "email_voluntario": "martin.lara@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.9167,
+        -53.15
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Javiera",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      }
+    ],
+    "apellido_voluntario": "Rojas",
+    "telefono_voluntario": "+56909876543",
+    "direccion_voluntario": "Regimiento Reforzado Nº20, Antofagasta",
+    "fecha_nacimiento_voluntario": "1982-02-28",
+    "disponibilidad_voluntario": "2023-11-24",
+    "email_voluntario": "javiera.rojas@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.4163,
+        -23.687
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Nicolás",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      }
+    ],
+    "apellido_voluntario": "Gutiérrez",
+    "telefono_voluntario": "+56901234567",
+    "direccion_voluntario": "Venezuela 894, Antofagasta",
+    "fecha_nacimiento_voluntario": "1981-07-15",
+    "disponibilidad_voluntario": "2023-11-27",
+    "email_voluntario": "nicolas.gutierrez@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.4001,
+        -23.6524
+      ]
+    }
+  },
+  {
+    "nombre_voluntario": "Valentina",
+    "habilidades": [
+      {
+        "codigo": "HH1",
+        "descripcion": "Primeros Auxilios"
+      },
+      {
+        "codigo": "HH2",
+        "descripcion": "Rescate Acuático"
+      },
+      {
+        "codigo": "HH3",
+        "descripcion": "Manejo de Equipos de Emergencia"
+      },
+      {
+        "codigo": "HH4",
+        "descripcion": "Atención Médica Avanzada"
+      }
+    ],
+    "apellido_voluntario": "Hidalgo",
+    "telefono_voluntario": "+56907654321",
+    "direccion_voluntario": "Manuel Bulnes 110, Iquique",
+    "fecha_nacimiento_voluntario": "1989-12-03",
+    "disponibilidad_voluntario": "2023-11-30",
+    "email_voluntario": "valentina.hidalgo@example.com",
+    "password_voluntario": "$2a$10$.PUQRDWaQhRXEEepitbtl.Qgt6qm2GdduFrOdZ88Bo4VMQQapNmPW",
+    "geom_voluntario": {
+      "type": "Point",
+      "coordinates": [
+        -70.1357,
+        -20.2208
+      ]
+    }
+  }]
