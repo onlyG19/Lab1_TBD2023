@@ -548,7 +548,7 @@
     }
   },
   {
-    "nombre_voluntario": "Valentina",
+    nombre_voluntario: "Valentina",
     "habilidades": [
       {
         "codigo": "HH1",

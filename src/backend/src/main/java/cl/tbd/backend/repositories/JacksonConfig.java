@@ -13,7 +13,7 @@ public class JacksonConfig {
         ObjectMapper objectMapper = new ObjectMapper();
 
         // Configuración del Casing de los JSON en este caso snake_case
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CAMEL_CASE);
 
         // Configuración para el tipo date de los JSON
         objectMapper.registerModule(new JavaTimeModule());
