@@ -60,6 +60,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/ranking/full_ranking/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/**").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic()
                 .authenticationEntryPoint(authenticationEntryPoint())

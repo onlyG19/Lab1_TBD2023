@@ -40,4 +40,9 @@ public class VoluntarioServiceMongo {
     public void eliminar(@PathVariable String nombre){
         voluntarioMongoRepositoryImp.eliminar(nombre);
     }
+
+    @PutMapping("/actualizar")
+    public Voluntario actualizar(@RequestBody Voluntario newVoluntario){
+        return voluntarioMongoRepositoryImp.actualizar(newVoluntario);
+    }
 }
