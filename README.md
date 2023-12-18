@@ -147,3 +147,35 @@ En esta segunda fase del proyecto, se han incorporado capacidades de PostGIS par
      Sustituya `id_emergencia` con la ID de la emergencia deseada y `radio` con el valor del radio en metros que desea aplicar.
      La ID utilizada en la demo es 1.
 
+## LAB 3: Traspaso de Base de Datos Relacional a No Relacional (MongoDB)
+
+# Prerrequisitos
+Se debe contar con la siguiente tecnologías para la ejecución optima del proyecto:
+	
+	• MongoDB 5.0.23
+	• Mongosh
+
+###Actualizaciones:
+
+En esta tercera fase del proyecto, se ha cambiado la base de datos a una no relacional, utilizando el motor de base de datos llamado MongoDB. A continuación, se detallan las modificaciones realizadas en el proyecto.
+
+- **Cambio en las propiedades del backend:**
+  Se ha modificado el archivo `application.properties` para poder conectarse con la nueva base de datos de MongoDB, ocupando el puerto predeterminado, más el nombre de la base de datos.
+
+- **Actualización de Operaciones CRUD:**
+  Las operaciones CRUD en el backend se han actualizado para adaptarse a la nueva base de datos no relacional. En específico se actualizó solamente el CRUD de la clase `voluntario`.
+
+- **Creación Base de Datos y Población con Datos de Prueba:**
+  Se ha creado un archivo llamado `CreateLoadData.js` en la carpeta `database/scripts`. Se debe tener instalado mongosh para poder crear la base de datos. Tenemos que ir a la carpeta donde esta guardado el archivo. Si se esta utilizando windows, desde la misma carpeta ejecutar una terminal y ejecutar el comando `mongosh < CreateLoadData.js` para crear y poblar la base de datos con datos de prueba.
+
+- **Nueva Función para Obtener el Total de Habilidades de los Voluntarios:**
+  En el archivo `VoluntarioMongoRepositoryImp` se creó una nueva función llamada `getTotalHabilidadesCount()` que calcula el total de habilidades para los voluntarios registrados. Se tubo que crear la clase `TotalHabilidadesCountResult` para poder guardarlos de manera momentanea.
+
+### Instrucciones para Ejecutar probar la nueva Base de Datos:
+
+1. **Preparación de Datos:**
+   - Asegúrese de haber ejecutado el script de la creación de la base de datos y la carga de datos.
+
+2. **Uso de la nueva Base de datos:**
+   - Para probar la base de datos MongoDB, se debe utilizar el programa Postman para enviar peticiones HTTP, con las rutas `/monguito/voluntario/all`, `/monguito/voluntario/crear`, `/monguito/voluntario/{nombre}/eliminar` y `/monguito/voluntario/actualizar` para probar el CRUD actualizado con la base de datos no relacional.
+   - Para probar la consulta de obtener el total de habilidades para los voluntarios registrados, debemos ocupar la ruta `/monguito/voluntario/habilidad/count`.
