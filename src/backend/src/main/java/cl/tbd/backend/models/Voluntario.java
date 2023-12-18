@@ -13,13 +13,11 @@ public class Voluntario {
     ObjectId _id;
 
     private List<Document> habilidades;
-
-
     private String nombreVoluntario;
     private String apellidoVoluntario;
     private String telefono_voluntario;
     private String direccion_voluntario;
-    private Date fecha_nacimiento_voluntario;
+    private String fecha_nacimiento_voluntario;
     private String disponibilidad_voluntario;
     private String password_voluntario;
     private String email_voluntario;
@@ -30,7 +28,7 @@ public class Voluntario {
     }
 
     public Voluntario(List<Document> hablidades,String nombre_voluntario, String apellido_voluntario,
-                      String telefono_voluntario, String direccion_voluntario, Date fecha_nacimiento_voluntario,
+                      String telefono_voluntario, String direccion_voluntario, String fecha_nacimiento_voluntario,
                       String disponibilidad_voluntario, String password_voluntario, String email_voluntario) {
         this.habilidades = hablidades;
         this.nombreVoluntario = nombre_voluntario;
@@ -91,11 +89,11 @@ public class Voluntario {
         this.direccion_voluntario = direccion_voluntario;
     }
 
-    public Date getFechaNacimientoVoluntario() {
+    public String getFechaNacimientoVoluntario() {
         return fecha_nacimiento_voluntario;
     }
 
-    public void setFechaNacimientoVoluntario(Date fecha_nacimiento_voluntario) {
+    public void setFechaNacimientoVoluntario(String fecha_nacimiento_voluntario) {
         this.fecha_nacimiento_voluntario = fecha_nacimiento_voluntario;
     }
 
