@@ -175,6 +175,8 @@ En esta tercera fase del proyecto, se ha cambiado la base de datos a una no rela
 
 1. **Preparación de Datos:**
    - Asegúrese de haber ejecutado el script de la creación de la base de datos y la carga de datos.
+     Esto, estando en la carpeta de scripts de base de datos y utilizando el siguiente comando:
+		mongosh < CreateLoadData.js
 
 2. **Uso de la nueva Base de datos:**
    - Para probar la base de datos MongoDB, se debe utilizar el programa Postman para enviar peticiones HTTP, con las rutas `/monguito/voluntario/all`, `/monguito/voluntario/crear`, `/monguito/voluntario/{nombre}/eliminar` y `/monguito/voluntario/actualizar` para probar el CRUD actualizado con la base de datos no relacional.
