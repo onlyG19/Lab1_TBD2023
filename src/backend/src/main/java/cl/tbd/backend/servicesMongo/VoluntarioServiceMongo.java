@@ -2,10 +2,13 @@ package cl.tbd.backend.servicesMongo;
 
 import cl.tbd.backend.models.Voluntario;
 import cl.tbd.backend.mongoRepository.VoluntarioMongoRepositoryImp;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -13,17 +16,14 @@ import java.util.List;
 @RequestMapping("/monguito/voluntario")
 public class VoluntarioServiceMongo {
 
+
     @Autowired
     private VoluntarioMongoRepositoryImp voluntarioMongoRepositoryImp;
 
-    @GetMapping("/all")
-    public List<Voluntario> obtenerTodos(){
 
-        List<Voluntario> voluntarios =  voluntarioMongoRepositoryImp.findAll();
-        for(Voluntario voluntario: voluntarios){
-            System.out.println(voluntario.getNombreVoluntario());
-        }
-        return voluntarios;
+    @GetMapping("/all")
+    public List<Voluntario> all(){
+        return voluntarioMongoRepositoryImp.findAll();
     }
 
     @PostMapping("/crear")
@@ -31,4 +31,13 @@ public class VoluntarioServiceMongo {
         return voluntarioMongoRepositoryImp.crearVoluntario(newVoluntario);
     }
 
+    @GetMapping("/habilidad/count")
+    public long contarHabilidades(){
+        return voluntarioMongoRepositoryImp.getTotalHabilidadesCount();
+    }
+
+    @DeleteMapping("/{nombre}/eliminar")
+    public void eliminar(@PathVariable String nombre){
+        voluntarioMongoRepositoryImp.eliminar(nombre);
+    }
 }
